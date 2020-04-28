@@ -46,3 +46,7 @@ class MidiIo():
 class MidiOut(MidiIo):
     def __init__(self, devs):
         MidiIo.__init__(self, midi.Output(devs.forOutput(), latency = 0))
+
+class MidiIn(MidiIo):
+    def __init__(self, devs):
+        MidiIo.__init__(self, midi.Input(devs.forInput()))
