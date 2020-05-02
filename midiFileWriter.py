@@ -36,10 +36,15 @@ class MidiFileWriter:
         self._endTrack(data)
 
     def _noteLength(self, dur):
-        ret = [((dur % 256) & 0x7f)]
-        if (dur < 128):
-            return ret
-        return [((dur % 256) >> 7) + (0x80 | (dur >> 8) << 1)] + ret
+        n = dur & 0x7fffffff
+        ret = [n & 0x7f]
+
+        while True:
+            n = n >> 7
+            if n == 0:
+                return ret
+            ret = [0x80 | (n & 0x7f)] + ret
+
 
     def __del__(self):
         trackCount = 3 if self.tempo > 0 else 2
