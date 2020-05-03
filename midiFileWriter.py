@@ -6,8 +6,9 @@ class MidiFileWriter:
         self.fqfn = fqfn
         self.notes = {"top": [], "bass": []}
         
-    def setTempo(self, t):
+    def setTempo(self, t, ppqn):
         self.tempo = t
+        self.ppqn = round(ppqn)
 
     def addNote(self, part, note, velocity, duration):
         self.notes[part].append((note, velocity, duration))
@@ -22,8 +23,6 @@ class MidiFileWriter:
         self.outFile.write(bytes(data))
 
     def _tempoTrack(self, tempo):
-        if tempo == 0:
-            return;
         data = []
         microsPerBeat = int(60000000 / tempo);
         data.append(0) # time since previous event (nothing)
@@ -53,9 +52,9 @@ class MidiFileWriter:
         self.outFile.write(bytes([0, 0, 0, 6])) #header length = 6
         self.outFile.write(bytes([0, 1])) #file type = 2
         self.outFile.write(bytes([0, trackCount]))
-        self.outFile.write(bytes([0, 32])) # 32 ticks per quarter note
-        
+        self.outFile.write(bytes([(self.ppqn >> 8) & 0x7f, self.ppqn & 0xFF]))
         self._tempoTrack(self.tempo)
+
         for part, notes in self.notes.items():
             data = []
             data.append(0) # time since previous event (nothing)
@@ -65,7 +64,7 @@ class MidiFileWriter:
             for note in notes:
                 data.append(0)
                 data.extend([0x90, note[0], note[1]])
-                data.extend(self._noteLength(8 * note[2])) # 8= ticks per 16th
+                data.extend(self._noteLength(note[2]))
                 data.extend([0x80, note[0], 0x00])
             self._endTrack(data)
         self.outFile.close()
