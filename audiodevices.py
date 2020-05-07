@@ -7,7 +7,7 @@ def UsbAudioDevices():
     for d in range(len(devs)):
         dev = devs[d]
         if "USB" in dev["name"] and dev["default_samplerate"] == 44100:
-            usable[d] = dev["name"]
+            usable[d] = (dev["name"], int(dev["max_input_channels"]))
 
     return usable
 
