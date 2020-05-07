@@ -8,7 +8,7 @@ class UsbMidiDevices():
         self.outputs = []
         self.inputs = []
         count = midi.get_count()
-        print("found", count, "devices (including non USB)")
+        print("found", count, "(including non USB)")
         for d in range(count):
             info = midi.get_device_info(d)
             name = info[1].decode("utf-8")
