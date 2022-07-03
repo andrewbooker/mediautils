@@ -17,49 +17,63 @@
         </div>
         <div id="videos"></div>
         <script>
+document.getElementById("fileList").focus();
 document.getElementById("load").setAttribute("onclick", "load();");
+
+
+const loadOne = (f, i) => {
+    const container = document.createElement("div");
+    const v = document.createElement("video");
+    const vs = document.createElement("source");
+    vs.setAttribute("src", f);
+    vs.setAttribute("type", "video/mp4");
+    v.setAttribute("height", 360);
+    v.setAttribute("width", 640);
+    const id = "video" + i;
+    videoCtls.push(v);
+    v.setAttribute("id", id);
+    v.load();
+
+    v.appendChild(vs);
+    container.appendChild(v);
+
+    const setOffset = document.createElement("input");
+    setOffset.onchange = function() {
+        v.currentTime = new Number(setOffset.value);
+    };
+    container.appendChild(setOffset);
+
+    const ct = document.createElement("div");
+    setInterval(() => {
+        ct.innerHTML = v.currentTime;
+    }, 100)
+    container.appendChild(ct);
+
+    document.getElementById("videos").appendChild(container);
+};
+
+
 const videoCtls = [];
 const load = () => {
     const fileListInput = document.getElementById("fileList");
     const fileList = fileListInput.value
     const files = JSON.parse(fileList);
     files.forEach((f, i) => {
-        const container = document.createElement("div");
-        const v = document.createElement("video");
-        const vs = document.createElement("source");
-        vs.setAttribute("src", f);
-        vs.setAttribute("type", "video/mp4");
-        v.setAttribute("height", 360);
-        v.setAttribute("width", 640);
-        const id = "video" + i;
-        videoCtls.push(v);
-        v.setAttribute("id", id);
-        v.load();
-
-        v.appendChild(vs);
-        container.appendChild(v);
-
-        const ct = document.createElement("div");
-        setInterval(() => {
-            ct.innerHTML = v.currentTime;
-        }, 100)
-        container.appendChild(ct);
-
-        document.getElementById("videos").appendChild(container);
+        loadOne(f, i);
     });
-}
+};
 
 const button = document.getElementById("play");
 const play = () => {
     videoCtls.forEach(v => v.play());
     button.innerHTML = "Pause"
     button.setAttribute("onclick", "pause();");
-}
+};
 const pause = () => {
     videoCtls.forEach(v => v.pause());
     button.innerHTML = "Play"
     button.setAttribute("onclick", "play();");
-}
+};
 button.setAttribute("onclick", "play();");
 
 
