@@ -23,6 +23,7 @@
             <button id="play">Play</button>
             <label>Start at</label>
             <input id="startAt" type="text"></input>
+            <button id="write">Write</button>
         </div>
         <div id="videos"></div>
         <script>
@@ -110,6 +111,15 @@ const pause = () => {
     button.setAttribute("onclick", "play();");
 };
 button.setAttribute("onclick", "play();");
+
+document.getElementById("write").onclick = () => {
+    j = {};
+    videoCtls.forEach(v => {
+        const src = v.childNodes[0].getAttribute("src");
+        j[src] = [{ start: v.currentTime }];
+    });
+    document.getElementById("fileList").value = JSON.stringify(j);
+};
 
 
         </script>
