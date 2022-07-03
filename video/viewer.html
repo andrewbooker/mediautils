@@ -18,12 +18,13 @@
         <div id="videos"></div>
         <script>
 document.getElementById("load").setAttribute("onclick", "load();");
-const ids = [];
+const videoCtls = [];
 const load = () => {
     const fileListInput = document.getElementById("fileList");
     const fileList = fileListInput.value
     const files = JSON.parse(fileList);
     files.forEach((f, i) => {
+        const container = document.createElement("div");
         const v = document.createElement("video");
         const vs = document.createElement("source");
         vs.setAttribute("src", f);
@@ -31,26 +32,31 @@ const load = () => {
         v.setAttribute("height", 360);
         v.setAttribute("width", 640);
         const id = "video" + i;
-        ids.push(id);
+        videoCtls.push(v);
         v.setAttribute("id", id);
+        v.load();
 
         v.appendChild(vs);
-        document.getElementById("videos").appendChild(v);
+        container.appendChild(v);
+
+        const ct = document.createElement("div");
+        setInterval(() => {
+            ct.innerHTML = v.currentTime;
+        }, 100)
+        container.appendChild(ct);
+
+        document.getElementById("videos").appendChild(container);
     });
 }
 
 const button = document.getElementById("play");
 const play = () => {
-    ids.forEach(i => {
-        document.getElementById(i).play();
-    });
+    videoCtls.forEach(v => v.play());
     button.innerHTML = "Pause"
     button.setAttribute("onclick", "pause();");
 }
 const pause = () => {
-    ids.forEach(i => {
-        document.getElementById(i).pause();
-    });
+    videoCtls.forEach(v => v.pause());
     button.innerHTML = "Play"
     button.setAttribute("onclick", "play();");
 }
