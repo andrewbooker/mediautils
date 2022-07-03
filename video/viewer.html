@@ -20,9 +20,12 @@
         </div>
         <div>
             <button id="load">Load</button>
-            <button id="play">Play</button>
-            <label>Start at</label>
+            <button id="zero">|<<</button>
+            <label>Starting at</label>
             <input id="startAt" type="text"></input>
+            <button id="play">Play</button>
+            <label>Current pos:</label>
+            <span id="currentPos"></span>
             <button id="write">Write</button>
         </div>
         <div id="videos"></div>
@@ -33,7 +36,6 @@ document.getElementById("load").setAttribute("onclick", "load();");
 const globalStart = () => {
     return new Number(document.getElementById("startAt").value);
 };
-
 
 
 const loadOne = (f, i, files) => {
@@ -70,6 +72,9 @@ const loadOne = (f, i, files) => {
     const ct = document.createElement("div");
     setInterval(() => {
         ct.innerHTML = v.currentTime;
+        if (i === 0) {
+            document.getElementById("currentPos").innerHTML = new Number(v.currentTime - setOffset.value).toFixed(2);
+        }
     }, 100)
     container.appendChild(ct);
 
@@ -88,6 +93,10 @@ const syncStarts = () => {
 
 
 document.getElementById("startAt").onchange = syncStarts;
+document.getElementById("zero").onclick = () => {
+    document.getElementById("startAt").value = 0;
+    syncStarts();
+};
 
 
 const load = () => {
