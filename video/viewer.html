@@ -8,11 +8,15 @@
         input {
             width: 60px;
         }
+        #videos {
+            display: flex;
+            flex-wrap: wrap;
+        }
         </style>
     </head>
     <body>
         <div>
-            <textarea id="fileList" rows="4" cols="100"></textarea>
+            <textarea id="fileList" rows="6" cols="190"></textarea>
         </div>
         <div>
             <button id="load">Load</button>
@@ -31,7 +35,7 @@ const globalStart = () => {
 
 
 
-const loadOne = (f, i) => {
+const loadOne = (f, i, files) => {
     const container = document.createElement("div");
     const v = document.createElement("video");
     const vs = document.createElement("source");
@@ -43,14 +47,20 @@ const loadOne = (f, i) => {
     videoCtls.push(v);
     v.setAttribute("id", id);
     v.load();
+    if (files[f].length) {
+        v.currentTime = new Number(files[f][0].start)
+    }
 
     v.appendChild(vs);
     container.appendChild(v);
 
     const setOffset = document.createElement("input");
     setOffset.setAttribute("id", "videoStartAt" + i);
+    setOffset.value = v.currentTime;
     setOffset.onchange = function() {
-        v.currentTime = globalStart() + new Number(setOffset.value);
+        const g = globalStart();
+        const o = new Number(setOffset.value);
+        v.currentTime = g + o;
     };
     const oc = document.createElement("div");
     oc.appendChild(setOffset);
@@ -84,7 +94,7 @@ const load = () => {
     const fileList = fileListInput.value
     const files = JSON.parse(fileList);
     Object.keys(files).forEach((f, i) => {
-        loadOne(f, i);
+        loadOne(f, i, files);
     });
 };
 
