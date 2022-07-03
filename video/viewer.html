@@ -26,6 +26,7 @@
             <button id="play">Play</button>
             <label>Current pos:</label>
             <span id="currentPos"></span>
+            <button id="zeroSmallestOffset">Zero smallest offset</button>
             <button id="write">Write</button>
         </div>
         <div id="videos"></div>
@@ -128,6 +129,18 @@ document.getElementById("write").onclick = () => {
         j[src] = [{ start: v.currentTime }];
     });
     document.getElementById("fileList").value = JSON.stringify(j);
+};
+
+document.getElementById("zeroSmallestOffset").onclick = () => {
+    const ts = videoCtls.map(v => v.currentTime).sort((a, b) => a - b);
+    if (ts.length === 0) {
+        return;
+    }
+    const smallest = ts[0];
+    videoCtls.forEach((v, i) => {
+        v.currentTime -= smallest;
+        document.getElementById("videoStartAt" + i).value = v.currentTime;
+    });
 };
 
 
