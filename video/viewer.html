@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+        </style>
+    </head>
+    <body>
+        <div>
+            <textarea id="fileList" rows="4" cols="100"></textarea>
+        </div>
+        <div>
+            <button id="load">Load</button>
+            <button id="play">Play</button>
+        </div>
+        <div id="videos"></div>
+        <script>
+document.getElementById("load").setAttribute("onclick", "load();");
+const ids = [];
+const load = () => {
+    const fileListInput = document.getElementById("fileList");
+    const fileList = fileListInput.value
+    const files = JSON.parse(fileList);
+    files.forEach((f, i) => {
+        const v = document.createElement("video");
+        const vs = document.createElement("source");
+        vs.setAttribute("src", f);
+        vs.setAttribute("type", "video/mp4");
+        v.setAttribute("height", 360);
+        v.setAttribute("width", 640);
+        const id = "video" + i;
+        ids.push(id);
+        v.setAttribute("id", id);
+
+        v.appendChild(vs);
+        document.getElementById("videos").appendChild(v);
+    });
+}
+
+const button = document.getElementById("play");
+const play = () => {
+    ids.forEach(i => {
+        document.getElementById(i).play();
+    });
+    button.innerHTML = "Pause"
+    button.setAttribute("onclick", "pause();");
+}
+const pause = () => {
+    ids.forEach(i => {
+        document.getElementById(i).pause();
+    });
+    button.innerHTML = "Play"
+    button.setAttribute("onclick", "play();");
+}
+button.setAttribute("onclick", "play();");
+
+
+        </script>
+    </body>
+</html>
