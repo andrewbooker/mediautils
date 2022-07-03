@@ -5,6 +5,9 @@
             background-color: black;
             color: white;
         }
+        input {
+            width: 60px;
+        }
         </style>
     </head>
     <body>
@@ -14,11 +17,18 @@
         <div>
             <button id="load">Load</button>
             <button id="play">Play</button>
+            <label>Start at</label>
+            <input id="startAt" type="text"></input>
         </div>
         <div id="videos"></div>
         <script>
 document.getElementById("fileList").focus();
 document.getElementById("load").setAttribute("onclick", "load();");
+
+const globalStart = () => {
+    return new Number(document.getElementById("startAt").value);
+};
+
 
 
 const loadOne = (f, i) => {
@@ -38,10 +48,13 @@ const loadOne = (f, i) => {
     container.appendChild(v);
 
     const setOffset = document.createElement("input");
+    setOffset.setAttribute("id", "videoStartAt" + i);
     setOffset.onchange = function() {
-        v.currentTime = new Number(setOffset.value);
+        v.currentTime = globalStart() + new Number(setOffset.value);
     };
-    container.appendChild(setOffset);
+    const oc = document.createElement("div");
+    oc.appendChild(setOffset);
+    container.appendChild(oc);
 
     const ct = document.createElement("div");
     setInterval(() => {
@@ -54,11 +67,23 @@ const loadOne = (f, i) => {
 
 
 const videoCtls = [];
+
+
+const syncStarts = () => {
+    videoCtls.forEach((v, i) => {
+        v.currentTime = globalStart() + new Number(document.getElementById("videoStartAt" + i).value);
+    });
+};
+
+
+document.getElementById("startAt").onchange = syncStarts;
+
+
 const load = () => {
     const fileListInput = document.getElementById("fileList");
     const fileList = fileListInput.value
     const files = JSON.parse(fileList);
-    files.forEach((f, i) => {
+    Object.keys(files).forEach((f, i) => {
         loadOne(f, i);
     });
 };
