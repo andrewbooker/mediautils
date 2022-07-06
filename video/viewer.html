@@ -40,13 +40,14 @@
         <script>
 document.getElementById("fileList").focus();
 document.getElementById("load").setAttribute("onclick", "load();");
+let model = {}
 
 const globalStart = () => {
     return new Number(document.getElementById("startAt").value);
 };
 
 
-const loadOne = (f, i, files) => {
+const loadOne = (f, i) => {
     const container = document.createElement("div");
     const v = document.createElement("video");
     const vs = document.createElement("source");
@@ -59,8 +60,8 @@ const loadOne = (f, i, files) => {
     videoCtls.push(v);
     v.setAttribute("id", id);
     v.load();
-    if (files[f].length) {
-        v.currentTime = new Number(files[f][0].start)
+    if (model[f].length) {
+        v.currentTime = new Number(model[f][0].start)
     }
 
     v.appendChild(vs);
@@ -86,6 +87,22 @@ const loadOne = (f, i, files) => {
         }
     }, 100)
     container.appendChild(ct);
+    const editButton = document.createElement("button");
+    editButton.innerHTML = "edit";
+    editButton.onclick = () => {
+        const edits = model[f];
+        if (!edits) {
+            edits = [];
+        }
+        if (!edits.length || edits[edits.length - 1].end) {
+            edits.push({ start: v.currentTime })
+        } else {
+            edits[edits.length - 1].end = v.currentTime;
+        }
+        model[f] = edits;
+        document.getElementById("fileList").value = JSON.stringify(model);
+    };
+    container.appendChild(editButton);
 
     document.getElementById("videos").appendChild(container);
 };
@@ -107,13 +124,12 @@ document.getElementById("zero").onclick = () => {
     syncStarts();
 };
 
-
 const load = () => {
     const fileListInput = document.getElementById("fileList");
     const fileList = fileListInput.value
-    const files = JSON.parse(fileList);
-    Object.keys(files).forEach((f, i) => {
-        loadOne(f, i, files);
+    model = JSON.parse(fileList);
+    Object.keys(model).forEach((f, i) => {
+        loadOne(f, i);
     });
 };
 
@@ -131,12 +147,13 @@ const pause = () => {
 button.setAttribute("onclick", "play();");
 
 document.getElementById("write").onclick = () => {
-    j = {};
     videoCtls.forEach(v => {
         const src = v.childNodes[0].getAttribute("src");
-        j[src] = [{ start: v.currentTime }];
+        if (!model[src]) {
+            model[src] = [{ start: v.currentTime }];
+        }
     });
-    document.getElementById("fileList").value = JSON.stringify(j);
+    document.getElementById("fileList").value = JSON.stringify(model);
 };
 
 document.getElementById("zeroSmallestOffset").onclick = () => {
