@@ -8,6 +8,9 @@
         input {
             width: 60px;
         }
+        #loc {
+            width: 600px;
+        }
         #videos {
             display: flex;
             flex-wrap: wrap;
@@ -15,6 +18,10 @@
         </style>
     </head>
     <body>
+        <div>
+            <label>File location</label>
+            <input id="loc" type="text"></input>
+        </div>
         <div>
             <textarea id="fileList" rows="6" cols="190"></textarea>
         </div>
@@ -43,7 +50,8 @@ const loadOne = (f, i, files) => {
     const container = document.createElement("div");
     const v = document.createElement("video");
     const vs = document.createElement("source");
-    vs.setAttribute("src", f);
+    const loc = document.getElementById("loc").value
+    vs.setAttribute("src", loc + "/" + f);
     vs.setAttribute("type", "video/mp4");
     v.setAttribute("height", 360);
     v.setAttribute("width", 640);
