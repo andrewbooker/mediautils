@@ -87,6 +87,14 @@ const loadOne = (f, i) => {
         if (i === 0) {
             document.getElementById("currentPos").innerHTML = new Number(v.currentTime - setOffset.value).toFixed(2);
         }
+        let inSection = false
+        for (const e of model[f].edits) {
+            inSection = (e.start < v.currentTime && e.end > v.currentTime);
+            if (inSection) {
+                break;
+            }
+        }
+        ct.setAttribute("style", inSection ? "" : "background-color: red;");
     }, 100)
     container.appendChild(ct);
     const editButton = document.createElement("button");
