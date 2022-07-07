@@ -31,6 +31,8 @@
             <label>Starting at</label>
             <input id="startAt" type="text"></input>
             <button id="play">Play</button>
+            <button id="nudgeBackward"><</button>
+            <button id="nudgeForward">></button>
             <label>Current pos:</label>
             <span id="currentPos"></span>
             <button id="zeroSmallestOffset">Zero smallest offset</button>
@@ -91,9 +93,6 @@ const loadOne = (f, i) => {
     editButton.innerHTML = "edit";
     editButton.onclick = () => {
         const edits = model[f].edits;
-        if (!edits) {
-            edits = [];
-        }
         if (!edits.length || edits[edits.length - 1].end) {
             edits.push({ start: v.currentTime })
         } else {
@@ -146,11 +145,18 @@ const pause = () => {
 };
 button.setAttribute("onclick", "play();");
 
+document.getElementById("nudgeForward").onclick = () => {
+    videoCtls.forEach(v => v.currentTime += 0.1);
+};
+document.getElementById("nudgeBackward").onclick = () => {
+    videoCtls.forEach(v => v.currentTime -= 0.1);
+};
+
 document.getElementById("sync").onclick = () => {
     videoCtls.forEach(v => {
         const src = v.childNodes[0].getAttribute("src");
         if (!model[src]) {
-            model[src] = { sync: v.currentTime };
+            model[src] = { sync: v.currentTime, edits: [] };
         }
     });
     document.getElementById("fileList").value = JSON.stringify(model);
