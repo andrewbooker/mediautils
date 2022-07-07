@@ -34,7 +34,7 @@
             <label>Current pos:</label>
             <span id="currentPos"></span>
             <button id="zeroSmallestOffset">Zero smallest offset</button>
-            <button id="write">Write</button>
+            <button id="sync">Write sync</button>
         </div>
         <div id="videos"></div>
         <script>
@@ -61,7 +61,7 @@ const loadOne = (f, i) => {
     v.setAttribute("id", id);
     v.load();
     if (model[f].length) {
-        v.currentTime = new Number(model[f][0].start)
+        v.currentTime = new Number(model[f][0].sync)
     }
 
     v.appendChild(vs);
@@ -146,11 +146,11 @@ const pause = () => {
 };
 button.setAttribute("onclick", "play();");
 
-document.getElementById("write").onclick = () => {
+document.getElementById("sync").onclick = () => {
     videoCtls.forEach(v => {
         const src = v.childNodes[0].getAttribute("src");
         if (!model[src]) {
-            model[src] = [{ start: v.currentTime }];
+            model[src] = [{ sync: v.currentTime }];
         }
     });
     document.getElementById("fileList").value = JSON.stringify(model);
