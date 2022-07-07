@@ -60,8 +60,8 @@ const loadOne = (f, i) => {
     videoCtls.push(v);
     v.setAttribute("id", id);
     v.load();
-    if (model[f].length) {
-        v.currentTime = new Number(model[f][0].sync)
+    if (model[f].sync) {
+        v.currentTime = new Number(model[f].sync)
     }
 
     v.appendChild(vs);
@@ -90,7 +90,7 @@ const loadOne = (f, i) => {
     const editButton = document.createElement("button");
     editButton.innerHTML = "edit";
     editButton.onclick = () => {
-        const edits = model[f];
+        const edits = model[f].edits;
         if (!edits) {
             edits = [];
         }
@@ -99,7 +99,7 @@ const loadOne = (f, i) => {
         } else {
             edits[edits.length - 1].end = v.currentTime;
         }
-        model[f] = edits;
+        model[f].edits = edits;
         document.getElementById("fileList").value = JSON.stringify(model);
     };
     container.appendChild(editButton);
@@ -150,7 +150,7 @@ document.getElementById("sync").onclick = () => {
     videoCtls.forEach(v => {
         const src = v.childNodes[0].getAttribute("src");
         if (!model[src]) {
-            model[src] = [{ sync: v.currentTime }];
+            model[src] = { sync: v.currentTime };
         }
     });
     document.getElementById("fileList").value = JSON.stringify(model);
