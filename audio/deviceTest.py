@@ -4,6 +4,7 @@ import sounddevice as sd
 import math
 import sys
 import time
+import random
 
 print(sd.query_devices())
 
@@ -16,11 +17,19 @@ sound = []
 sampleRate = 44100
 durSecs = 2
 fHz = 200
+channels = 2
+
+detune = []
+for c in range(channels):
+    detune.append(0.005 * (random.random() * 0.5))
 
 for i in range(sampleRate * durSecs):
-    sound.append(1.0 + (0.5 * (math.sin(i * fHz * 2 * math.pi / (1.0 * sampleRate)))))
+    sample = []
+    for c in range(channels):
+        sample.append(1.0 + (0.5 * (math.sin(i * fHz * (1.0 + detune[c]) * 2 * math.pi / (1.0 * sampleRate)))))
+    sound.append(sample)
 
-sd.default.channels = 1
+sd.default.channels = channels
 sd.default.device = device
 
 sd.play(sound, sampleRate)
