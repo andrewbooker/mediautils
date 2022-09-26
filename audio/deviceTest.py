@@ -9,6 +9,7 @@ import random
 print(sd.query_devices())
 
 device = int(sys.argv[1]) if len(sys.argv) > 1 else None
+channels = int(sys.argv[2]) if len(sys.argv) > 1 else 1
 
 if device is None:
     exit()
@@ -17,11 +18,11 @@ sound = []
 sampleRate = 44100
 durSecs = 2
 fHz = 200
-channels = 2
+
 
 detune = []
 for c in range(channels):
-    detune.append(0.005 * (random.random() * 0.5))
+    detune.append(0.01 * (random.random() * 0.5))
 
 for i in range(sampleRate * durSecs):
     sample = []
