@@ -6,7 +6,11 @@ import json
 
 rawDir = sys.argv[1]
 seqFn = sys.argv[2]
-outDir = sys.argv[3]
+baseOutDir = sys.argv[3]
+
+toMergeDir = os.path.join(baseOutDir, "toMerge")
+if not os.path.exists(toMergeDir):
+    os.makedirs(toMergeDir)
 
 def load():
     with open(seqFn, "r") as seqF:
@@ -43,25 +47,25 @@ for s in seq:
     cmd.append("-vf")
     cmd.append("\"scale=768:432\"")
 
-    fn = os.path.join(outDir, "%s_%03d.avi" % (s[0], seqNum))
+    fn = os.path.join(toMergeDir, "%s_%03d.avi" % (s[0], seqNum))
     cmd.append(fn)
     seqNum += 1
 
     files.append("file '%s'" % fn)
     cmds.append(" ".join(cmd))
 
-cmdFqFn = os.path.join(outDir, "compile.sh")
-with open(cmdFqFn, "w") as cf:
-    for c in cmds:
-        cf.write("%s\n" % c)
-os.chmod(cmdFqFn, 0o777)
 
-filesFqFn = os.path.join(outDir, "files.txt")
+filesFqFn = "./files.txt"
 with open(filesFqFn, "w") as ff:
     for f in files:
         ff.write("%s\n" % f)
 
 print("total time", tt)
+
+
+mergedDir = os.path.join(baseOutDir, "merged")
+if not os.path.exists(mergedDir):
+    os.makedirs(mergedDir)
 
 mergeCmd = ["ffmpeg -f concat -safe 0 -i"]
 mergeCmd.append(filesFqFn)
@@ -73,6 +77,16 @@ mergeCmd.append(filesFqFn)
 #mergeCmd.append("\"fade=type=in:duration=1,fade=type=out:duration=4:start_time=%d\"" % (tt - 4))
 
 mergeCmd.append("-c copy -y")
-mergeCmd.append(os.path.join(outDir, "merged.avi"))
-print(" ".join(mergeCmd))
+mergedFn = os.path.join(mergedDir, "merged.avi")
+mergeCmd.append(mergedFn)
+
+with open("./compile.sh", "w") as cf:
+    for c in cmds:
+        cf.write("%s\n" % c)
+
+with open("./merge.sh", "w") as cf:
+    cf.write("\n%s\n" % " ".join(mergeCmd))
+
+os.chmod("./compile.sh", 0o777)
+os.chmod("./merge.sh", 0o777)
 
