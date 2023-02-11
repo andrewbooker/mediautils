@@ -17,14 +17,16 @@ def load():
         return json.load(seqF)
 
 j = load()
+projectName = j["projectName"]
 aliases = {}
+toRotate = []
 for a in j["aliases"]:
     n = j["aliases"][a] if "name" not in j["aliases"][a] else j["aliases"][a]["name"]
     aliases[n] = a
+    if "rotate180" in j["aliases"][a] and j["aliases"][a]["rotate180"]:
+        toRotate.append(n)
 
 seq = j["sequence"]
-
-
 files = []
 cmds = []
 seqNum = 0
@@ -32,7 +34,7 @@ tt = 0
 for s in seq:
     cmd = ["ffmpeg"]
     cmd.append("-i")
-    cmd.append(os.path.join(rawDir, aliases[s[0]]))
+    cmd.append("\"%s\"" % os.path.join(rawDir, aliases[s[0]]))
     if len(s[1]) > 1:
         cmd.append("-ss")
         cmd.append(str(s[1][0]))
@@ -45,17 +47,25 @@ for s in seq:
         tt += s[1][0]
     cmd.append("-an -b:v 40M -c:v mpeg4 -vtag XVID -r 30 -y")
     cmd.append("-vf")
-    cmd.append("\"scale=768:432\"")
+    vf = []
 
-    fn = os.path.join(toMergeDir, "%s_%03d.avi" % (s[0], seqNum))
-    cmd.append(fn)
+    if s[0] in toRotate:
+        vf.append("vflip")
+        vf.append("hflip")
+    vf.append("scale=768:432")
+    cmd.append("\"%s\"" % ",".join(vf))
+
+    fn = "%s_%03d.avi" % (s[0], seqNum)
+    fqFn = os.path.join(toMergeDir, fn)
+    cmd.append(fqFn)
     seqNum += 1
 
     files.append("file '%s'" % fn)
-    cmds.append(" ".join(cmd))
+    if not os.path.exists(fqFn):
+        cmds.append(" ".join(cmd))
 
 
-filesFqFn = "./files.txt"
+filesFqFn = os.path.join(toMergeDir, "files.txt")
 with open(filesFqFn, "w") as ff:
     for f in files:
         ff.write("%s\n" % f)
@@ -69,12 +79,6 @@ if not os.path.exists(mergedDir):
 
 mergeCmd = ["ffmpeg -f concat -safe 0 -i"]
 mergeCmd.append(filesFqFn)
-#mergeCmd.append("-t")
-#mergeCmd.append(str(tt))
-
-#this has to go in the mp4 stage, as it cannot be used in conjunction with -c copy
-#mergeCmd.append("-vf")
-#mergeCmd.append("\"fade=type=in:duration=1,fade=type=out:duration=4:start_time=%d\"" % (tt - 4))
 
 mergeCmd.append("-c copy -y")
 mergedFn = os.path.join(mergedDir, "merged.avi")
@@ -87,6 +91,20 @@ with open("./compile.sh", "w") as cf:
 with open("./merge.sh", "w") as cf:
     cf.write("\n%s\n" % " ".join(mergeCmd))
 
+mp4Cmd = ["ffmpeg -i"]
+mp4Cmd.append(mergedFn)
+#look for soundtrack in merged dir, if present add as -i followed by -b:a 192k
+mp4Cmd.append("-t")
+mp4Cmd.append(str(tt))
+mp4Cmd.append("-vf")
+mp4Cmd.append("\"fade=type=in:duration=1,fade=type=out:duration=4:start_time=%d\"" % (tt - 4)) # add text commands to this
+mp4Cmd.append("-y")
+mp4Cmd.append(os.path.join(mergedDir, "%s.mp4" % projectName.lower().replace(" ", "_")))
+
+with open("./toMp4.sh", "w") as cf:
+    cf.write("\n%s\n" % " ".join(mp4Cmd))
+
 os.chmod("./compile.sh", 0o777)
 os.chmod("./merge.sh", 0o777)
+os.chmod("./toMp4.sh", 0o777)
 
