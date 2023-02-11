@@ -29,12 +29,12 @@ for a in j["aliases"]:
 seq = j["sequence"]
 files = []
 cmds = []
-seqNum = 0
 tt = 0
 for s in seq:
     cmd = ["ffmpeg"]
     cmd.append("-i")
     cmd.append("\"%s\"" % os.path.join(rawDir, aliases[s[0]]))
+    startDur = "_".join([str(i) for i in s[1]])
     if len(s[1]) > 1:
         cmd.append("-ss")
         cmd.append(str(s[1][0]))
@@ -48,17 +48,15 @@ for s in seq:
     cmd.append("-an -b:v 40M -c:v mpeg4 -vtag XVID -r 30 -y")
     cmd.append("-vf")
     vf = []
-
     if s[0] in toRotate:
         vf.append("vflip")
         vf.append("hflip")
     vf.append("scale=768:432")
     cmd.append("\"%s\"" % ",".join(vf))
 
-    fn = "%s_%03d.avi" % (s[0], seqNum)
+    fn = "%s_%s.avi" % (s[0], startDur)
     fqFn = os.path.join(toMergeDir, fn)
     cmd.append(fqFn)
-    seqNum += 1
 
     files.append("file '%s'" % fn)
     if not os.path.exists(fqFn):
