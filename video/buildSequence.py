@@ -7,6 +7,7 @@ import json
 rawDir = sys.argv[1]
 seqFn = sys.argv[2]
 baseOutDir = sys.argv[3]
+resolution = sys.argv[4] if len(sys.argv) > 4 else "768x432"
 
 toMergeDir = os.path.join(baseOutDir, "toMerge")
 if not os.path.exists(toMergeDir):
@@ -51,7 +52,7 @@ for s in seq:
     if s[0] in toRotate:
         vf.append("vflip")
         vf.append("hflip")
-    vf.append("scale=768:432")
+    vf.append("scale=%s" % resolution)
     cmd.append("\"%s\"" % ",".join(vf))
 
     fn = "%s_%s.avi" % (s[0], startDur)
