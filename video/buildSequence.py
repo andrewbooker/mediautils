@@ -96,7 +96,7 @@ mp4Cmd.append(mergedFn)
 mp4Cmd.append("-t")
 mp4Cmd.append(str(tt))
 mp4Cmd.append("-vf")
-mp4Cmd.append("\"fade=type=in:duration=1,fade=type=out:duration=4:start_time=%d\"" % (tt - 4)) # add text commands to this
+mp4Cmd.append("\"fade=type=in:duration=4,fade=type=out:duration=4:start_time=%d\"" % (tt - 4)) # add text commands to this
 mp4Cmd.append("-y")
 mp4Cmd.append(os.path.join(mergedDir, "%s.mp4" % projectName.lower().replace(" ", "_")))
 
