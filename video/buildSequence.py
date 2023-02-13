@@ -33,17 +33,20 @@ for a in j["aliases"]:
 
 
 audioCmds = []
+audioFiles = {}
 for a in aliases:
-    outFn = os.path.join(audioDir, "%s.wav" % a)
+    audioFiles[a] = "%s.wav" % a
+    outFn = os.path.join(audioDir, audioFiles[a])
     srcFn = os.path.join(rawDir, aliases[a])
     if not os.path.exists(outFn):
         audioCmds.append("ffmpeg -i \"%s\" -ac 2 -ar 44100 -y %s" % (srcFn, outFn))
 
-with open("./extractAudio.sh", "w") as af:
-    for c in audioCmds:
-        af.write("%s\n" % c)
+if len(audioCmds) > 0:
+    with open("./extractAudio.sh", "w") as af:
+        for c in audioCmds:
+            af.write("%s\n" % c)
 
-
+audioCues = []
 seq = j["sequence"]
 files = []
 cmds = []
@@ -52,17 +55,22 @@ for s in seq:
     cmd = ["ffmpeg"]
     cmd.append("-i")
     cmd.append("\"%s\"" % os.path.join(rawDir, aliases[s[0]]))
-    startDur = "_".join([str(i) for i in s[1]])
+
+    start = 0
+    dur = 0
     if len(s[1]) > 1:
         cmd.append("-ss")
         cmd.append(str(s[1][0]))
         cmd.append("-t")
         cmd.append(str(s[1][1]))
-        tt += s[1][1]
+        start = s[1][0]
+        dur = s[1][1]
     else:
         cmd.append("-t")
         cmd.append(str(s[1][0]))
-        tt += s[1][0]
+        dur = s[1][0]
+
+    tt += dur
     cmd.append("-an -b:v 40M -c:v mpeg4 -vtag XVID -r 30 -y")
     cmd.append("-vf")
     vf = []
@@ -72,6 +80,7 @@ for s in seq:
     vf.append("scale=%s" % resolution)
     cmd.append("\"%s\"" % ",".join(vf))
 
+    startDur = "_".join([str(i) for i in s[1]])
     fn = "%s_%s.avi" % (s[0], startDur)
     fqFn = os.path.join(toMergeDir, fn)
     cmd.append(fqFn)
@@ -80,6 +89,13 @@ for s in seq:
     if not os.path.exists(fqFn):
         cmds.append(" ".join(cmd))
 
+    audioCue = {}
+    audioCue["file"] = audioFiles[s[0]]
+    audioCue["fileStart"] = start
+    audioCue["mixStart"] = tt
+    audioCue["duration"] = dur
+    audioCues.append(audioCue)
+
 
 filesFqFn = os.path.join(toMergeDir, "files.txt")
 with open(filesFqFn, "w") as ff:
@@ -87,6 +103,9 @@ with open(filesFqFn, "w") as ff:
         ff.write("%s\n" % f)
 
 print("total time", tt)
+
+with open(os.path.join(audioDir, "cues.json"), "w") as ac:
+    json.dump(audioCues, ac, indent=4)
 
 
 mergedDir = os.path.join(baseOutDir, "merged")
@@ -109,7 +128,11 @@ with open("./merge.sh", "w") as cf:
 
 mp4Cmd = ["ffmpeg -i"]
 mp4Cmd.append(mergedFn)
-#look for soundtrack in merged dir, if present add as -i followed by -b:a 192k
+soundtrackFqFn = os.path.join(mergedDir, "soundtrack.wav")
+if os.path.exists(soundtrackFqFn):
+    mp4Cmd.append("-i")
+    mp4Cmd.append(soundtrackFqFn)
+    mp4Cmd.append("-b:a 192k")
 mp4Cmd.append("-t")
 mp4Cmd.append(str(tt))
 mp4Cmd.append("-vf")
