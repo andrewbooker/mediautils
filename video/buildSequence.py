@@ -13,6 +13,10 @@ toMergeDir = os.path.join(baseOutDir, "toMerge")
 if not os.path.exists(toMergeDir):
     os.makedirs(toMergeDir)
 
+audioDir = os.path.join(baseOutDir, "Audio")
+if not os.path.exists(audioDir):
+    os.makedirs(audioDir)
+
 def load():
     with open(seqFn, "r") as seqF:
         return json.load(seqF)
@@ -26,6 +30,19 @@ for a in j["aliases"]:
     aliases[n] = a
     if "rotate180" in j["aliases"][a] and j["aliases"][a]["rotate180"]:
         toRotate.append(n)
+
+
+audioCmds = []
+for a in aliases:
+    outFn = os.path.join(audioDir, "%s.wav" % a)
+    srcFn = os.path.join(rawDir, aliases[a])
+    if not os.path.exists(outFn):
+        audioCmds.append("ffmpeg -i \"%s\" -ac 2 -ar 44100 -y %s" % (srcFn, outFn))
+
+with open("./extractAudio.sh", "w") as af:
+    for c in audioCmds:
+        af.write("%s\n" % c)
+
 
 seq = j["sequence"]
 files = []
@@ -104,6 +121,7 @@ with open("./toMp4.sh", "w") as cf:
     cf.write("\n%s\n" % " ".join(mp4Cmd))
 
 os.chmod("./compile.sh", 0o777)
+os.chmod("./extractAudio.sh", 0o777)
 os.chmod("./merge.sh", 0o777)
 os.chmod("./toMp4.sh", 0o777)
 
