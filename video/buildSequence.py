@@ -70,6 +70,13 @@ for s in seq:
         cmd.append(str(s[1][0]))
         dur = s[1][0]
 
+    audioCue = {}
+    audioCue["file"] = audioFiles[s[0]]
+    audioCue["mixStart"] = tt
+    audioCue["fileStart"] = start
+    audioCue["duration"] = dur
+    audioCues.append(audioCue)
+
     tt += dur
     cmd.append("-an -b:v 40M -c:v mpeg4 -vtag XVID -r 30 -y")
     cmd.append("-vf")
@@ -88,13 +95,6 @@ for s in seq:
     files.append("file '%s'" % fn)
     if not os.path.exists(fqFn):
         cmds.append(" ".join(cmd))
-
-    audioCue = {}
-    audioCue["file"] = audioFiles[s[0]]
-    audioCue["fileStart"] = start
-    audioCue["mixStart"] = tt
-    audioCue["duration"] = dur
-    audioCues.append(audioCue)
 
 
 filesFqFn = os.path.join(toMergeDir, "files.txt")
