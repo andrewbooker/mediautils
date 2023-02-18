@@ -17,6 +17,10 @@ audioDir = os.path.join(baseOutDir, "Audio")
 if not os.path.exists(audioDir):
     os.makedirs(audioDir)
 
+storyboardDir = os.path.join(baseOutDir, "storyboard")
+if not os.path.exists(storyboardDir):
+    os.makedirs(storyboardDir)
+
 def load():
     with open(seqFn, "r") as seqF:
         return json.load(seqF)
@@ -51,6 +55,7 @@ seq = j["sequence"]
 files = []
 cmds = []
 tt = 0
+storyboard = []
 for s in seq:
     cmd = ["ffmpeg"]
     cmd.append("-i")
@@ -77,6 +82,19 @@ for s in seq:
     audioCue["duration"] = dur
     audioCues.append(audioCue)
 
+    startDur = "_".join([str(i) for i in s[1]])
+    fn = "%s_%s.avi" % (s[0], startDur)
+    fqFn = os.path.join(toMergeDir, fn)
+    storyboard.append({
+        "alias": s[0],
+        "file": aliases[s[0]],
+        "fileStart": start,
+        "seqStart": tt,
+        "duration": dur,
+        "clipFn": fn,
+        "clipFqFn": fqFn
+    })
+
     tt += dur
     cmd.append("-an -b:v 40M -c:v mpeg4 -vtag XVID -r 30 -y")
     cmd.append("-vf")
@@ -86,10 +104,6 @@ for s in seq:
         vf.append("hflip")
     vf.append("scale=%s" % resolution)
     cmd.append("\"%s\"" % ",".join(vf))
-
-    startDur = "_".join([str(i) for i in s[1]])
-    fn = "%s_%s.avi" % (s[0], startDur)
-    fqFn = os.path.join(toMergeDir, fn)
     cmd.append(fqFn)
 
     files.append("file '%s'" % fn)
@@ -114,7 +128,6 @@ if not os.path.exists(mergedDir):
 
 mergeCmd = ["ffmpeg -f concat -safe 0 -i"]
 mergeCmd.append(filesFqFn)
-
 mergeCmd.append("-c copy -y")
 mergedFn = os.path.join(mergedDir, "merged.avi")
 mergeCmd.append(mergedFn)
@@ -167,6 +180,7 @@ for i in instr:
 	colour = rgbToHex(i["rgb"])
 	vf.append("drawtext=enable=between(t\\,%d\\,%d):text='%s':fontcolor=%s:x=%d:y=%d:fontsize=%d:fontfile=%s" % (i["start"], i["start"] + i["dur"], i["text"], colour, i["x"], i["y"], i["size"], fonts[font]))
 
+baseOutFn = projectName.lower().replace(" ", "_")
 mp4Cmd = ["ffmpeg -i"]
 mp4Cmd.append(mergedFn)
 soundtrackFqFn = os.path.join(mergedDir, "soundtrack.wav")
@@ -179,7 +193,7 @@ mp4Cmd.append(str(tt))
 mp4Cmd.append("-vf")
 mp4Cmd.append("\"fade=type=in:duration=6,fade=type=out:duration=4:start_time=%d,%s\"" % (tt - 4, ",".join(vf))) # add text commands to this
 mp4Cmd.append("-y")
-mp4Cmd.append(os.path.join(mergedDir, "%s.mp4" % projectName.lower().replace(" ", "_")))
+mp4Cmd.append(os.path.join(mergedDir, "%s.mp4" % baseOutFn))
 
 with open("./toMp4.sh", "w") as cf:
     cf.write("\n%s\n" % " ".join(mp4Cmd))
@@ -188,4 +202,12 @@ os.chmod("./compile.sh", 0o777)
 os.chmod("./extractAudio.sh", 0o777)
 os.chmod("./merge.sh", 0o777)
 os.chmod("./toMp4.sh", 0o777)
+
+import datetime
+with open("./toStoryboard.sh", "w") as cf:
+    for s in storyboard:
+        start = str(datetime.timedelta(seconds=int(s["seqStart"])))[-4:].replace(":", "-")
+        fn = "%s_%s_%d.bmp" % (baseOutFn, start, s["duration"])
+        cf.write("ffmpeg -i %s -vf \"select=eq(n\,0)\" -vframes 1 %s\n" % (s["clipFqFn"], os.path.join(storyboardDir, fn)))
+os.chmod("./toStoryboard.sh", 0o777)
 
