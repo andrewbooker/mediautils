@@ -207,6 +207,6 @@ import datetime
 with open("./toStoryboard.sh", "w") as cf:
     for s in storyboard:
         startAsTime = str(datetime.timedelta(seconds=int(s["seqStart"])))[-4:].replace(":", "-")
-        fn = "%s_%s_%d_%d.bmp" % (baseOutFn, startAsTime, s["seqStart"], s["duration"])
+        fn = "%d_%s_%s_%d_%d.bmp" % (s["seqStart"], startAsTime, s["alias"], s["fileStart"], s["duration"])
         cf.write("ffmpeg -i %s -vf \"select=eq(n\,0)\" -vframes 1 %s\n" % (s["clipFqFn"], os.path.join(storyboardDir, fn)))
 os.chmod("./toStoryboard.sh", 0o777)
