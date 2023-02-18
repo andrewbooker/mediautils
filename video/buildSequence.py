@@ -126,6 +126,47 @@ with open("./compile.sh", "w") as cf:
 with open("./merge.sh", "w") as cf:
     cf.write("\n%s\n" % " ".join(mergeCmd))
 
+#text
+def rgbToHex(rgb):
+	return "0x%s" % "".join(["%02x" % i for i in rgb])
+
+number = j["number"]
+txtConf = {
+    "nameStart": 4,
+    "nameDur": 10,
+    "titleStart": 15,
+    "titleDur": 10,
+    "madeByStart": -16,
+    "madeByDur": 12
+}
+fonts = {
+	"impact": "/usr/local/share/fonts/impact.ttf",
+	"arial": "/usr/local/share/fonts/arial.ttf"
+}
+nameCol = txtConf["nameCol"] if "nameCol" in txtConf else [255, 255, 255]
+titleCol = txtConf["titleCol"] if "titleCol" in txtConf else [255, 255, 255]
+titleSize = int(txtConf["titleSize"]) if "titleSize" in txtConf else 100
+madeByCol = txtConf["madeByCol"] if "madeByCol" in txtConf else [255, 255, 255]
+madeByAbCol = txtConf["madeByAbCol"] if "madeByAbCol" in txtConf else [255, 255, 255]
+madeByXy = txtConf["madeByXy"] if "madeByXy" in txtConf else [60, 730]
+madeByAbXy = txtConf["madeByXy"] if "madeByXy" in txtConf else [60, 810]
+madeByStart = int(txtConf["madeByStart"]) if "madeByStart" in txtConf else -16
+if madeByStart < 0:
+	madeByStart += int(tt)
+
+instr = [
+	{"text": "Randomatones #%s" % number, "start": int(txtConf["nameStart"]), "dur": int(txtConf["nameDur"]), "rgb": nameCol, "x": 60, "y": 880, "size": 120},
+	{"text": projectName, "start": int(txtConf["titleStart"]), "dur": int(txtConf["titleDur"]), "rgb": titleCol, "x": 60, "y": 880, "size": titleSize},
+	{"text": "made by", "start": madeByStart, "dur": int(txtConf["madeByDur"]), "rgb": madeByCol, "x": madeByXy[0], "y": madeByXy[1], "size": 80, "font": "arial"},
+	{"text": "Andrew Booker", "start": madeByStart, "dur": int(txtConf["madeByDur"]), "rgb": madeByAbCol, "x": madeByAbXy[0], "y": madeByAbXy[1], "size": 100}
+]
+
+vf = []
+for i in instr:
+	font = i["font"] if "font" in i else "impact"
+	colour = rgbToHex(i["rgb"])
+	vf.append("drawtext=enable=between(t\\,%d\\,%d):text='%s':fontcolor=%s:x=%d:y=%d:fontsize=%d:fontfile=%s" % (i["start"], i["start"] + i["dur"], i["text"], colour, i["x"], i["y"], i["size"], fonts[font]))
+
 mp4Cmd = ["ffmpeg -i"]
 mp4Cmd.append(mergedFn)
 soundtrackFqFn = os.path.join(mergedDir, "soundtrack.wav")
@@ -136,7 +177,7 @@ if os.path.exists(soundtrackFqFn):
 mp4Cmd.append("-t")
 mp4Cmd.append(str(tt))
 mp4Cmd.append("-vf")
-mp4Cmd.append("\"fade=type=in:duration=4,fade=type=out:duration=4:start_time=%d\"" % (tt - 4)) # add text commands to this
+mp4Cmd.append("\"fade=type=in:duration=6,fade=type=out:duration=4:start_time=%d,%s\"" % (tt - 4, ",".join(vf))) # add text commands to this
 mp4Cmd.append("-y")
 mp4Cmd.append(os.path.join(mergedDir, "%s.mp4" % projectName.lower().replace(" ", "_")))
 
