@@ -6,7 +6,7 @@ from functools import reduce
 
 workingDir = sys.argv[1]
 files = []
-for i in range(6):
+for i in range(12):
     files.append("%02d.png" % (i + 1))
 
 cmd = ["ffmpeg"]
@@ -36,12 +36,8 @@ def cropScale(f):
     return singleFn("crop=1920:1080,scale=640:360", f, "cs%s" %f)
 
 
-s = [cropScale(i) for i in range(6)]
-
-h = [
-    reduce(hstack, s[:3]),
-    reduce(hstack, s[3:])
-]
+s = [cropScale(i) for i in range(len(files))]
+h = [reduce(hstack, s[(i*3):((i+1)*3)]) for i in range(int(len(files) / 3))]
 
 out = reduce(vstack, h)
 
