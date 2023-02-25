@@ -17,18 +17,33 @@ for f in files:
 
 fc = []
 
-def redFn(name, f1, f2):
+def singleFn(name, f, o):
+    fc.append("[%s]%s[%s]" % (f, name, o))
+    return o
+
+def binaryFn(name, f1, f2):
     r = "%s_%s" % (f1, f2)
     fc.append("[%s][%s]%s[%s]" % (f1, f2, name, r))
     return r
 
 def hstack(f1, f2):
-    return redFn("hstack", f1, f2)
+    return binaryFn("hstack", f1, f2)
 
 def vstack(f1, f2):
-    return redFn("vstack", f1, f2)
+    return binaryFn("vstack", f1, f2)
 
-out = vstack(reduce(hstack, [0, 1, 2]), reduce(hstack, [3, 4, 5]))
+def cropScale(f):
+    return singleFn("crop=1920:1080,scale=640:360", f, "cs%s" %f)
+
+
+s = [cropScale(i) for i in range(6)]
+
+h = [
+    reduce(hstack, s[:3]),
+    reduce(hstack, s[3:])
+]
+
+out = reduce(vstack, h)
 
 cmd.append("-filter_complex")
 cmd.append("\"%s\"" % ";".join(fc))
