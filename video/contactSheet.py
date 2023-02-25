@@ -15,12 +15,20 @@ for f in files:
 
 
 fc = []
-fc.append("[0][1]hstack[v1a]")
-fc.append("[v1a][2]hstack[v1]")
-fc.append("[3][4]hstack[v2a]")
-fc.append("[v2a][5]hstack[v2]")
 
-fc.append("[v1][v2]vstack[out]")
+def hstack(l, r, c):
+    return "[%s][%s]hstack[%s]" % (l, r, c)
+
+def vstack(t, b, c):
+    return "[%s][%s]vstack[%s]" % (t, b, c)
+
+
+fc.append(hstack(0, 1, "h01"))
+fc.append(hstack("h01", 2, "h012"))
+fc.append(hstack(3, 4, "h34"))
+fc.append(hstack("h34", 5, "h345"))
+
+fc.append(vstack("h012", "h345", "out"))
 
 cmd.append("-filter_complex")
 cmd.append("\"%s\"" % ";".join(fc))
