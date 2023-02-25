@@ -33,7 +33,7 @@ def vstack(f1, f2):
     return binaryFn("vstack", f1, f2)
 
 def cropScale(f):
-    return singleFn("crop=1920:1080,scale=640:360", f, "cs%s" %f)
+    return singleFn("crop=1440:1080,scale=480:360", f, "cs%s" %f)
 
 
 s = [cropScale(i) for i in range(len(files))]
@@ -46,8 +46,6 @@ cmd.append("\"%s\"" % ";".join(fc))
 cmd.append("-map")
 cmd.append("[%s]" % out)
 cmd.append("-y")
-cmd.append(os.path.join(workingDir, "out.jpg"))
-
+cmd.append(os.path.join(workingDir, "out.bmp"))
 
 os.system(" ".join(cmd))
-
