@@ -2,6 +2,7 @@
 
 import os
 import sys
+from functools import reduce
 
 workingDir = sys.argv[1]
 files = []
@@ -16,26 +17,26 @@ for f in files:
 
 fc = []
 
-def hstack(l, r, c):
-    return "[%s][%s]hstack[%s]" % (l, r, c)
+def redFn(name, f1, f2):
+    r = "%s_%s" % (f1, f2)
+    fc.append("[%s][%s]%s[%s]" % (f1, f2, name, r))
+    return r
 
-def vstack(t, b, c):
-    return "[%s][%s]vstack[%s]" % (t, b, c)
+def hstack(f1, f2):
+    return redFn("hstack", f1, f2)
 
+def vstack(f1, f2):
+    return redFn("vstack", f1, f2)
 
-fc.append(hstack(0, 1, "h01"))
-fc.append(hstack("h01", 2, "h012"))
-fc.append(hstack(3, 4, "h34"))
-fc.append(hstack("h34", 5, "h345"))
-
-fc.append(vstack("h012", "h345", "out"))
+out = vstack(reduce(hstack, [0, 1, 2]), reduce(hstack, [3, 4, 5]))
 
 cmd.append("-filter_complex")
 cmd.append("\"%s\"" % ";".join(fc))
 cmd.append("-map")
-cmd.append("[out]")
+cmd.append("[%s]" % out)
 cmd.append("-y")
 cmd.append(os.path.join(workingDir, "out.jpg"))
+
 
 os.system(" ".join(cmd))
 
