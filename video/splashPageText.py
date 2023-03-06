@@ -15,13 +15,13 @@ frameFn = sys.argv[2]
 title = sys.argv[3]
 headingSize = 170
 titleSize = headingSize + 10
-headingStart = 40
+headingStart = 50
 
 img = Image.open(os.path.join(workingDir, frameFn))
 d = ImageDraw.Draw(img)
 d.text([60, headingStart], "Randomatones", fill="yellow", font=ImageFont.truetype("impact.ttf", headingSize))
 d.text([60, headingStart + headingSize], title, fill="orange", font=ImageFont.truetype("impact.ttf", titleSize))
 
-img.save(os.path.join(workingDir, "splash_%s.png" % frameFn.split(".")[0]))
+img.save(os.path.join(workingDir, "splash_%s.jpg" % frameFn.split(".")[0]))
 img.close()
 
