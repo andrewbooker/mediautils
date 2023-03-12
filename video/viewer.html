@@ -40,6 +40,10 @@
         </div>
         <div id="videos"></div>
         <script>
+const urlParams = new URLSearchParams(window.location.search);
+const loc = urlParams.get("loc")
+document.getElementById("loc").value = loc
+
 document.getElementById("fileList").focus();
 document.getElementById("load").setAttribute("onclick", "load();");
 let model = {}
@@ -53,7 +57,7 @@ const loadOne = (f, i) => {
     const container = document.createElement("div");
     const v = document.createElement("video");
     const vs = document.createElement("source");
-    const loc = document.getElementById("loc").value
+
     vs.setAttribute("src", loc + "/" + f);
     vs.setAttribute("type", "video/mp4");
     v.setAttribute("height", 360);
