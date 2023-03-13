@@ -85,7 +85,8 @@ for s in seq:
     startDur = "_".join([str(i) for i in s[1]])
     fn = "%s_%s.avi" % (s[0], startDur)
     fqFn = os.path.join(toMergeDir, fn)
-    storyboard.append({
+
+    item = {
         "alias": s[0],
         "file": aliases[s[0]],
         "fileStart": start,
@@ -93,7 +94,11 @@ for s in seq:
         "duration": dur,
         "clipFn": fn,
         "clipFqFn": fqFn
-    })
+    }
+    if len(s) > 2 and not type(s[2]) is str and "multiplySpeed" in s[2]:
+        item["multiplySpeed"] = float(s[2]["multiplySpeed"])
+
+    storyboard.append(item)
 
     tt += dur
     cmd.append("-an -b:v 40M -c:v mpeg4 -vtag XVID -r 30 -y")
@@ -103,6 +108,8 @@ for s in seq:
         vf.append("vflip")
         vf.append("hflip")
     vf.append("scale=%s" % resolution)
+    if "multiplySpeed" in item:
+        vf.append("setpts=%.2f*PTS" % (1.0 / item["multiplySpeed"]))
     cmd.append("\"%s\"" % ",".join(vf))
     cmd.append(fqFn)
 
