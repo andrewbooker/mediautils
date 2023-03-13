@@ -15,5 +15,33 @@
         "NORM0002.MP4": "dragon_2",
         "NORM0003.MP4": "dragon_3"
     },
-    "sequence": []
+    "sequence": [
+        ["G5_1", [34, 7]],
+        ["G5_1", [152, 3]],
+        ["G5_1", [190, 10]],
+        ["G5_2", [1, 4], { "multiplySpeed": 20 }, "blow up float (note timings are post-speedup)"],
+        ["G5_2", [145, 3], "pink battery"],
+        ["G5_2", [186, 3], "pull out blue"],
+        ["G5_2", [193, 4], "pull out pink"],
+        ["G5_3", [59, 3], "put in blue"],
+        ["G5_3", [99, 2], "put in pink"],
+        ["G5_3", [120, 5], "switch-on"],
+        ["G5_3", [157, 5], "attach connecting rod"],
+        ["G5_3", [356, 5], "ipad"],
+        ["G5_3", [569, 6], "roll out tether"],
+        ["G5_3", [645, 45], "flapping tether"],
+        ["G5_3", [716, 5], "bus in background"],
+        ["G5_3", [836, 7], "gliding"],
+        ["G5_3", [943, 45], "gliding"],
+        ["G5_3", [1000, 30], "gliding"],
+        ["G5_3", [1080, 10], "gliding towards bank"],
+        ["G5_3", [1134, 10], "next to bank"],
+        ["G5_3", [1247, 13], "gliding blue backdrop"],
+        ["G5_3", [1307, 10], "bring to side"],
+        ["G5_3", [1397, 4], "switch off pink"],
+        ["G5_3", [1420, 2], "switch off blue"],
+        ["G5_3", [1436, 3], "pull out blue"],
+        ["G5_3", [1453, 2], "pull out pink"],
+        ["G5_4", [8, 11], "walkaway"]
+    ]
 }
