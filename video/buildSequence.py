@@ -53,26 +53,16 @@ if len(audioCmds) > 0:
 audioCues = []
 seq = j["sequence"]
 files = []
-cmds = []
+
 tt = 0
 storyboard = []
 for s in seq:
-    cmd = ["ffmpeg"]
-    cmd.append("-i")
-    cmd.append("\"%s\"" % os.path.join(rawDir, aliases[s[0]]))
-
     start = 0
     dur = 0
     if len(s[1]) > 1:
-        cmd.append("-ss")
-        cmd.append(str(s[1][0]))
-        cmd.append("-t")
-        cmd.append(str(s[1][1]))
         start = s[1][0]
         dur = s[1][1]
     else:
-        cmd.append("-t")
-        cmd.append(str(s[1][0]))
         dur = s[1][0]
 
     audioCue = {}
@@ -95,27 +85,14 @@ for s in seq:
         "clipFn": fn,
         "clipFqFn": fqFn
     }
-    if len(s) > 2 and not type(s[2]) is str and "multiplySpeed" in s[2]:
-        item["multiplySpeed"] = float(s[2]["multiplySpeed"])
+    if len(s) > 2 and not type(s[2]) is str:
+        if "multiplySpeed" in s[2]:
+            item["multiplySpeed"] = float(s[2]["multiplySpeed"])
 
     storyboard.append(item)
-
     tt += dur
-    cmd.append("-an -b:v 40M -c:v mpeg4 -vtag XVID -r 30 -y")
-    cmd.append("-vf")
-    vf = []
-    if s[0] in toRotate:
-        vf.append("vflip")
-        vf.append("hflip")
-    vf.append("scale=%s" % resolution)
-    if "multiplySpeed" in item:
-        vf.append("setpts=%.2f*PTS" % (1.0 / item["multiplySpeed"]))
-    cmd.append("\"%s\"" % ",".join(vf))
-    cmd.append(fqFn)
-
     files.append("file '%s'" % fn)
-    if not os.path.exists(fqFn):
-        cmds.append(" ".join(cmd))
+
 
 
 filesFqFn = os.path.join(toMergeDir, "files.txt")
@@ -138,6 +115,34 @@ mergeCmd.append(filesFqFn)
 mergeCmd.append("-c copy -y")
 mergedFn = os.path.join(mergedDir, "merged.avi")
 mergeCmd.append(mergedFn)
+
+
+cmds = []
+for s in storyboard:
+    if not os.path.exists(s["clipFqFn"]):
+        cmd = ["ffmpeg"]
+        cmd.append("-i")
+        cmd.append("\"%s\"" % os.path.join(rawDir, s["file"]))
+        if s["fileStart"]:
+            cmd.append("-ss")
+            cmd.append(str(s["fileStart"]))
+        cmd.append("-t")
+        cmd.append(str(s["duration"]))
+        cmd.append("-an -b:v 40M -c:v mpeg4 -vtag XVID -r 30 -y")
+        cmd.append("-vf")
+
+        vf = []
+        if s["alias"] in toRotate:
+            vf.append("vflip")
+            vf.append("hflip")
+        vf.append("scale=%s" % resolution)
+        if "multiplySpeed" in s:
+            vf.append("setpts=%.2f*PTS" % (1.0 / s["multiplySpeed"]))
+        cmd.append("\"%s\"" % ",".join(vf))
+        cmd.append(s["clipFqFn"])
+
+        cmds.append(" ".join(cmd))
+
 
 with open("./compile.sh", "w") as cf:
     for c in cmds:
