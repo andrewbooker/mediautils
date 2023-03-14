@@ -52,8 +52,6 @@ if len(audioCmds) > 0:
 
 
 seq = j["sequence"]
-files = []
-
 tt = 0
 storyboard = []
 for s in seq:
@@ -84,17 +82,23 @@ for s in seq:
 
     storyboard.append(item)
     tt += dur
-    files.append("file '%s'" % fn)
-
-
-
-filesFqFn = os.path.join(toMergeDir, "files.txt")
-with open(filesFqFn, "w") as ff:
-    for f in files:
-        ff.write("%s\n" % f)
 
 print("total time", tt)
 
+filesFqFn = os.path.join(toMergeDir, "files.txt")
+with open(filesFqFn, "w") as ff:
+    for item in storyboard:
+        ff.write("file '%s'\n" % item["clipFn"])
+
+mergedDir = os.path.join(baseOutDir, "merged")
+if not os.path.exists(mergedDir):
+    os.makedirs(mergedDir)
+
+mergeCmd = ["ffmpeg -f concat -safe 0 -i"]
+mergeCmd.append(filesFqFn)
+mergeCmd.append("-c copy -y")
+mergedFn = os.path.join(mergedDir, "merged.avi")
+mergeCmd.append(mergedFn)
 
 audioCues = []
 for item in storyboard:
@@ -107,18 +111,6 @@ for item in storyboard:
 
 with open(os.path.join(audioDir, "cues.json"), "w") as ac:
     json.dump(audioCues, ac, indent=4)
-
-
-mergedDir = os.path.join(baseOutDir, "merged")
-if not os.path.exists(mergedDir):
-    os.makedirs(mergedDir)
-
-mergeCmd = ["ffmpeg -f concat -safe 0 -i"]
-mergeCmd.append(filesFqFn)
-mergeCmd.append("-c copy -y")
-mergedFn = os.path.join(mergedDir, "merged.avi")
-mergeCmd.append(mergedFn)
-
 
 cmds = []
 for item in storyboard:
