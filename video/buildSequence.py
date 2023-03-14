@@ -50,7 +50,7 @@ if len(audioCmds) > 0:
         for c in audioCmds:
             af.write("%s\n" % c)
 
-audioCues = []
+
 seq = j["sequence"]
 files = []
 
@@ -64,13 +64,6 @@ for s in seq:
         dur = s[1][1]
     else:
         dur = s[1][0]
-
-    audioCue = {}
-    audioCue["file"] = audioFiles[s[0]]
-    audioCue["mixStart"] = tt
-    audioCue["fileStart"] = start
-    audioCue["duration"] = dur
-    audioCues.append(audioCue)
 
     startDur = "_".join([str(i) for i in s[1]])
     fn = "%s_%s.avi" % (s[0], startDur)
@@ -102,6 +95,16 @@ with open(filesFqFn, "w") as ff:
 
 print("total time", tt)
 
+
+audioCues = []
+for item in storyboard:
+    audioCue = {}
+    audioCue["file"] = audioFiles[item["alias"]]
+    audioCue["mixStart"] = item["seqStart"]
+    audioCue["fileStart"] = item["fileStart"]
+    audioCue["duration"] = item["duration"]
+    audioCues.append(audioCue)
+
 with open(os.path.join(audioDir, "cues.json"), "w") as ac:
     json.dump(audioCues, ac, indent=4)
 
@@ -118,28 +121,28 @@ mergeCmd.append(mergedFn)
 
 
 cmds = []
-for s in storyboard:
-    if not os.path.exists(s["clipFqFn"]):
+for item in storyboard:
+    if not os.path.exists(item["clipFqFn"]):
         cmd = ["ffmpeg"]
         cmd.append("-i")
-        cmd.append("\"%s\"" % os.path.join(rawDir, s["file"]))
-        if s["fileStart"]:
+        cmd.append("\"%s\"" % os.path.join(rawDir, item["file"]))
+        if item["fileStart"]:
             cmd.append("-ss")
-            cmd.append(str(s["fileStart"]))
+            cmd.append(str(item["fileStart"]))
         cmd.append("-t")
-        cmd.append(str(s["duration"]))
+        cmd.append(str(item["duration"]))
         cmd.append("-an -b:v 40M -c:v mpeg4 -vtag XVID -r 30 -y")
         cmd.append("-vf")
 
         vf = []
-        if s["alias"] in toRotate:
+        if item["alias"] in toRotate:
             vf.append("vflip")
             vf.append("hflip")
         vf.append("scale=%s" % resolution)
-        if "multiplySpeed" in s:
-            vf.append("setpts=%.2f*PTS" % (1.0 / s["multiplySpeed"]))
+        if "multiplySpeed" in item:
+            vf.append("setpts=%.2f*PTS" % (1.0 / item["multiplySpeed"]))
         cmd.append("\"%s\"" % ",".join(vf))
-        cmd.append(s["clipFqFn"])
+        cmd.append(item["clipFqFn"])
 
         cmds.append(" ".join(cmd))
 
