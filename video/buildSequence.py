@@ -52,6 +52,7 @@ if len(audioCmds) > 0:
 
 
 seq = j["sequence"]
+sync = j["sync"]
 tt = 0
 storyboard = []
 for s in seq:
@@ -65,21 +66,22 @@ for s in seq:
 
     startDur = "_".join([str(i) for i in s[1]])
     fn = "%s_%s.avi" % (s[0], startDur)
-    fqFn = os.path.join(toMergeDir, fn)
-
     item = {
         "alias": s[0],
         "file": aliases[s[0]],
         "fileStart": start,
         "seqStart": tt,
         "duration": dur,
-        "clipFn": fn,
-        "clipFqFn": fqFn
+        "clipFn": fn
     }
     if len(s) > 2 and not type(s[2]) is str:
         if "multiplySpeed" in s[2]:
             item["multiplySpeed"] = float(s[2]["multiplySpeed"])
+        if "splitScreenWith" in s[2]:
+            item["splitScreenWith"] = s[2]["splitScreenWith"]
+            item["clipFn"] = "split_%s" % fn
 
+    item["clipFqFn"] = os.path.join(toMergeDir, item["clipFn"])
     storyboard.append(item)
     tt += dur
 
@@ -112,6 +114,7 @@ for item in storyboard:
 with open(os.path.join(audioDir, "cues.json"), "w") as ac:
     json.dump(audioCues, ac, indent=4)
 
+
 cmds = []
 for item in storyboard:
     if not os.path.exists(item["clipFqFn"]):
@@ -124,19 +127,56 @@ for item in storyboard:
         cmd.append("-t")
         cmd.append(str(item["duration"]))
         cmd.append("-an -b:v 40M -c:v mpeg4 -vtag XVID -r 30 -y")
-        cmd.append("-vf")
 
-        vf = []
-        if item["alias"] in toRotate:
-            vf.append("vflip")
-            vf.append("hflip")
-        vf.append("scale=%s" % resolution)
-        if "multiplySpeed" in item:
-            vf.append("setpts=%.2f*PTS" % (1.0 / item["multiplySpeed"]))
-        cmd.append("\"%s\"" % ",".join(vf))
-        cmd.append(item["clipFqFn"])
+        if "splitScreenWith" not in item:
+            vf = []
+            if item["alias"] in toRotate:
+                vf.append("vflip")
+                vf.append("hflip")
+            vf.append("scale=%s" % resolution)
+            if "multiplySpeed" in item:
+                vf.append("setpts=%.2f*PTS" % (1.0 / item["multiplySpeed"]))
 
-        cmds.append(" ".join(cmd))
+            if len(vf):
+                cmd.append("-vf")
+                cmd.append("\"%s\"" % ",".join(vf))
+            cmd.append(item["clipFqFn"])
+
+            cmds.append(" ".join(cmd))
+
+        if "splitScreenWith" in item:
+            srcs = [item["file"]]
+            primarySync = sync[item["alias"]]
+            ss = [item["fileStart"]]
+            for s in item["splitScreenWith"]:
+                ss.append(item["fileStart"] + sync[s.split("_")[0]] - primarySync)
+                srcs.append(aliases[s])
+
+            for i in range(len(srcs)):
+                s = srcs[i]
+                sCmd = ["ffmpeg -i"]
+                sCmd.append("\"%s\"" % os.path.join(rawDir, s))
+                sCmd.append("-ss %d" % ss[i])
+                sCmd.append("-t %d" % item["duration"])
+                sCmd.append("-vf \"scale=%dx%d\"" % (960, 540))
+                sCmd.append("-an -b:v 40M -c:v mpeg4 -vtag XVID -r 30 -y")
+                sCmd.append("split_%d.avi" % i)
+
+                cmds.append(" ".join(sCmd))
+
+            mCmd = ["ffmpeg"]
+            for i in range(len(srcs)):
+                mCmd.append("-i")
+                mCmd.append("split_%d.avi" % i)
+            fc = []
+            fc.append("[0][1]hstack[top]")
+            fc.append("[2][3]hstack[bottom]")
+            fc.append("[top][bottom]vstack[out]")
+
+            mCmd.append("-filter_complex \"%s\"" % ";".join(fc))
+            mCmd.append("-map \"[out]\" -y")
+            mCmd.append(item["clipFqFn"])
+            cmds.append(" ".join(mCmd))
 
 
 with open("./compile.sh", "w") as cf:
