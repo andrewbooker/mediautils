@@ -118,17 +118,17 @@ with open(os.path.join(audioDir, "cues.json"), "w") as ac:
 cmds = []
 for item in storyboard:
     if not os.path.exists(item["clipFqFn"]):
-        cmd = ["ffmpeg"]
-        cmd.append("-i")
-        cmd.append("\"%s\"" % os.path.join(rawDir, item["file"]))
-        if item["fileStart"]:
-            cmd.append("-ss")
-            cmd.append(str(item["fileStart"]))
-        cmd.append("-t")
-        cmd.append(str(item["duration"]))
-        cmd.append("-an -b:v 40M -c:v mpeg4 -vtag XVID -r 30 -y")
-
         if "splitScreenWith" not in item:
+            cmd = ["ffmpeg"]
+            cmd.append("-i")
+            cmd.append("\"%s\"" % os.path.join(rawDir, item["file"]))
+            if item["fileStart"]:
+                cmd.append("-ss")
+                cmd.append(str(item["fileStart"]))
+            cmd.append("-t")
+            cmd.append(str(item["duration"]))
+            cmd.append("-an -b:v 40M -c:v mpeg4 -vtag XVID -r 30 -y")
+
             vf = []
             if item["alias"] in toRotate:
                 vf.append("vflip")
@@ -160,14 +160,14 @@ for item in storyboard:
                 sCmd.append("-t %d" % item["duration"])
                 sCmd.append("-vf \"scale=%dx%d\"" % (960, 540))
                 sCmd.append("-an -b:v 40M -c:v mpeg4 -vtag XVID -r 30 -y")
-                sCmd.append("split_%d.avi" % i)
+                sCmd.append(os.path.join(toMergeDir, "split_%d.avi" % i))
 
                 cmds.append(" ".join(sCmd))
 
             mCmd = ["ffmpeg"]
             for i in range(len(srcs)):
                 mCmd.append("-i")
-                mCmd.append("split_%d.avi" % i)
+                mCmd.append(os.path.join(toMergeDir, "split_%d.avi" % i))
             fc = []
             fc.append("[0][1]hstack[top]")
             fc.append("[2][3]hstack[bottom]")
@@ -175,6 +175,7 @@ for item in storyboard:
 
             mCmd.append("-filter_complex \"%s\"" % ";".join(fc))
             mCmd.append("-map \"[out]\" -y")
+            mCmd.append("-an -b:v 40M -c:v mpeg4 -vtag XVID -r 30 -y")
             mCmd.append(item["clipFqFn"])
             cmds.append(" ".join(mCmd))
 
