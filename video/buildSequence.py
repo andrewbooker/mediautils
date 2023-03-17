@@ -35,6 +35,8 @@ for a in j["aliases"]:
     if "rotate180" in j["aliases"][a] and j["aliases"][a]["rotate180"]:
         toRotate.append(n)
 
+workingExt = "avi"
+compression = "-b:v 40M -c:v mpeg4 -vtag XVID"
 
 audioCmds = []
 audioFiles = {}
@@ -65,7 +67,7 @@ for s in seq:
         dur = s[1][0]
 
     startDur = "_".join([str(i) for i in s[1]])
-    fn = "%s_%s.avi" % (s[0], startDur)
+    fn = "%s_%s.%s" % (s[0], startDur, workingExt)
     item = {
         "alias": s[0],
         "file": aliases[s[0]],
@@ -99,7 +101,7 @@ if not os.path.exists(mergedDir):
 mergeCmd = ["ffmpeg -f concat -safe 0 -i"]
 mergeCmd.append(filesFqFn)
 mergeCmd.append("-c copy -y")
-mergedFn = os.path.join(mergedDir, "merged.avi")
+mergedFn = os.path.join(mergedDir, "merged.%s" % workingExt)
 mergeCmd.append(mergedFn)
 
 audioCues = []
@@ -127,7 +129,8 @@ for item in storyboard:
                 cmd.append(str(item["fileStart"]))
             cmd.append("-t")
             cmd.append(str(item["duration"]))
-            cmd.append("-an -b:v 40M -c:v mpeg4 -vtag XVID -r 30 -y")
+            cmd.append("-an -r 30 -y")
+            cmd.append(compression)
 
             vf = []
             if item["alias"] in toRotate:
@@ -159,15 +162,16 @@ for item in storyboard:
                 sCmd.append("-ss %d" % ss[i])
                 sCmd.append("-t %d" % item["duration"])
                 sCmd.append("-vf \"scale=%dx%d\"" % (960, 540))
-                sCmd.append("-an -b:v 40M -c:v mpeg4 -vtag XVID -r 30 -y")
-                sCmd.append(os.path.join(toMergeDir, "split_%d.avi" % i))
+                sCmd.append("-an -r 30 -y")
+                sCmd.append(compression)
+                sCmd.append(os.path.join(toMergeDir, "split_%d.%s" % (i, workingExt)))
 
                 cmds.append(" ".join(sCmd))
 
             mCmd = ["ffmpeg"]
             for i in range(len(srcs)):
                 mCmd.append("-i")
-                mCmd.append(os.path.join(toMergeDir, "split_%d.avi" % i))
+                mCmd.append(os.path.join(toMergeDir, "split_%d.%s" % (i, workingExt)))
             fc = []
             fc.append("[0][1]hstack[top]")
             fc.append("[2][3]hstack[bottom]")
@@ -175,7 +179,8 @@ for item in storyboard:
 
             mCmd.append("-filter_complex \"%s\"" % ";".join(fc))
             mCmd.append("-map \"[out]\" -y")
-            mCmd.append("-an -b:v 40M -c:v mpeg4 -vtag XVID -r 30 -y")
+            mCmd.append("-an -r 30 -y")
+            mCmd.append(compression)
             mCmd.append(item["clipFqFn"])
             cmds.append(" ".join(mCmd))
 
