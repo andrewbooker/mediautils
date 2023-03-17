@@ -7,7 +7,10 @@ import json
 rawDir = sys.argv[1]
 seqFn = sys.argv[2]
 baseOutDir = sys.argv[3]
-resolution = sys.argv[4] if len(sys.argv) > 4 else "768x432"
+loRes = bool(sys.argv[4]) if len(sys.argv) > 4 else False
+resolution = "768x432" if loRes else "1920x1080"
+horiz = int(resolution.split("x")[0])
+vert = int(resolution.split("x")[1])
 
 toMergeDir = os.path.join(baseOutDir, "toMerge")
 if not os.path.exists(toMergeDir):
@@ -35,8 +38,8 @@ for a in j["aliases"]:
     if "rotate180" in j["aliases"][a] and j["aliases"][a]["rotate180"]:
         toRotate.append(n)
 
-workingExt = "mov"
-compression = "-c:v qtrle -pix_fmt rgb24" #"-b:v 40M -c:v mpeg4 -vtag XVID"
+workingExt = "mov" if not loRes else "avi"
+compression = "-c:v qtrle -pix_fmt rgb24" if not loRes else "-b:v 40M -c:v mpeg4 -vtag XVID"
 
 audioCmds = []
 audioFiles = {}
@@ -161,7 +164,7 @@ for item in storyboard:
                 sCmd.append("\"%s\"" % os.path.join(rawDir, s))
                 sCmd.append("-ss %d" % ss[i])
                 sCmd.append("-t %d" % item["duration"])
-                sCmd.append("-vf \"scale=%dx%d\"" % (960, 540))
+                sCmd.append("-vf \"scale=%dx%d\"" % (horiz / 2, vert / 2))
                 sCmd.append("-an -r 30 -y")
                 sCmd.append(compression)
                 sCmd.append(os.path.join(toMergeDir, "split_%d.%s" % (i, workingExt)))
@@ -225,7 +228,7 @@ instr = [
 	{"text": projectName, "start": int(txtConf["titleStart"]), "dur": int(txtConf["titleDur"]), "rgb": titleCol, "x": 60, "y": 880, "size": titleSize},
 	{"text": "made by", "start": madeByStart, "dur": int(txtConf["madeByDur"]), "rgb": madeByCol, "x": madeByXy[0], "y": madeByXy[1], "size": 80, "font": "arial"},
 	{"text": "Andrew Booker", "start": madeByStart, "dur": int(txtConf["madeByDur"]), "rgb": madeByAbCol, "x": madeByAbXy[0], "y": madeByAbXy[1], "size": 100}
-]
+] if not loRes else []
 
 vf = []
 for i in instr:
@@ -243,10 +246,11 @@ if os.path.exists(soundtrackFqFn):
     mp4Cmd.append("-b:a 192k")
 mp4Cmd.append("-t")
 mp4Cmd.append(str(tt))
-mp4Cmd.append("-vf")
-mp4Cmd.append("\"fade=type=in:duration=6,fade=type=out:duration=4:start_time=%d,%s\"" % (tt - 4, ",".join(vf)))
-mp4Cmd.append("-y")
-mp4Cmd.append(os.path.join(mergedDir, "%s.mp4" % baseOutFn)) #-c:v libx264 -qp 0 -f mp4
+if len(vf):
+    mp4Cmd.append("-vf")
+    mp4Cmd.append("\"fade=type=in:duration=6,fade=type=out:duration=4:start_time=%d,%s\"" % (tt - 4, ",".join(vf)))
+mp4Cmd.append("-y c:v libx264 -qp 0 -f mp4")
+mp4Cmd.append(os.path.join(mergedDir, "%s.mp4" % baseOutFn))
 
 with open("./toMp4.sh", "w") as cf:
     cf.write("\n%s\n" % " ".join(mp4Cmd))
