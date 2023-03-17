@@ -4,8 +4,10 @@ import os
 import sys
 import re
 import json
+import cv2
 
-files = os.listdir(sys.argv[1])
+inDir = sys.argv[1]
+files = os.listdir(inDir)
 title = sys.argv[2]
 number = int(sys.argv[3])
 
@@ -31,12 +33,15 @@ out = {
 aliasCount = {}
 
 for f in files:
+    print("reading length of", f)
+    v = cv2.VideoCapture(os.path.join(inDir, f))
+    length = v.get(cv2.CAP_PROP_FRAME_COUNT) / v.get(cv2.CAP_PROP_FPS)
     for p in patterns:
         if len(re.findall(p[0], f)):
             if p[1] not in aliasCount:
                 aliasCount[p[1]] = 0
             aliasCount[p[1]] += 1
-            out["aliases"][f] = "%s_%d" % (p[1], aliasCount[p[1]])
+            out["aliases"][f] = { "name": "%s_%d" % (p[1], aliasCount[p[1]]), "length": length }
 
 with open(os.path.join(d, "sequence.json"), "w") as js:
     json.dump(out, js, indent=4)
