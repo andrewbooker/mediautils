@@ -35,8 +35,8 @@ for a in j["aliases"]:
     if "rotate180" in j["aliases"][a] and j["aliases"][a]["rotate180"]:
         toRotate.append(n)
 
-workingExt = "avi"
-compression = "-b:v 40M -c:v mpeg4 -vtag XVID"
+workingExt = "mov"
+compression = "-c:v qtrle -pix_fmt rgb24" #"-b:v 40M -c:v mpeg4 -vtag XVID"
 
 audioCmds = []
 audioFiles = {}
@@ -244,9 +244,9 @@ if os.path.exists(soundtrackFqFn):
 mp4Cmd.append("-t")
 mp4Cmd.append(str(tt))
 mp4Cmd.append("-vf")
-mp4Cmd.append("\"fade=type=in:duration=6,fade=type=out:duration=4:start_time=%d,%s\"" % (tt - 4, ",".join(vf))) # add text commands to this
+mp4Cmd.append("\"fade=type=in:duration=6,fade=type=out:duration=4:start_time=%d,%s\"" % (tt - 4, ",".join(vf)))
 mp4Cmd.append("-y")
-mp4Cmd.append(os.path.join(mergedDir, "%s.mp4" % baseOutFn))
+mp4Cmd.append(os.path.join(mergedDir, "%s.mp4" % baseOutFn)) #-c:v libx264 -qp 0 -f mp4
 
 with open("./toMp4.sh", "w") as cf:
     cf.write("\n%s\n" % " ".join(mp4Cmd))
