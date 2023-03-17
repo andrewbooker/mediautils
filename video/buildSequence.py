@@ -165,6 +165,7 @@ for item in storyboard:
                 ss.append(item["fileStart"] + sync[syncKey] - passedLength - primarySync)
                 srcs.append(aliases[s])
 
+            splitSrcs = []
             for i in range(len(srcs)):
                 s = srcs[i]
                 sCmd = ["ffmpeg -i"]
@@ -174,7 +175,9 @@ for item in storyboard:
                 sCmd.append("-vf \"scale=%dx%d\"" % (horiz / 2, vert / 2))
                 sCmd.append("-an -r 30 -y")
                 sCmd.append(compression)
-                sCmd.append(os.path.join(toMergeDir, "split_%d.%s" % (i, workingExt)))
+                sfqfn = os.path.join(toMergeDir, "split_%d.%s" % (i, workingExt))
+                splitSrcs.append(sfqfn)
+                sCmd.append(sfqfn)
 
                 cmds.append(" ".join(sCmd))
 
@@ -193,6 +196,9 @@ for item in storyboard:
             mCmd.append(compression)
             mCmd.append(item["clipFqFn"])
             cmds.append(" ".join(mCmd))
+
+            for s in splitSrcs:
+                cmds.append("rm %s" % s)
 
 
 
