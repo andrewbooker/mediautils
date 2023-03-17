@@ -31,9 +31,12 @@ def load():
 j = load()
 projectName = j["projectName"]
 aliases = {}
+lengths = {}
 toRotate = []
 for a in j["aliases"]:
     n = j["aliases"][a] if "name" not in j["aliases"][a] else j["aliases"][a]["name"]
+    if "length" in j["aliases"][a]:
+        lengths[n] = j["aliases"][a]["length"]
     aliases[n] = a
     if "rotate180" in j["aliases"][a] and j["aliases"][a]["rotate180"]:
         toRotate.append(n)
@@ -54,7 +57,6 @@ if len(audioCmds) > 0:
     with open("./extractAudio.sh", "w") as af:
         for c in audioCmds:
             af.write("%s\n" % c)
-
 
 seq = j["sequence"]
 sync = j["sync"]
@@ -155,7 +157,12 @@ for item in storyboard:
             primarySync = sync[item["alias"]]
             ss = [item["fileStart"]]
             for s in item["splitScreenWith"]:
-                ss.append(item["fileStart"] + sync[s.split("_")[0]] - primarySync)
+                syncKey = s.split("_")[0]
+                lengthIteration = int(s.split("_")[1]) - 1 if len(s.split("_")) > 1 else 0
+                passedLength = 0
+                for i in range(lengthIteration):
+                    passedLength += lengths["%s_%d" % (syncKey, i + 1)]
+                ss.append(item["fileStart"] + sync[syncKey] - passedLength - primarySync)
                 srcs.append(aliases[s])
 
             for i in range(len(srcs)):
@@ -186,6 +193,7 @@ for item in storyboard:
             mCmd.append(compression)
             mCmd.append(item["clipFqFn"])
             cmds.append(" ".join(mCmd))
+
 
 
 with open("./compile.sh", "w") as cf:
