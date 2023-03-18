@@ -26,12 +26,6 @@ sync = j["sync"]
 print(names)
 print(lengths)
 
-def anyOtherFrom(others, pos, s, currentAlias):
-    for o in others:
-        if o not in this and o in sync:
-            start = pos + sync[o] - sync[currentAlias]
-            dur = s - pos
-            return (o, start, dur)
 
 class SourceSeqs():
     def __init__(self):
@@ -64,11 +58,12 @@ def listOptionsFrom(others, pos, currentAlias):
     for o in others:
         t = pos - sync[currentAlias]
         available = sourceSeqs.availableLengthAt(t, o, currentAlias)
-        if available and o not in currentAlias  :
+        if available and o not in currentAlias:
             r.append((o, available))
     return r
 
 pos = 0
+optionSelection = 0
 for e in edits:
     this = names[e]
     others = []
@@ -84,8 +79,13 @@ for e in edits:
             d = k["end"] - s
 
             if pos != s:
-                print("between split screen at", pos - sync[this], ":", listOptionsFrom(others, pos, this))
-                print("[\"%s\", [%d, %d]]" % anyOtherFrom(others, pos, s, this))
+                fillOptions = [f for f in filter(lambda o: o[1] > d, listOptionsFrom(others, pos, this))]
+                fill = fillOptions[min(len(fillOptions) - 1, optionSelection % 3)][0]
+                optionSelection += 1
+                start = pos - sourceSeqs.start[fill] - sync[this]
+                dur = s - pos
+
+                print("[\"%s\", [%d, %d]]," % (fill, start, dur))
                 pos = s
 
             splitOptions = listOptionsFrom(others, pos, this)
