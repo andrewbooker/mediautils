@@ -1,6 +1,24 @@
 
 
 class Timeline():
+    @staticmethod
+    def add(src, start, dur, to):
+        to.append({ "seqStart": start, "seqEnd": start + dur, "entry": [src["name"], [start, dur]] })
+
+    @staticmethod
+    def collate(tl):
+        r = []
+        lastEnd = 0
+        tl.sort(key=lambda t: t["seqStart"])
+        for t in tl:
+            if lastEnd > t["seqStart"]:
+                dur = t["seqEnd"] - lastEnd
+                r.append({ "seqStart": lastEnd, "seqEnd": lastEnd + dur, "entry": [t["entry"][0], [lastEnd, dur]]})
+            else:
+                r.append(t)
+            lastEnd = t["seqEnd"]
+        return r
+
     def __init__(self, srcs, edits = {}):
         self.srcs = srcs
         self.edits = edits
@@ -19,12 +37,12 @@ class Timeline():
                         dur = src["length"] - start
                     if "end" in edit:
                         dur = edit["end"] - start
-                    t.append({ "seqStart": start, "entry": [src["name"], [start, dur]] })
-            if len(t) == 0:
-                t.append({ "seqStart": start, "entry": [src["name"], [start, dur]] })
 
-        t.sort(key=lambda i: i["seqStart"])
-        return [e["entry"] for e in t]
+                    Timeline.add(src, start, dur, t)
+            if len(t) == 0:
+                Timeline.add(src, start, dur, t)
+
+        return [e["entry"] for e in Timeline.collate(t)]
 
 
 
@@ -129,6 +147,39 @@ def test_interleaves_multiple_sources_with_no_overlaps():
             "edits": [
                 { "start": 11, "end": 18 },
                 { "start": 21, "end": 30 }
+            ]
+        }
+    }
+    t = Timeline(srcs, edits)
+    assert t.create() == [
+        ["closeUp", [5, 6]],
+        ["wide", [11, 7]],
+        ["closeUp", [18, 3]],
+        ["wide", [21, 9]]
+    ]
+
+def test_runs_one_source_edit_to_completion_before_interleaving_to_the_next():
+    srcs = {
+        "thing1.mp4": {
+            "name": "closeUp",
+            "length": 99
+        },
+        "thing2.mp4": {
+            "name": "wide",
+            "length": 99
+        }
+    }
+    edits = {
+        "thing1.mp4": {
+            "edits": [
+                { "start": 5, "end": 11 },
+                { "start": 18, "end": 21 }
+            ]
+        },
+        "thing2.mp4": {
+            "edits": [
+                { "start": 10, "end": 18 },
+                { "start": 19, "end": 30 }
             ]
         }
     }
