@@ -2,8 +2,8 @@
 
 class Timeline():
     @staticmethod
-    def add(src, start, dur, to):
-        to.append({ "seqStart": start, "seqEnd": start + dur, "entry": [src["name"], [start, dur]] })
+    def add(src, sync, start, dur, to):
+        to.append({ "seqStart": start - sync, "seqEnd": start + dur - sync, "entry": [src["name"], [start, dur]] })
 
     @staticmethod
     def collate(tl):
@@ -31,6 +31,7 @@ class Timeline():
             dur = src["length"]
 
             if s in self.edits:
+                sync = self.edits[s]["sync"] if "sync" in self.edits[s] else 0
                 for edit in self.edits[s]["edits"]:
                     if "start" in edit:
                         start = edit["start"]
@@ -38,9 +39,9 @@ class Timeline():
                     if "end" in edit:
                         dur = edit["end"] - start
 
-                    Timeline.add(src, start, dur, t)
+                    Timeline.add(src, sync, start, dur, t)
             if len(t) == 0:
-                Timeline.add(src, start, dur, t)
+                Timeline.add(src, 0, start, dur, t)
 
         return [e["entry"] for e in Timeline.collate(t)]
 
@@ -189,5 +190,40 @@ def test_runs_one_source_edit_to_completion_before_interleaving_to_the_next():
         ["wide", [11, 7]],
         ["closeUp", [18, 3]],
         ["wide", [21, 9]]
+    ]
+
+def test_adjusts_timings_with_no_overlap_given_sync_points():
+    srcs = {
+        "thing1.mp4": {
+            "name": "closeUp",
+            "length": 99
+        },
+        "thing2.mp4": {
+            "name": "wide",
+            "length": 99
+        }
+    }
+    edits = {
+        "thing1.mp4": {
+            "sync": 10,
+            "edits": [
+                { "start": 15, "end": 21 },
+                { "start": 28, "end": 31 }
+            ]
+        },
+        "thing2.mp4": {
+            "sync": 100,
+            "edits": [
+                { "start": 111, "end": 118 },
+                { "start": 121, "end": 130 }
+            ]
+        }
+    }
+    t = Timeline(srcs, edits)
+    assert t.create() == [
+        ["closeUp", [15, 6]],
+        ["wide", [111, 7]],
+        ["closeUp", [28, 3]],
+        ["wide", [121, 9]]
     ]
 
