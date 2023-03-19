@@ -19,10 +19,12 @@ class Timeline():
                         dur = src["length"] - start
                     if "end" in edit:
                         dur = edit["end"] - start
-                    t.append([src["name"], [start, dur]])
+                    t.append({ "seqStart": start, "entry": [src["name"], [start, dur]] })
             if len(t) == 0:
-                t.append([src["name"], [start, dur]])
-        return t
+                t.append({ "seqStart": start, "entry": [src["name"], [start, dur]] })
+
+        t.sort(key=lambda i: i["seqStart"])
+        return [e["entry"] for e in t]
 
 
 
@@ -103,5 +105,38 @@ def test_breaks_up_single_source_given_two_edits():
     assert t.create() == [
         ["closeUp", [5, 6]],
         ["closeUp", [17, 194.98]]
+    ]
+
+def test_interleaves_multiple_sources_with_no_overlaps():
+    srcs = {
+        "thing1.mp4": {
+            "name": "closeUp",
+            "length": 99
+        },
+        "thing2.mp4": {
+            "name": "wide",
+            "length": 99
+        }
+    }
+    edits = {
+        "thing1.mp4": {
+            "edits": [
+                { "start": 5, "end": 11 },
+                { "start": 18, "end": 21 }
+            ]
+        },
+        "thing2.mp4": {
+            "edits": [
+                { "start": 11, "end": 18 },
+                { "start": 21, "end": 30 }
+            ]
+        }
+    }
+    t = Timeline(srcs, edits)
+    assert t.create() == [
+        ["closeUp", [5, 6]],
+        ["wide", [11, 7]],
+        ["closeUp", [18, 3]],
+        ["wide", [21, 9]]
     ]
 
