@@ -11,15 +11,17 @@ class Timeline():
             src = self.srcs[s]
             start = 0
             dur = src["length"]
-            if s in self.edits:
-                edit = self.edits[s]["edits"][0]
-                if "start" in edit:
-                    start = edit["start"]
-                    dur = src["length"] - start
-                if "end" in edit:
-                    dur = edit["end"] - start
 
-            t.append([src["name"], [start, dur]])
+            if s in self.edits:
+                for edit in self.edits[s]["edits"]:
+                    if "start" in edit:
+                        start = edit["start"]
+                        dur = src["length"] - start
+                    if "end" in edit:
+                        dur = edit["end"] - start
+                    t.append([src["name"], [start, dur]])
+            if len(t) == 0:
+                t.append([src["name"], [start, dur]])
         return t
 
 
@@ -81,4 +83,25 @@ def test_breaks_up_single_source_given_single_edit_specifying_start_and_end():
     }
     t = Timeline(srcs, edits)
     assert t.create() == [["closeUp", [5, 6]]]
+
+def test_breaks_up_single_source_given_two_edits():
+    srcs = {
+        "thing.mp4": {
+            "name": "closeUp",
+            "length": 211.98
+        }
+    }
+    edits = {
+        "thing.mp4": {
+            "edits": [
+                { "start": 5, "end": 11 },
+                { "start": 17 }
+            ]
+        }
+    }
+    t = Timeline(srcs, edits)
+    assert t.create() == [
+        ["closeUp", [5, 6]],
+        ["closeUp", [17, 194.98]]
+    ]
 
