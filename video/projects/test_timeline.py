@@ -192,4 +192,91 @@ def test_adjusts_timings_with_no_overlap_given_sync_points():
         ["wide", [121, 9]]
     ]
 
-#next: return split screen if overlap >~ 10
+def test_ignores_short_edit_entirely_overlapped_by_another():
+    srcs = {
+        "thing1.mp4": {
+            "name": "closeUp",
+            "length": 99
+        },
+        "thing2.mp4": {
+            "name": "wide",
+            "length": 99
+        }
+    }
+    edits = {
+        "thing1.mp4": {
+            "edits": [
+                { "start": 15, "end": 21 }
+            ]
+        },
+        "thing2.mp4": {
+            "edits": [
+                { "start": 17, "end": 19 }
+            ]
+        }
+    }
+    t = Timeline(srcs, edits)
+    assert t.create() == [["closeUp", [15, 6]]]
+
+def test_produces_split_screen_if_overlap_longer_than_10s():
+    srcs = {
+        "thing1.mp4": {
+            "name": "closeUp",
+            "length": 99
+        },
+        "thing2.mp4": {
+            "name": "wide",
+            "length": 99
+        }
+    }
+    edits = {
+        "thing1.mp4": {
+            "edits": [
+                { "start": 15, "end": 41 }
+            ]
+        },
+        "thing2.mp4": {
+            "edits": [
+                { "start": 20, "end": 53 }
+            ]
+        }
+    }
+    t = Timeline(srcs, edits)
+    assert t.create() == [
+        ["closeUp", [15, 5]],
+        ["closeUp", [20, 21], { "splitScreenWith": ["wide"]}],
+        ["wide", [41, 12]]
+    ]
+
+def test_produces_split_screen_with_sync_values_if_overlap_longer_than_10s():
+    srcs = {
+        "thing1.mp4": {
+            "name": "closeUp",
+            "length": 99
+        },
+        "thing2.mp4": {
+            "name": "wide",
+            "length": 99
+        }
+    }
+    edits = {
+        "thing1.mp4": {
+            "sync": 100,
+            "edits": [
+                { "start": 115, "end": 141 }
+            ]
+        },
+        "thing2.mp4": {
+            "sync": 10,
+            "edits": [
+                { "start": 30, "end": 63 }
+            ]
+        }
+    }
+    t = Timeline(srcs, edits)
+    assert t.create() == [
+        ["closeUp", [115, 5]],
+        ["closeUp", [120, 21], { "splitScreenWith": ["wide"]}],
+        ["wide", [51, 12]]
+    ]
+
