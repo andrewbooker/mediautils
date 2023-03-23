@@ -218,7 +218,7 @@ def test_ignores_short_edit_entirely_overlapped_by_another():
     t = Timeline(srcs, edits)
     assert t.create() == [["closeUp", [15, 6]]]
 
-def test_produces_split_screen_if_overlap_longer_than_10s():
+def test_produces_split_screen_if_4_items_overlap():
     srcs = {
         "thing1.mp4": {
             "name": "closeUp",
@@ -226,6 +226,14 @@ def test_produces_split_screen_if_overlap_longer_than_10s():
         },
         "thing2.mp4": {
             "name": "wide",
+            "length": 99
+        },
+        "thing3.mp4": {
+            "name": "left",
+            "length": 99
+        },
+        "thing4.mp4": {
+            "name": "right",
             "length": 99
         }
     }
@@ -237,14 +245,24 @@ def test_produces_split_screen_if_overlap_longer_than_10s():
         },
         "thing2.mp4": {
             "edits": [
-                { "start": 20, "end": 53 }
+                { "start": 19, "end": 53 }
+            ]
+        },
+        "thing3.mp4": {
+            "edits": [
+                { "start": 18, "end": 41 }
+            ]
+        },
+        "thing4.mp4": {
+            "edits": [
+                { "start": 20, "end": 41 }
             ]
         }
     }
     t = Timeline(srcs, edits)
     assert t.create() == [
         ["closeUp", [15, 5]],
-        ["closeUp", [20, 21], { "splitScreenWith": ["wide"]}],
+        ["closeUp", [20, 21], { "splitScreenWith": ["left", "wide", "right"]}],
         ["wide", [41, 12]]
     ]
 
@@ -256,6 +274,14 @@ def test_produces_split_screen_with_sync_values_if_overlap_longer_than_10s():
         },
         "thing2.mp4": {
             "name": "wide",
+            "length": 99
+        },
+        "thing3.mp4": {
+            "name": "left",
+            "length": 99
+        },
+        "thing4.mp4": {
+            "name": "right",
             "length": 99
         }
     }
@@ -269,14 +295,78 @@ def test_produces_split_screen_with_sync_values_if_overlap_longer_than_10s():
         "thing2.mp4": {
             "sync": 10,
             "edits": [
-                { "start": 30, "end": 63 }
+                { "start": 29, "end": 63 }
+            ]
+        },
+        "thing3.mp4": {
+            "sync": 1,
+            "edits": [
+                { "start": 19, "end": 42 }
+            ]
+        },
+        "thing4.mp4": {
+            "sync": 0,
+            "edits": [
+                { "start": 20, "end": 41 }
             ]
         }
     }
     t = Timeline(srcs, edits)
     assert t.create() == [
         ["closeUp", [115, 5]],
-        ["closeUp", [120, 21], { "splitScreenWith": ["wide"]}],
+        ["closeUp", [120, 21], { "splitScreenWith": ["left", "wide", "right"]}],
         ["wide", [51, 12]]
     ]
 
+def test_fills_in_a_gap_between_aligned_edits():
+    srcs = {
+        "thing1.mp4": {
+            "name": "closeUp",
+            "length": 99
+        },
+        "thing2.mp4": {
+            "name": "wide",
+            "length": 99
+        },
+        "thing3.mp4": {
+            "name": "left",
+            "length": 99
+        },
+        "thing4.mp4": {
+            "name": "right",
+            "length": 99
+        }
+    }
+    edits = {
+        "thing1.mp4": {
+            "edits": [
+                { "start": 1, "end": 12 }, { "start": 43, "end": 88 }
+            ]
+        },
+        "thing2.mp4": {
+            "edits": [
+                { "start": 2, "end": 14 }, { "start": 42, "end": 62 }
+            ]
+        },
+        "thing3.mp4": {
+            "edits": [
+                { "start": 3, "end": 19 }, { "start": 22, "end": 49 }
+            ]
+        },
+        "thing4.mp4": {
+            "edits": [
+                { "start": 4, "end": 36 }, { "start": 39, "end": 88 }
+            ]
+        }
+    }
+    t = Timeline(srcs, edits)
+    assert t.create() == [
+        ["closeUp", [1, 3]],
+        ["closeUp", [4, 8], { "splitScreenWith": ["wide", "left", "right"]}],
+        ["wide", [12, 2]],
+        ["left", [14, 5]],
+        ["right", [19, 17]],
+        ["left", [36, 7]],
+        ["left", [43, 6], { "splitScreenWith": ["right", "wide", "closeUp"]}],
+        ["right", [49, 39]]
+    ]
