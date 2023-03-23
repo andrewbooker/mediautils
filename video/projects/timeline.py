@@ -54,11 +54,21 @@ class Timeline():
 
         return tl
 
+    @staticmethod
+    def addTo(events, start, dur, name, startAt):
+        if startAt >= (start + dur):
+            return
+        tss = max(start, startAt)
+        tse = tss + dur - max(startAt - start, 0)
+
+        events.append({ "ts": tss, "src": name, "action": "start" })
+        events.append({ "ts": tse, "src": name, "action": "stop" })
+
     def __init__(self, srcs, edits = {}):
         self.srcs = srcs
         self.edits = edits
 
-    def create(self):
+    def create(self, startAt=0):
         events = []
         syncs = {}
 
@@ -78,10 +88,9 @@ class Timeline():
                         if "end" in edit:
                             dur = edit["end"] - start
 
-                        events.append({ "ts": start - sync, "src": src["name"], "action": "start" })
-                        events.append({ "ts": dur + start - sync, "src": src["name"], "action": "stop" })
-            if len(events) == 0:
-                events.append({ "ts": start, "src": src["name"], "action": "start" })
-                events.append({ "ts": dur + start, "src": src["name"], "action": "stop" })
+                        Timeline.addTo(events, start - sync, dur, src["name"], startAt)
+
+            if len(events) == 0 and start >= startAt:
+                Timeline.addTo(events, start, dur, src["name"], startAt)
 
         return Timeline.project(events, syncs)

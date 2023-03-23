@@ -370,3 +370,84 @@ def test_fills_in_a_gap_between_aligned_edits():
         ["left", [43, 6], { "splitScreenWith": ["right", "wide", "closeUp"]}],
         ["right", [49, 39]]
     ]
+
+def test_uses_length_to_interpret_edit_without_end():
+    srcs = {
+        "thing.mp4": {
+            "name": "closeUp",
+            "length": 20
+        }
+    }
+    edits = {
+        "thing.mp4": {
+            "edits": [{ "start": 5, "end": 10 }, { "start": 15 }]
+        }
+    }
+    t = Timeline(srcs, edits)
+    assert t.create() == [
+        ["closeUp", [5, 5]],
+        ["closeUp", [15, 5]]
+    ]
+
+def test_can_create_from_a_given_point():
+    srcs = {
+        "thing1.mp4": {
+            "name": "closeUp",
+            "length": 99
+        },
+        "thing2.mp4": {
+            "name": "wide",
+            "length": 99
+        }
+    }
+    edits = {
+        "thing1.mp4": {
+            "sync": 10,
+            "edits": [
+                { "start": 20, "end": 30 }, { "start": 35, "end": 50 }
+            ]
+        },
+        "thing2.mp4": {
+            "sync": 20,
+            "edits": [
+                { "start": 22, "end": 34 }, { "start": 59, "end": 69 }
+            ]
+        }
+    }
+    t = Timeline(srcs, edits)
+    assert t.create(21) == [
+        ["closeUp", [35, 15]],
+        ["wide", [60, 9]]
+    ]
+
+def test_considers_a_file_to_begin_at_the_start_point_if_it_begins_before():
+    srcs = {
+        "thing1.mp4": {
+            "name": "closeUp",
+            "length": 99
+        },
+        "thing2.mp4": {
+            "name": "wide",
+            "length": 99
+        }
+    }
+    edits = {
+        "thing1.mp4": {
+            "sync": 10,
+            "edits": [
+                { "start": 20, "end": 30 }, { "start": 35, "end": 70 }
+            ]
+        },
+        "thing2.mp4": {
+            "sync": 20,
+            "edits": [
+                { "start": 22, "end": 34 }, { "start": 39, "end": 69 }
+            ]
+        }
+    }
+    t = Timeline(srcs, edits)
+    assert t.create(21) == [
+        ["wide", [41, 28]],
+        ["closeUp", [59, 11]]
+    ]
+

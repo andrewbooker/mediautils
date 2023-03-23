@@ -6,6 +6,7 @@ import sys
 from timeline import Timeline
 
 inDir = sys.argv[1]
+startFrom = int(sys.argv[2]) if len(sys.argv) > 2 else 0
 
 def load(f):
     with open(f, "r") as e:
@@ -16,4 +17,4 @@ sources = load(os.path.join(inDir, "sequence.json"))["aliases"]
 
 timeline = Timeline(sources, edits)
 
-[print(t) for t in timeline.create()]
+[print(t) for t in timeline.create(startFrom)]
