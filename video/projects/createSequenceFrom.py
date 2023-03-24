@@ -31,6 +31,7 @@ out = {
 }
 
 aliasCount = {}
+toJoin = {}
 
 for f in files:
     print("reading length of", f)
@@ -41,7 +42,27 @@ for f in files:
             if p[1] not in aliasCount:
                 aliasCount[p[1]] = 0
             aliasCount[p[1]] += 1
-            out["aliases"][f] = { "name": "%s_%d" % (p[1], aliasCount[p[1]]), "length": length }
+            if p[1] in ["apexman", "dragon"]:
+                if p[1] not in toJoin:
+                    toJoin[p[1]] = []
+                toJoin[p[1]].append({ "file": f, "length": length })
+            else:
+                out["aliases"][f] = { "name": "%s_%d" % (p[1], aliasCount[p[1]]), "length": length }
 
-with open(os.path.join(d, "sequence.json"), "w") as js:
-    json.dump(out, js, indent=4)
+for (a, fs) in toJoin.items():
+    cf = os.path.join(inDir, "%s.txt" % a)
+    tl = 0
+    with open(cf, "w") as concat:
+        for f in fs:
+            tl += f["length"]
+            concat.write("file '%s'\n" % f["file"])
+            outfile = "%s.%s" % (a, f["file"].split(".")[1])
+    print("ffmpeg -safe 0 -f concat -i %s -c copy -y %s" % (cf, os.path.join(inDir, outfile)))
+    out["aliases"][outfile] = { "name": a, "length": tl }
+
+
+if False:
+    with open(os.path.join(d, "sequence.json"), "w") as js:
+        json.dump(out, js, indent=4)
+else:
+    print(json.dumps(out, indent=4))
