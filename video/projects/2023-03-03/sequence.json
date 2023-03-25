@@ -18,29 +18,25 @@
             "name": "G5_4",
             "length": 34.51522222222222
         },
+        "20230303_191142.mp4": {
+            "name": "G5_5",
+            "length": 28.8793
+        },
+        "2023_0303_184144_002A.MOV": {
+            "name": "apeman_1",
+            "length": 112.63333333333334
+        },
         "2023_0303_184520_002A.MOV": {
-            "name": "apeman",
+            "name": "apeman_2",
             "length": 965.4666666666667
         },
-        "FILE230303-184058F.MOV": {
-            "name": "apexman_1",
-            "length": 900.0658333333333
+        "apexman.MOV": {
+            "name": "apexman",
+            "length": 1130.0956333333334
         },
-        "FILE230303-185556F.MOV": {
-            "name": "apexman_2",
-            "length": 230.0298
-        },
-        "NORM0001.MP4": {
-            "name": "dragon_1",
-            "length": 473.0
-        },
-        "NORM0002.MP4": {
-            "name": "dragon_2",
-            "length": 490.0
-        },
-        "NORM0003.MP4": {
-            "name": "dragon_3",
-            "length": 165.73333333333332
+        "dragon.MP4": {
+            "name": "dragon",
+            "length": 1128.7333333333333
         }
     },
     "sync": {
