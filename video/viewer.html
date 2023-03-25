@@ -106,9 +106,9 @@ const loadOne = (f, i) => {
     editButton.onclick = () => {
         const edits = model[f].edits;
         if (!edits.length || edits[edits.length - 1].end) {
-            edits.push({ start: v.currentTime })
+            edits.push({ start: Math.floor(v.currentTime) })
         } else {
-            edits[edits.length - 1].end = v.currentTime;
+            edits[edits.length - 1].end = Math.floor(v.currentTime);
         }
         model[f].edits = edits;
         document.getElementById("fileList").value = JSON.stringify(model);
