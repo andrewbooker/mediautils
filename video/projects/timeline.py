@@ -16,18 +16,22 @@ class Timeline():
         tl = []
         splitMode = SplitMode.NotSplit
 
-        for e in events:
+        for i in range(len(events)):
+            e = events[i]
             src = e["src"]
             if "start" in e["action"]:
                 playable.append(src)
                 if len(playable) == 4:
                     splitMode = SplitMode.ShouldStart
-                if len(playing.items()) == 0:
-                    playing[src] = e["ts"] # note this means items can never start together. Leaving this for now as items will almost always start at different times.
             if "stop" in e["action"]:
                 playable.remove(src)
                 if splitMode == SplitMode.Started and len(playable) < 4:
                     splitMode = SplitMode.Stopped
+
+            if len(events) > (i + 1) and events[i + 1]["ts"] != e["ts"] and len(playable) > 0 and len(playing.items()) == 0:
+                if len(playable) == 4:
+                    splitMode = SplitMode.Started
+                playing[playable[0]] = e["ts"]
 
             if len(playing.items()) > 0:
                 toRemove = []
@@ -43,6 +47,8 @@ class Timeline():
                         toRemove.append(k)
                         if len(playable) > 0:
                             toAdd.append(playable[0])
+                    if splitMode == SplitMode.ShouldStart:
+                        splitMode = SplitMode.Started
                     if splitMode == SplitMode.Stopped:
                         otherPlayable = filter(lambda p: k not in p, playable)
                         tl.append([k, [v + sync, e["ts"] - v], { "splitScreenWith": [p for p in otherPlayable] }])
@@ -90,7 +96,7 @@ class Timeline():
 
                         Timeline.addTo(events, start - sync, dur, src["name"], startAt)
 
-            if len(events) == 0 and start >= startAt:
-                Timeline.addTo(events, start, dur, src["name"], startAt)
+                if len(events) == 0:
+                    Timeline.addTo(events, start, dur, src["name"], startAt)
 
         return Timeline.project(events, syncs)

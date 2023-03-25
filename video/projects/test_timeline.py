@@ -5,25 +5,26 @@ def test_returns_nothing_given_no_data():
     t = Timeline({})
     assert t.create() == []
 
-def test_lists_single_available_source_with_no_edits():
+def test_ignores_single_available_source_with_no_edits():
     t = Timeline({
         "thing.mp4": {
             "name": "closeUp",
             "length": 211.98
         }
     })
-    assert t.create() == [["closeUp", [0, 211.98]]]
+    assert t.create() == []
 
 def test_lists_single_available_source_with_empty_edits():
     t = Timeline({
         "thing.mp4": {
             "name": "closeUp",
-            "length": 211.98
+            "length": 211
         }
     }, {
         "thing.mp4": {}
     })
-    assert t.create() == [["closeUp", [0, 211.98]]]
+    assert t.create() == [["closeUp", [0, 211]]]
+    assert t.create(100) == [["closeUp", [100, 111]]]
 
 def test_breaks_up_single_source_given_single_edit_specifying_start():
     srcs = {
@@ -69,6 +70,37 @@ def test_breaks_up_single_source_given_single_edit_specifying_start_and_end():
     }
     t = Timeline(srcs, edits)
     assert t.create() == [["closeUp", [5, 6]]]
+
+def test_handles_starting_midway_through_a_single_edit_specifying_start_and_end():
+    srcs = {
+        "thing.mp4": {
+            "name": "closeUp",
+            "length": 211.98
+        }
+    }
+    edits = {
+        "thing.mp4": {
+            "edits": [{ "start": 5, "end": 11 }]
+        }
+    }
+    t = Timeline(srcs, edits)
+    assert t.create(7) == [["closeUp", [7, 4]]]
+
+def test_handles_starting_midway_through_a_single_edit_with_a_sync_value():
+    srcs = {
+        "thing.mp4": {
+            "name": "closeUp",
+            "length": 211.98
+        }
+    }
+    edits = {
+        "thing.mp4": {
+            "sync": 150,
+            "edits": [{ "start": 5, "end": 11 }]
+        }
+    }
+    t = Timeline(srcs, edits)
+    assert t.create(7) == [["closeUp", [157, 4]]]
 
 def test_breaks_up_single_source_given_two_edits():
     srcs = {
@@ -451,3 +483,48 @@ def test_considers_a_file_to_begin_at_the_start_point_if_it_begins_before():
         ["closeUp", [59, 11]]
     ]
 
+def test_can_produce_a_split_screen_from_the_beginning():
+    srcs = {
+        "thing1.mp4": {
+            "name": "closeUp",
+            "length": 99
+        },
+        "thing2.mp4": {
+            "name": "wide",
+            "length": 99
+        },
+        "thing3.mp4": {
+            "name": "left",
+            "length": 99
+        },
+        "thing4.mp4": {
+            "name": "right",
+            "length": 99
+        }
+    }
+    edits = {
+        "thing1.mp4": {
+            "edits": [
+                { "start": 0, "end": 88 }
+            ]
+        },
+        "thing2.mp4": {
+            "edits": [
+                { "start": 0, "end": 88 }
+            ]
+        },
+        "thing3.mp4": {
+            "edits": [
+                { "start": 0, "end": 88 }
+            ]
+        },
+        "thing4.mp4": {
+            "edits": [
+                { "start": 0, "end": 88 }
+            ]
+        }
+    }
+    t = Timeline(srcs, edits)
+    assert t.create() == [
+        ["closeUp", [0, 88], { "splitScreenWith": ["wide", "left", "right"]}]
+    ]
