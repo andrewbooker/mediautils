@@ -1,6 +1,26 @@
 
 from timeline import Timeline
 
+fourSrcs = {
+    "thing1.mp4": {
+        "name": "closeUp",
+        "length": 99
+    },
+    "thing2.mp4": {
+        "name": "wide",
+        "length": 99
+    },
+    "thing3.mp4": {
+        "name": "left",
+        "length": 99
+    },
+    "thing4.mp4": {
+        "name": "right",
+        "length": 99
+    }
+}
+
+
 def test_returns_nothing_given_no_data():
     t = Timeline({})
     assert t.create() == []
@@ -251,24 +271,6 @@ def test_ignores_short_edit_entirely_overlapped_by_another():
     assert t.create() == [["closeUp", [15, 6]]]
 
 def test_produces_split_screen_if_4_items_overlap():
-    srcs = {
-        "thing1.mp4": {
-            "name": "closeUp",
-            "length": 99
-        },
-        "thing2.mp4": {
-            "name": "wide",
-            "length": 99
-        },
-        "thing3.mp4": {
-            "name": "left",
-            "length": 99
-        },
-        "thing4.mp4": {
-            "name": "right",
-            "length": 99
-        }
-    }
     edits = {
         "thing1.mp4": {
             "edits": [
@@ -291,7 +293,7 @@ def test_produces_split_screen_if_4_items_overlap():
             ]
         }
     }
-    t = Timeline(srcs, edits)
+    t = Timeline(fourSrcs, edits)
     assert t.create() == [
         ["closeUp", [15, 5]],
         ["closeUp", [20, 21], { "splitScreenWith": ["left", "wide", "right"]}],
@@ -299,24 +301,6 @@ def test_produces_split_screen_if_4_items_overlap():
     ]
 
 def test_produces_split_screen_with_sync_values_if_overlap_longer_than_10s():
-    srcs = {
-        "thing1.mp4": {
-            "name": "closeUp",
-            "length": 99
-        },
-        "thing2.mp4": {
-            "name": "wide",
-            "length": 99
-        },
-        "thing3.mp4": {
-            "name": "left",
-            "length": 99
-        },
-        "thing4.mp4": {
-            "name": "right",
-            "length": 99
-        }
-    }
     edits = {
         "thing1.mp4": {
             "sync": 100,
@@ -343,7 +327,7 @@ def test_produces_split_screen_with_sync_values_if_overlap_longer_than_10s():
             ]
         }
     }
-    t = Timeline(srcs, edits)
+    t = Timeline(fourSrcs, edits)
     assert t.create() == [
         ["closeUp", [115, 5]],
         ["closeUp", [120, 21], { "splitScreenWith": ["left", "wide", "right"]}],
@@ -351,24 +335,6 @@ def test_produces_split_screen_with_sync_values_if_overlap_longer_than_10s():
     ]
 
 def test_fills_in_a_gap_between_aligned_edits():
-    srcs = {
-        "thing1.mp4": {
-            "name": "closeUp",
-            "length": 99
-        },
-        "thing2.mp4": {
-            "name": "wide",
-            "length": 99
-        },
-        "thing3.mp4": {
-            "name": "left",
-            "length": 99
-        },
-        "thing4.mp4": {
-            "name": "right",
-            "length": 99
-        }
-    }
     edits = {
         "thing1.mp4": {
             "edits": [
@@ -391,7 +357,7 @@ def test_fills_in_a_gap_between_aligned_edits():
             ]
         }
     }
-    t = Timeline(srcs, edits)
+    t = Timeline(fourSrcs, edits)
     assert t.create() == [
         ["closeUp", [1, 3]],
         ["closeUp", [4, 8], { "splitScreenWith": ["wide", "left", "right"]}],
@@ -484,24 +450,6 @@ def test_considers_a_file_to_begin_at_the_start_point_if_it_begins_before():
     ]
 
 def test_can_produce_a_split_screen_from_the_beginning():
-    srcs = {
-        "thing1.mp4": {
-            "name": "closeUp",
-            "length": 99
-        },
-        "thing2.mp4": {
-            "name": "wide",
-            "length": 99
-        },
-        "thing3.mp4": {
-            "name": "left",
-            "length": 99
-        },
-        "thing4.mp4": {
-            "name": "right",
-            "length": 99
-        }
-    }
     edits = {
         "thing1.mp4": {
             "edits": [
@@ -524,7 +472,8 @@ def test_can_produce_a_split_screen_from_the_beginning():
             ]
         }
     }
-    t = Timeline(srcs, edits)
+    t = Timeline(fourSrcs, edits)
     assert t.create() == [
         ["closeUp", [0, 88], { "splitScreenWith": ["wide", "left", "right"]}]
     ]
+
