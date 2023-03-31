@@ -158,11 +158,7 @@ for item in storyboard:
             ss = [item["fileStart"]]
             for s in item["splitScreenWith"]:
                 syncKey = s.split("_")[0]
-                lengthIteration = int(s.split("_")[1]) - 1 if len(s.split("_")) > 1 else 0
-                passedLength = 0
-                for i in range(lengthIteration):
-                    passedLength += lengths["%s_%d" % (syncKey, i + 1)]
-                ss.append(item["fileStart"] + sync[syncKey] - passedLength - primarySync)
+                ss.append(item["fileStart"] + sync[syncKey] - primarySync)
                 srcs.append(aliases[s])
 
             splitSrcs = []
