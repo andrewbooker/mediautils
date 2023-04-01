@@ -81,8 +81,16 @@ const loadOne = (f, i) => {
         const o = new Number(setOffset.value);
         v.currentTime = g + o;
     };
+    const paused = document.createElement("input");
+    paused.setAttribute("type", "checkbox");
+    paused.setAttribute("id", "paused" + i);
+    const pausedLabel = document.createElement("label");
+    pausedLabel.innerHTML = "pause"
+
     const oc = document.createElement("div");
     oc.appendChild(setOffset);
+    oc.appendChild(paused);
+    oc.appendChild(pausedLabel)
     container.appendChild(oc);
 
     const ct = document.createElement("div");
@@ -146,7 +154,11 @@ const load = () => {
 
 const button = document.getElementById("play");
 const play = () => {
-    videoCtls.forEach(v => v.play());
+    videoCtls.forEach((v, i) => {
+        if (!document.getElementById("paused" + i).checked) {
+            v.play();
+        }
+    });
     button.innerHTML = "Pause"
     button.setAttribute("onclick", "pause();");
 };
