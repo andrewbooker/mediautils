@@ -260,7 +260,7 @@ mp4Cmd.append(str(tt))
 if len(vf):
     mp4Cmd.append("-vf")
     mp4Cmd.append("\"fade=type=in:duration=6,fade=type=out:duration=4:start_time=%d,%s\"" % (tt - 4, ",".join(vf)))
-mp4Cmd.append("-y c:v libx264 -qp 0 -f mp4")
+mp4Cmd.append("-y")
 mp4Cmd.append(os.path.join(mergedDir, "%s.mp4" % baseOutFn))
 
 with open("./toMp4.sh", "w") as cf:
