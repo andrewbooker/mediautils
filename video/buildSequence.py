@@ -127,11 +127,11 @@ for item in storyboard:
     if not os.path.exists(item["clipFqFn"]):
         if "splitScreenWith" not in item:
             cmd = ["ffmpeg"]
-            cmd.append("-i")
-            cmd.append("\"%s\"" % os.path.join(rawDir, item["file"]))
             if item["fileStart"]:
                 cmd.append("-ss")
                 cmd.append(str(item["fileStart"]))
+            cmd.append("-i")
+            cmd.append("\"%s\"" % os.path.join(rawDir, item["file"]))
             cmd.append("-t")
             cmd.append(str(item["duration"]))
             cmd.append("-an -r 30 -y")
@@ -164,9 +164,10 @@ for item in storyboard:
             splitSrcs = []
             for i in range(len(srcs)):
                 s = srcs[i]
-                sCmd = ["ffmpeg -i"]
-                sCmd.append("\"%s\"" % os.path.join(rawDir, s))
+                sCmd = ["ffmpeg"]
                 sCmd.append("-ss %d" % ss[i])
+                sCmd.append("-i")
+                sCmd.append("\"%s\"" % os.path.join(rawDir, s))
                 sCmd.append("-t %d" % item["duration"])
                 sCmd.append("-vf \"scale=%dx%d\"" % (horiz / 2, vert / 2))
                 sCmd.append("-an -r 30 -y")
