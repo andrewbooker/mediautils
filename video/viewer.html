@@ -67,7 +67,7 @@ const loadOne = (f, i) => {
     v.setAttribute("id", id);
     v.load();
     if (model[f].sync) {
-        v.currentTime = new Number(model[f].sync)
+        v.currentTime = new Number(modvideoCtlsel[f].sync)
     }
 
     v.appendChild(vs);
@@ -170,10 +170,18 @@ const pause = () => {
 button.setAttribute("onclick", "play();");
 
 document.getElementById("nudgeForward").onclick = () => {
-    videoCtls.forEach(v => v.currentTime += 0.1);
+    videoCtls.forEach((v, i) => {
+        if (!document.getElementById("paused" + i).checked) {
+            v.currentTime += 0.1;
+        }
+    });
 };
 document.getElementById("nudgeBackward").onclick = () => {
-    videoCtls.forEach(v => v.currentTime -= 0.1);
+    videoCtls.forEach((v, i) => {
+        if (!document.getElementById("paused" + i).checked) {
+            v.currentTime -= 0.1;
+        }
+    });
 };
 
 document.getElementById("sync").onclick = () => {
