@@ -1,0 +1,65 @@
+{
+    "projectName": "Lisson Grove",
+    "number": 20,
+    "aliases": {
+        "20230311_105802.mp4": {
+            "name": "G5_1",
+            "length": 41.81847777777778
+        },
+        "20230311_110006.mp4": {
+            "name": "G5_2",
+            "length": 31.44182222222222
+        },
+        "20230311_110200.mp4": {
+            "name": "G5_3",
+            "length": 138.98343333333332
+        },
+        "20230311_111030.mp4": {
+            "name": "G5_4",
+            "length": 329.30535555555554
+        },
+        "20230311_111820.mp4": {
+            "name": "shoot",
+            "length": 1650.453411111111
+        },
+        "2023_0311_112833_002A.MOV": {
+            "name": "apeman",
+            "length": 1309.9666666666667
+        },
+        "apexcam.MOV": {
+            "name": "apexcam",
+            "length": 1320.1521666666667
+        },
+        "dragon.MP4": {
+            "name": "dragon",
+            "length": 1347.6
+        }
+    },
+    "sync": {
+        "shoot": 332,
+        "apeman": 0,
+        "apexcam": 18.189768,
+        "dragon": 54.74556
+    },
+    "sequence": [
+        ["G5_1", [25, 11]],
+        ["G5_2", [5, 7]],
+        ["G5_3", [115, 7]],
+        ["G5_3", [7, 4]],
+        ["G5_4", [60, 3], "blowing up float, wave to passing boat"],
+        ["G5_4", [105, 3], "finish blowing, stand"],
+        ["G5_4", [136, 3], "move the floats"],
+        ["G5_4", [157, 3], "pink battery"],
+        ["G5_4", [160, 3], "blue battery"],
+        ["G5_4", [213, 3], "pull out blue"],
+        ["G5_4", [219, 2], "pull out pink"],
+        ["G5_4", [249, 2], "assemble blue"],
+        ["G5_4", [266, 2], "assemble pink"],
+        ["shoot", [95, 3], "put in blue"],
+        ["shoot", [193, 3], "put in pink"],
+        ["shoot", [212, 3], "connecting rod to pink"],
+        ["shoot", [232, 3], "passing jogger looks back"],
+        ["apexcam", [28, 3], "attach tether"]
+        ["G5_1", [11, 12]]
+    ]
+}
