@@ -4,10 +4,12 @@ import os
 import sys
 
 applyToFn = sys.argv[1]
+outDir = sys.argv[2]
 charsPerSec = 20.0
 textBaseY = 800
 titleSize = 130
-reqTime = 45
+reqTime = 28
+totalRunningTime = 45
 
 def addTextFilterCmdsTo(c, fontSize, y, fontFile):
     c.append("fontcolor=0xffffff")
@@ -42,7 +44,7 @@ def writeScrollText(what, vf, startAt, readingTime, y):
 opening = "Randomatones"
 toScroll = [
     "single-board computer ambient music generators",
-    "recorded in locations with good acoustics",
+    "recorded at outdoor locations with natural reverb",
     "this is episode 19",
 ]
 title = "Regents Canal Park Road"
@@ -67,12 +69,19 @@ writeText(opening, vf, 2, startTime - 2, titleSize, textBaseY)
 coordsDur = writeScrollText("latitude 51.5284447 longitude -0.1669526 03 Mar 2023 6.30pm", vf, startTime + readingTime, reqTime - startTime, textBaseY + titleSize)
 writeText(title, vf, startTime, coordsDur + readingTime, 100, textBaseY)
 
+
+endingTextStart = totalRunningTime - 14
+madeByDur = writeScrollText("made by", vf, endingTextStart, 10, textBaseY)
+nameOffSet = 1
+writeText("Andrew Booker", vf, endingTextStart + nameOffSet, madeByDur - nameOffSet, 80, textBaseY + 50)
+vf.append("fade=type=in:duration=3,fade=type=out:duration=4:start_time=%d" % (totalRunningTime - 4)) 
+
 if len(vf):
     cmd.append("-vf")
     cmd.append("\"%s\"" % ",".join(vf))
 
 cmd.append("-y")
-cmd.append("with_text.mp4")
+cmd.append(os.path.join(outDir, "with_text.mp4"))
 
 fc = " ".join(cmd)
 os.system(fc)
