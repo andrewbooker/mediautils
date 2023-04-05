@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 
 import os
 import sys
@@ -8,7 +7,7 @@ charsPerSec = 20.0
 textBaseY = 800
 titleSize = 130
 reqTime = 28
-totalRunningTime = 45
+
 
 def addTextFilterCmdsTo(c, fontSize, y, fontFile):
     c.append("fontcolor=0xffffff")
@@ -41,7 +40,7 @@ def writeScrollText(what, vf, startAt, readingTime, y):
     return readingTime + (len(what) * 1.0 / charsPerSec)
 
 
-def applyTextTo(vf, number, title, location):
+def applyTextTo(vf, number, title, location, totalRunningTime):
     toScroll = [
         "single-board computer ambient music generators",
         "recorded at outdoor locations with natural reverb",
@@ -66,26 +65,6 @@ def applyTextTo(vf, number, title, location):
     nameOffSet = 1
     writeText("Andrew Booker", vf, endingTextStart + nameOffSet, madeByDur - nameOffSet, 80, textBaseY + 50)
 
-def applyFadeTo(vf):
+def applyFadeTo(vf, totalRunningTime):
     vf.append("fade=type=in:duration=3,fade=type=out:duration=4:start_time=%d" % (totalRunningTime - 4))
 
-
-vf = []
-applyTextTo(vf, 19, "Regents Canal Park Road", "latitude 51.5284447 longitude -0.1669526 03 Mar 2023 6.30pm")
-applyFadeTo(vf)
-
-applyToFn = sys.argv[1]
-outDir = sys.argv[2]
-
-cmd = []
-cmd.append("ffmpeg")
-cmd.append("-i")
-cmd.append(applyToFn)
-if len(vf):
-    cmd.append("-vf")
-    cmd.append("\"%s\"" % ",".join(vf))
-cmd.append("-y")
-cmd.append(os.path.join(outDir, "with_text.mp4"))
-
-fc = " ".join(cmd)
-os.system(fc)

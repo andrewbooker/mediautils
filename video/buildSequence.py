@@ -211,41 +211,12 @@ def rgbToHex(rgb):
 	return "0x%s" % "".join(["%02x" % i for i in rgb])
 
 number = j["number"]
-txtConf = {
-    "nameStart": 4,
-    "nameDur": 10,
-    "titleStart": 15,
-    "titleDur": 10,
-    "madeByStart": -16,
-    "madeByDur": 12
-}
-fonts = {
-	"impact": "/usr/local/share/fonts/impact.ttf",
-	"arial": "/usr/local/share/fonts/arial.ttf"
-}
-nameCol = txtConf["nameCol"] if "nameCol" in txtConf else [255, 255, 255]
-titleCol = txtConf["titleCol"] if "titleCol" in txtConf else [255, 255, 255]
-titleSize = int(txtConf["titleSize"]) if "titleSize" in txtConf else 100
-madeByCol = txtConf["madeByCol"] if "madeByCol" in txtConf else [255, 255, 255]
-madeByAbCol = txtConf["madeByAbCol"] if "madeByAbCol" in txtConf else [255, 255, 255]
-madeByXy = txtConf["madeByXy"] if "madeByXy" in txtConf else [60, 730]
-madeByAbXy = txtConf["madeByXy"] if "madeByXy" in txtConf else [60, 810]
-madeByStart = int(txtConf["madeByStart"]) if "madeByStart" in txtConf else -16
-if madeByStart < 0:
-	madeByStart += int(tt)
-
-instr = [
-	{"text": "Randomatones #%s" % number, "start": int(txtConf["nameStart"]), "dur": int(txtConf["nameDur"]), "rgb": nameCol, "x": 60, "y": 880, "size": 120},
-	{"text": projectName, "start": int(txtConf["titleStart"]), "dur": int(txtConf["titleDur"]), "rgb": titleCol, "x": 60, "y": 880, "size": titleSize},
-	{"text": "made by", "start": madeByStart, "dur": int(txtConf["madeByDur"]), "rgb": madeByCol, "x": madeByXy[0], "y": madeByXy[1], "size": 80, "font": "arial"},
-	{"text": "Andrew Booker", "start": madeByStart, "dur": int(txtConf["madeByDur"]), "rgb": madeByAbCol, "x": madeByAbXy[0], "y": madeByAbXy[1], "size": 100}
-] if not loRes else []
 
 vf = []
-for i in instr:
-	font = i["font"] if "font" in i else "impact"
-	colour = rgbToHex(i["rgb"])
-	vf.append("drawtext=enable=between(t\\,%d\\,%d):text='%s':fontcolor=%s:x=%d:y=%d:fontsize=%d:fontfile=%s" % (i["start"], i["start"] + i["dur"], i["text"], colour, i["x"], i["y"], i["size"], fonts[font]))
+from projects.addText import applyTextTo, applyFadeTo
+applyFadeTo(vf, tt)
+if not loRes:
+    applyTextTo(vf, number, projectName, "latitude 51.5284447 longitude -0.1669526 03 Mar 2023 6.30pm", tt)
 
 baseOutFn = projectName.lower().replace(" ", "_")
 mp4Cmd = ["ffmpeg -i"]
