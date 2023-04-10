@@ -42,49 +42,73 @@
         "dragon": 54.74556
     },
     "sequence": [
-        ["G5_1", [28, 8], "walk down facing camera"],
-        ["G5_2", [5, 6], "walk down away from camera"],
-        ["G5_3", [116, 6], "round bike barriers"],
-        ["G5_3", [7, 4], "towards tunnel"],
+
+        ["shoot", [1395, 15], "drifting in from east - start with this"],
+        ["apeman", [1076, 4]],
+        ["shoot", [1293, 9], "beautiful low shot but tehter caught in blue"],
+        ["apeman", [425, 12]],
+        ["shoot", [1217, 6], "swing to side - move to later?"],
+        ["shoot", [864, 43], "money shot"],
+        ["shoot", [907, 25], { "splitScreenWith": ["apeman", "apexcam", "dragon"] }],
+        ["apexcam", [434, 20], "east to west sweep"],
+        ["shoot", [804, 38], { "splitScreenWith": ["apeman", "apexcam", "dragon"] }],
+        
+        ["apeman", [824, 16], "looking west, runners approaching"],
+        
+        ["G5_1", [34, 2], "walk down facing camera, just want last 2s"],
+        ["apeman", [842, 3], "looking west, runners"],
+        ["G5_2", [6, 3], "walk down away from camera"],
+        ["apeman", [850, 5], "looking west, after runners"],
+        
+        ["G5_3", [119, 2], "round bike barriers"],
+        ["G5_3", [7, 2], "towards tunnel"],
+        ["apeman", [860, 5], "start spinning"],
+
         ["G5_4", [60, 3], "blowing up float, wave to passing boat"],
-        ["G5_4", [136, 3], "move the floats"],
-        ["G5_4", [157, 3], "pink battery"],
-        ["G5_4", [163, 3], "blue battery"],
-        ["G5_4", [213, 3], "pull out blue"],
+        ["G5_4", [136, 2], "move the floats"],
+        ["apeman", [870, 5], "spinning"],
+        
+        ["G5_4", [157, 2], "pink battery"],
+        ["G5_4", [164, 2], "blue battery"],
+        ["apeman", [878, 5], "stop spinning"],
+        
+        ["G5_4", [214, 2], "pull out blue"],
         ["G5_4", [219, 2], "pull out pink"],
+        
+        ["shoot", [1054, 12], "a bit bright, instersperse with intro #1"],
+        
         ["G5_4", [249, 2], "assemble blue"],
         ["G5_4", [266, 2], "assemble pink"],
-        ["shoot", [95, 3], "put in blue"],
-        ["shoot", [196, 3], "put in pink"],
-        ["shoot", [212, 3], "connecting rod to pink"],
+        
+        ["shoot", [1182, 16], "a bit bright, intersperse this with intro #2"],
+        
+        ["shoot", [95, 2], "put in blue"],
+        ["shoot", [198, 2], "put in pink"],
+        ["shoot", [212, 2], "connecting rod to pink"],
         ["apexcam", [28, 2], "attach tether"],
+        ["shoot", [544, 4], "push away"],
+        ["shoot", [564, 4], "lead in"],
+        ["apeman", [314, 4], "swing into tunnel entrance"],
+        ["shoot", [658, 5], "lead further in"],
+        
+        ["apexcam", [278, 5], "people approaching"],
+        ["shoot", [747, 5], "closeup inside looking east - wrong way round"],
         ["apeman", [1220, 12], "spectators"],
-        ["shoot", [1395, 16], "drifting in from east"],
-        ["shoot", [747, 9], "closeup inside looking east"],
-        ["shoot", [756, 14], { "splitScreenWith": ["apeman", "apexcam", "dragon"] }],
-        ["apeman", [439, 7]],
-        ["shoot", [792, 10]],
-        ["shoot", [802, 40], { "splitScreenWith": ["apeman", "apexcam", "dragon"] }],
-        ["apeman", [514, 8]],
-        ["apexcam", [540, 10]],
-        ["shoot", [864, 26]],
-        ["dragon", [613, 8]],
-        ["shoot", [900, 32], { "splitScreenWith": ["apeman", "apexcam", "dragon"] }],
-        
-        ["apexcam", [671, 8]],
-        ["apeman", [666, 3]],
-        ["dragon", [724, 10]],
-        
+        ["shoot", [793, 9], "just moved this to the end"],
+        ["apeman", [666, 3], "people passing"],
+        ["dragon", [724, 5], "people leaving west"],
         ["dragon", [836, 10], "spectator"],
-        ["apeman", [820, 30]],
-        ["shoot", [1182, 16], "might be a bit bright"],
-        ["shoot", [1217, 10], "swing to side"],
-        ["apexcam", [995, 20]],
+        ["dragon", [613, 8], "interested man"],
+        ["shoot", [759, 5], "closeup inside looking east - wrong way round #2"],
+        
+        
+        
+        ["apexcam", [995, 20], "drift to side"],
         ["shoot", [1345, 30], "lead out"],
-        ["dragon", [1152, 20], "lead out facing west"],
+        ["apeman", [1038, 7], "interested people, stopped"],
+        ["dragon", [1157, 10], "lead out facing west"],
         ["shoot", [1615, 5], "towards takeout"],
-        ["G5_3", [28, 2]],
         ["G5_2", [24, 3]],
-        ["G5_1", [12, 6]]
+        ["G5_1", [12, 5]]
     ]
 }
