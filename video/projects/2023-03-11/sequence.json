@@ -45,9 +45,8 @@
 
         ["shoot", [1395, 15], "drifting in from east - start with this"],
         ["apeman", [1076, 4]],
-        ["shoot", [1293, 9], "beautiful low shot but tehter caught in blue"],
+        ["shoot", [1293, 9], "beautiful low shot but tether caught in blue"],
         ["apeman", [425, 12]],
-        ["shoot", [1217, 6], "swing to side - move to later?"],
         ["shoot", [864, 43], "money shot"],
         ["shoot", [907, 25], { "splitScreenWith": ["apeman", "apexcam", "dragon"] }],
         ["apexcam", [434, 20], "east to west sweep"],
@@ -75,7 +74,7 @@
         ["G5_4", [214, 2], "pull out blue"],
         ["G5_4", [219, 2], "pull out pink"],
         
-        ["shoot", [1054, 12], "a bit bright, instersperse with intro #1"],
+        ["shoot", [1054, 12], "a bit bright, intersperse with intro #1"],
         
         ["G5_4", [249, 2], "assemble blue"],
         ["G5_4", [266, 2], "assemble pink"],
