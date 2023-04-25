@@ -216,7 +216,7 @@ vf = []
 from projects.addText import applyTextTo, applyFadeTo
 applyFadeTo(vf, tt)
 if not loRes:
-    applyTextTo(vf, number, projectName, "latitude 51.5284447 longitude -0.1669526 03 Mar 2023 6.30pm", tt)
+    applyTextTo(vf, number, projectName, tt)
 
 baseOutFn = projectName.lower().replace(" ", "_")
 mp4Cmd = ["ffmpeg -i"]
@@ -230,7 +230,8 @@ mp4Cmd.append("-t")
 mp4Cmd.append(str(tt))
 if len(vf):
     mp4Cmd.append("-vf")
-    mp4Cmd.append("\"fade=type=in:duration=6,fade=type=out:duration=4:start_time=%d,%s\"" % (tt - 4, ",".join(vf)))
+    mp4Cmd.append("\"%s\"" % ",".join(vf))
+
 mp4Cmd.append("-y")
 mp4Cmd.append(os.path.join(mergedDir, "%s.mp4" % baseOutFn))
 
