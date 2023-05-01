@@ -44,6 +44,7 @@ for a in j["aliases"]:
 workingExt = "mov" if not loRes else "avi"
 compression = "-c:v qtrle -pix_fmt rgb24" if not loRes else "-b:v 40M -c:v mpeg4 -vtag XVID"
 
+#extract audio from sources
 audioCmds = []
 audioFiles = {}
 for a in aliases:
@@ -57,9 +58,10 @@ if len(audioCmds) > 0:
     with open("./extractAudio.sh", "w") as af:
         for c in audioCmds:
             af.write("%s\n" % c)
+    os.chmod("./extractAudio.sh", 0o777)
 
 seq = j["sequence"]
-sync = j["sync"]
+sync = j["sync"] if "sync" in j else None
 tt = 0
 storyboard = []
 for s in seq:
@@ -94,10 +96,14 @@ for s in seq:
 
 print("total time", tt)
 
+#files.txt
 filesFqFn = os.path.join(toMergeDir, "files.txt")
 with open(filesFqFn, "w") as ff:
     for item in storyboard:
         ff.write("file '%s'\n" % item["clipFn"])
+
+# merge
+
 
 mergedDir = os.path.join(baseOutDir, "merged")
 if not os.path.exists(mergedDir):
@@ -108,7 +114,11 @@ mergeCmd.append(filesFqFn)
 mergeCmd.append("-c copy -y")
 mergedFn = os.path.join(mergedDir, "merged.%s" % workingExt)
 mergeCmd.append(mergedFn)
+with open("./merge.sh", "w") as cf:
+    cf.write("\n%s\n" % " ".join(mergeCmd))
+os.chmod("./merge.sh", 0o777)
 
+#audio cues
 audioCues = []
 for item in storyboard:
     audioCue = {}
@@ -121,6 +131,9 @@ for item in storyboard:
 with open(os.path.join(audioDir, "cues.json"), "w") as ac:
     json.dump(audioCues, ac, indent=4)
 
+#compile
+from projects.addText import writeSmallText
+import math
 
 cmds = []
 for item in storyboard:
@@ -144,6 +157,11 @@ for item in storyboard:
             vf.append("scale=%s" % resolution)
             if "multiplySpeed" in item:
                 vf.append("setpts=%.2f*PTS" % (1.0 / item["multiplySpeed"]))
+
+            if loRes:
+                startMins = item["fileStart"] % 60
+                sceneDesc = "%s (%02d\:%02d) %s %s" % (item["alias"], math.floor(item["fileStart"] / 60), item["fileStart"] % 60, item["fileStart"], item["duration"])
+                writeSmallText(sceneDesc, vf, 20, 20, 20, 0, item["duration"], "green")
 
             if len(vf):
                 cmd.append("-vf")
@@ -202,9 +220,8 @@ for item in storyboard:
 with open("./compile.sh", "w") as cf:
     for c in cmds:
         cf.write("%s\n" % c)
+os.chmod("./compile.sh", 0o777)
 
-with open("./merge.sh", "w") as cf:
-    cf.write("\n%s\n" % " ".join(mergeCmd))
 
 #text
 def rgbToHex(rgb):
@@ -237,11 +254,8 @@ mp4Cmd.append(os.path.join(mergedDir, "%s.mp4" % baseOutFn))
 
 with open("./toMp4.sh", "w") as cf:
     cf.write("\n%s\n" % " ".join(mp4Cmd))
-
-os.chmod("./compile.sh", 0o777)
-os.chmod("./extractAudio.sh", 0o777)
-os.chmod("./merge.sh", 0o777)
 os.chmod("./toMp4.sh", 0o777)
+
 
 import datetime
 with open("./toStoryboard.sh", "w") as cf:

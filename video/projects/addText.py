@@ -11,8 +11,8 @@ scrollTextSize = 50
 reqTime = 28
 
 
-def addTextFilterCmdsTo(c, fontSize, x, y, fontFile):
-    c.append("fontcolor=0xffffff")
+def addTextFilterCmdsTo(c, fontSize, x, y, fontFile, colour):
+    c.append("fontcolor=%s" % colour)
     c.append("x=%s" % x)
     c.append("y=%s" % y)
     c.append("fontsize=%d" % fontSize)
@@ -23,7 +23,15 @@ def writeText(what, vf, startAt, dur, size, x, y):
     txt = []
     txt.append("drawtext=enable=between(t\,%f\,%f)" % (startAt, startAt + dur))
     txt.append("text='%s'" % what)
-    addTextFilterCmdsTo(txt, size, x, y, "/usr/local/share/fonts/impact.ttf")
+    addTextFilterCmdsTo(txt, size, x, y, "/usr/local/share/fonts/impact.ttf", "white")
+
+    vf.append(":".join(txt))
+
+def writeSmallText(what, vf, fontSize, x, y, startAt, dur, colour):
+    txt = []
+    txt.append("drawtext=enable=between(t\,%f\,%f)" % (startAt, startAt + dur))
+    txt.append("text='%s'" % what)
+    addTextFilterCmdsTo(txt, fontSize, x, y, "/usr/share/fonts/X11/Type1/c0419bt_.pfb", colour) #courier regular
 
     vf.append(":".join(txt))
 
@@ -33,12 +41,8 @@ def writeScrollText(what, vf, startAt, readingTime, x, y):
         t = what[:i + 1]
         s = startAt + (i * dt)
         d = dt if (i + 1) < len(what) else readingTime
-        txt = []
-        txt.append("drawtext=enable=between(t\,%f\,%f)" % (s, s + d))
-        txt.append("text='%s'" % t)
-        addTextFilterCmdsTo(txt, scrollTextSize, x, y, "/usr/share/fonts/X11/Type1/c0419bt_.pfb") #courier regular
+        writeSmallText(t, vf, scrollTextSize, x, y, s, d, "white")
 
-        vf.append(":".join(txt))
     return readingTime + (len(what) * 1.0 / charsPerSec)
 
 
