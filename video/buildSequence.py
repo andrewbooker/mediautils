@@ -86,8 +86,13 @@ for s in seq:
     if len(s) > 2 and not type(s[2]) is str:
         if "multiplySpeed" in s[2]:
             item["multiplySpeed"] = float(s[2]["multiplySpeed"])
+        if "reverse" in s[2]:
+            item["reverse"] = True
         if "splitScreenWith" in s[2]:
             item["splitScreenWith"] = s[2]["splitScreenWith"]
+            item["clipFn"] = "split_%s" % fn
+        if "splitVerticalWith" in s[2]:
+            item["splitVerticalWith"] = s[2]["splitVerticalWith"]
             item["clipFn"] = "split_%s" % fn
 
     item["clipFqFn"] = os.path.join(toMergeDir, item["clipFn"])
@@ -161,14 +166,21 @@ for item in storyboard:
             if loRes:
                 startMins = item["fileStart"] % 60
                 sceneDesc = "%s (%02d\:%02d) %s %s" % (item["alias"], math.floor(item["fileStart"] / 60), item["fileStart"] % 60, item["fileStart"], item["duration"])
-                writeSmallText(sceneDesc, vf, 20, 20, 20, 0, item["duration"], "green")
+                writeSmallText(sceneDesc, vf, 20, 20, 20, 0, item["duration"], "0x90EE90")
 
             if len(vf):
                 cmd.append("-vf")
                 cmd.append("\"%s\"" % ",".join(vf))
-            cmd.append(item["clipFqFn"])
 
-            cmds.append(" ".join(cmd))
+            if "reverse" in item:
+                revFqFn = os.path.join(toMergeDir, "rev_%s" % item["clipFn"])
+                cmd.append(revFqFn)
+                cmds.append(" ".join(cmd))
+                cmds.append("ffmpeg -i %s %s -vf \"reverse\" -y %s" % (revFqFn, compression, item["clipFqFn"]))
+                cmds.append("rm %s" % revFqFn)
+            else:
+                cmd.append(item["clipFqFn"])
+                cmds.append(" ".join(cmd))
 
         if "splitScreenWith" in item:
             srcs = [item["file"]]
@@ -214,7 +226,6 @@ for item in storyboard:
 
             for s in splitSrcs:
                 cmds.append("rm %s" % s)
-
 
 
 with open("./compile.sh", "w") as cf:
