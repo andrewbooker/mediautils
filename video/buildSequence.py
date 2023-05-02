@@ -143,7 +143,7 @@ import math
 cmds = []
 for item in storyboard:
     if not os.path.exists(item["clipFqFn"]):
-        if "splitScreenWith" not in item:
+        if "splitScreenWith" not in item and "splitVerticalWith" not in item:
             cmd = ["ffmpeg"]
             if item["fileStart"]:
                 cmd.append("-ss")
@@ -182,11 +182,12 @@ for item in storyboard:
                 cmd.append(item["clipFqFn"])
                 cmds.append(" ".join(cmd))
 
-        if "splitScreenWith" in item:
+        else:
             srcs = [item["file"]]
             primarySync = sync[item["alias"]]
             ss = [item["fileStart"]]
-            for s in item["splitScreenWith"]:
+            splits = item["splitScreenWith"] if "splitScreenWith" in item else item["splitVerticalWith"]
+            for s in splits:
                 syncKey = s.split("_")[0]
                 ss.append(item["fileStart"] + sync[syncKey] - primarySync)
                 srcs.append(aliases[s])
@@ -194,12 +195,18 @@ for item in storyboard:
             splitSrcs = []
             for i in range(len(srcs)):
                 s = srcs[i]
+
                 sCmd = ["ffmpeg"]
                 sCmd.append("-ss %d" % ss[i])
                 sCmd.append("-i")
                 sCmd.append("\"%s\"" % os.path.join(rawDir, s))
                 sCmd.append("-t %d" % item["duration"])
-                sCmd.append("-vf \"scale=%dx%d\"" % (horiz / 2, vert / 2))
+
+                if "splitVerticalWith" in item and i == 0:
+                    sCmd.append("-vf \"scale=%s,crop=%d:%d:0:0\"" % (resolution, horiz / 2, vert))
+                else:
+                    sCmd.append("-vf \"scale=%dx%d\"" % (horiz / 2, vert / 2))
+
                 sCmd.append("-an -r 30 -y")
                 sCmd.append(compression)
                 sfqfn = os.path.join(toMergeDir, "split_%d.%s" % (i, workingExt))
@@ -213,9 +220,13 @@ for item in storyboard:
                 mCmd.append("-i")
                 mCmd.append(os.path.join(toMergeDir, "split_%d.%s" % (i, workingExt)))
             fc = []
-            fc.append("[0][1]hstack[top]")
-            fc.append("[2][3]hstack[bottom]")
-            fc.append("[top][bottom]vstack[out]")
+            if "splitVerticalWith" in item:
+                fc.append("[1][2]vstack[right]")
+                fc.append("[0][right]hstack[out]")
+            else:
+                fc.append("[0][1]hstack[top]")
+                fc.append("[2][3]hstack[bottom]")
+                fc.append("[top][bottom]vstack[out]")
 
             mCmd.append("-filter_complex \"%s\"" % ";".join(fc))
             mCmd.append("-map \"[out]\" -y")
