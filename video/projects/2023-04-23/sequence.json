@@ -56,24 +56,24 @@
         ["G5_4", [210, 2], "pink in"],
         ["G5_4", [222, 3], "attach rod to pink"],
         ["G5_4", [507, 7], "powering in (use a lot more of this for the making-of"],
-        ["apeman", [23, 6]],
         ["G5_4", [1860, 17], "looking downstream, steering upstream"],
-        ["G5_4", [1041, 20], "upstream, random motion"],
-        ["dragon", [329, 6]],
-        ["G5_4", [1497, 18], { "reverse": true }, "looking upstream, wash-out light from downstream, rotation, camera stays put for a while"],
-        ["G5_4", [1070, 11], "upstream, random motion"],
+        ["G5_4", [1041, 40], "upstream, random motion"],
         ["G5_4", [1175, 95], "further in, coming into view from right, then drifting out of shot again, lose it at 21:13 - good empty footage beforehand"],
         ["G5_4", [1298, 20], "21:38, similar to 777 (12:57), perhaps a bit further in, could use at end"],
-
+        ["G5_4", [1427, 16], "chaotic close-up"],
+        ["dragon", [708, 4]],
         ["G5_4", [1360, 32], "close-up, rare move off the left of shot"],
-        ["G5_4", [1535, 58], "driving upstream no spinning, then pause, then spin"],
-
-        ["G5_4", [1623, 25], "propelling upstream, hand appears after 35, drifting downsteam"],
-        ["G5_4", [1648, 36], { "splitScreenWith": ["dragon", "apexcam", "apeman"] }],
-        ["dragon", [946, 12]],
+        ["apeman", [790, 23], "driving into tunnel lead by blue"],
+        ["dragon", [823, 9]],
+        ["G5_4", [1562, 32], "drift downstream and spin"],
+        ["dragon", [860, 11]],
+        ["apeman", [874, 13]],
+        ["G5_4", [1632, 16], "propelling upstream, hand appears after 35, drifting downsteam"],
+        ["G5_4", [1648, 28], { "splitScreenWith": ["dragon", "apexcam", "apeman"] }],
+        ["dragon", [938, 19]],
         ["G5_4", [1705, 20], "same camera pos as 1623, propelling upstream, drift downstream, beginning of end, (10s then empty footage afterwards)"],
-        ["apeman", [989, 10]],
-        ["apexcam", [1323, 30], { "splitVerticalWith": ["apeman", "dragon"]}],
+        ["apeman", [986, 16]],
+        ["apexcam", [1326, 26], { "splitVerticalWith": ["apeman", "dragon"]}],
         ["G5_4", [1775, 41], "drifting and looking downstream, near end, could shorten"],
         ["G5_4", [1825, 30], "drifting and looking directly downstream, near end, movement afterwards could go at the beginning"],
         ["G5_4", [1957, 3], "pulling to side"],
@@ -82,6 +82,7 @@
         ["G5_3", [13, 10], "walk away"]
     ],
     "spares": [
+        ["apeman", [23, 6]],
         ["G5_4", [249, 4], "ready to go"],
         ["G5_4", [793, 10], "looking downstream, pushing in"],
         ["G5_4", [633, 16], "up to 48 (can use more in making-of)"],
@@ -95,6 +96,7 @@
         ["G5_4", [1060, 13], "upstream, random motion, bounces against towpath, cut from orig edit"],
         ["G5_4", [1344, 12], "pushing in, could use near the beginning"],
         ["G5_4", [1407, 9], "very close-up, drift downstream"],
-        ["G5_4", [1427, 20], "chaotic close-up"]
+        ["G5_4", [1427, 20], "chaotic close-up"],
+        ["G5_4", [1535, 27], "propel upstream, stop"]
     ]
 }
