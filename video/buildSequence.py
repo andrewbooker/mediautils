@@ -140,6 +140,9 @@ with open(os.path.join(audioDir, "cues.json"), "w") as ac:
 from projects.addText import writeSmallText
 import math
 
+def asTime(t):
+    return "%02d\:%02d" % (math.floor(t / 60), t % 60)
+
 cmds = []
 for item in storyboard:
     if not os.path.exists(item["clipFqFn"]):
@@ -165,7 +168,7 @@ for item in storyboard:
 
             if loRes:
                 startMins = item["fileStart"] % 60
-                sceneDesc = "%s (%02d\:%02d) %s %s" % (item["alias"], math.floor(item["fileStart"] / 60), item["fileStart"] % 60, item["fileStart"], item["duration"])
+                sceneDesc = "%s %s (%s) %s %s" % (asTime(item["seqStart"]), item["alias"], asTime(item["fileStart"]), item["fileStart"], item["duration"])
                 writeSmallText(sceneDesc, vf, 20, 20, 20, 0, item["duration"], "0x90EE90")
 
             if len(vf):
