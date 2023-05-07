@@ -33,14 +33,18 @@ projectName = j["projectName"]
 aliases = {}
 lengths = {}
 toRotate = []
+longest = (0, "")
 for a in j["aliases"]:
     n = j["aliases"][a] if "name" not in j["aliases"][a] else j["aliases"][a]["name"]
     if "length" in j["aliases"][a]:
         lengths[n] = j["aliases"][a]["length"]
+        if lengths[n] > longest[0]:
+            longest = (lengths[n], j["aliases"][a]["name"])
     aliases[n] = a
     if "rotate180" in j["aliases"][a] and j["aliases"][a]["rotate180"]:
         toRotate.append(n)
 
+print(longest)
 workingExt = "mov" if not loRes else "avi"
 compression = "-c:v qtrle -pix_fmt rgb24" if not loRes else "-b:v 40M -c:v mpeg4 -vtag XVID"
 
@@ -108,8 +112,6 @@ with open(filesFqFn, "w") as ff:
         ff.write("file '%s'\n" % item["clipFn"])
 
 # merge
-
-
 mergedDir = os.path.join(baseOutDir, "merged")
 if not os.path.exists(mergedDir):
     os.makedirs(mergedDir)
@@ -135,6 +137,26 @@ for item in storyboard:
 
 with open(os.path.join(audioDir, "cues.json"), "w") as ac:
     json.dump(audioCues, ac, indent=4)
+
+#direct mix audio cues synced with longest item
+directMix = []
+lastEntryTime = 0
+directMixStoryboard = [item for item in filter(lambda i: i["alias"] == longest[1], storyboard)]
+for i in range(len(directMixStoryboard)):
+    item = directMixStoryboard[i]
+    audioCue = {}
+    audioCue["file"] = "direct_mix.wav"
+    audioCue["mixStart"] = item["seqStart"]
+    audioCue["fileStart"] = item["fileStart"]
+    if (i + 1) < len(directMixStoryboard):
+        audioCue["duration"] = directMixStoryboard[i + 1]["seqStart"] - item["seqStart"]
+    else:
+        audioCue["duration"] = item["duration"]
+    directMix.append(audioCue)
+
+with open(os.path.join(audioDir, "direct_mix.json"), "w") as ac:
+    json.dump(directMix, ac, indent=4)
+
 
 #compile
 from projects.addText import writeSmallText
