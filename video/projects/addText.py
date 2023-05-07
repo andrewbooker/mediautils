@@ -5,7 +5,6 @@ import sys
 
 charsPerSec = 20.0
 textBaseX = 60
-textBaseY = 800
 titleSize = 130
 scrollTextSize = 50
 reqTime = 28
@@ -46,14 +45,17 @@ def writeScrollText(what, vf, startAt, readingTime, x, y):
     return readingTime + (len(what) * 1.0 / charsPerSec)
 
 
-
-def applyTextTo(vf, number, title, totalRunningTime):
-    readingTime = 4
-    startTime = 3
+def applyTextTo(vf, spec):
+    number = spec["number"]
+    title = spec["title"]
+    totalRunningTime = spec["tt"]
+    readingTime = 2.5
+    startTime = spec["heading"]["start"] + 1
     toScroll = [
         "floating ambient music generators",
         "recorded at locations with natural reverb"
     ]
+    textBaseY = 800
     for i in range(len(toScroll)):
         s = toScroll[i]
         print(len(s), "chars", len(s) * 1.0 / charsPerSec, startTime)
@@ -61,11 +63,16 @@ def applyTextTo(vf, number, title, totalRunningTime):
     if len(toScroll) == 0:
         startTime += 10
 
-    writeText("Randomatones", vf, 2, startTime - 2, titleSize, textBaseX, textBaseY)
-    startTime = 26
-    ed = writeScrollText("episode %d" % number, vf, startTime, readingTime + 3, textBaseX, textBaseY + 50)
+    writeText("Randomatones", vf, spec["heading"]["start"], spec["heading"]["dur"], titleSize, textBaseX, textBaseY)
+
+    startTime = spec["episode"]["start"]
+    dur = spec["episode"]["dur"] if "dur" in spec["episode"] else 10
+    if "yPos" in spec["episode"]:
+        textBaseY = spec["episode"]["yPos"]
+    ed = writeScrollText("episode %d" % number, vf, startTime, dur, textBaseX, textBaseY + 50)
     writeText(title, vf, startTime + 3, ed - 3, 100, textBaseX, textBaseY + scrollTextSize + 50)
 
+    textBaseY = 60
     endingTextStart = totalRunningTime - 13
     madeByDur = writeScrollText("made by", vf, endingTextStart, 10, textBaseX, textBaseY)
     nameOffSet = 1

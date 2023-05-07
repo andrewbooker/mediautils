@@ -45,6 +45,10 @@
         "apeman": 0,
         "dragon": 8
     },
+    "text": {
+        "heading": { "start": 1, "dur": 10 },
+        "episode": { "start": 21, "dur": 14, "yPos": 60 }
+    },
     "sequence": [
         ["G5_2", [7, 11], "to tunnel away from camera"],
         ["G5_3", [100, 6], "into tunnel put down bag"],

@@ -279,8 +279,12 @@ number = j["number"]
 vf = []
 from projects.addText import applyTextTo, applyFadeTo
 applyFadeTo(vf, tt)
-if not loRes:
-    applyTextTo(vf, number, projectName, tt)
+if not loRes and "text" in j:
+    spec = j["text"]
+    spec["title"] = projectName
+    spec["tt"] = tt
+    spec["number"] = number
+    applyTextTo(vf, spec)
 
 baseOutFn = projectName.lower().replace(" ", "_")
 mp4Cmd = ["ffmpeg -i"]
