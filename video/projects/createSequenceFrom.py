@@ -48,6 +48,8 @@ for f in files:
                 toJoin[p[1]].append({ "file": f, "length": length })
             else:
                 out["aliases"][f] = { "name": "%s_%d" % (p[1], aliasCount[p[1]]), "length": length }
+        else:
+            out["aliases"][f] = { "name": ".".join(f.split(".")[:-1]), "length": length }
 
 for (a, fs) in toJoin.items():
     cf = os.path.join(inDir, "%s.txt" % a)
