@@ -1,0 +1,66 @@
+{
+    "projectName": "talk",
+    "number": 99,
+    "aliases": {
+        "newbold_tunnel.mp4": {
+            "name": "newbold",
+            "length": 577.0
+        },
+        "randomatones_on_the_stairs_shorter.mp4": {
+            "name": "stairs",
+            "length": 40.0
+        },
+        "ww_subway_good.mp4": {
+            "name": "ww_subway",
+            "length": 305.0
+        },
+        "timer10_2020-02-26_155005.mp4": {
+            "name": "timer10",
+            "length": 607.0
+        },
+        "limehouse.mp4": {
+            "name": "limehouse",
+            "length": 240.0
+        },
+        "57_merged_loud.wmv": {
+            "name": "57",
+            "length": 175.64213333333333
+        },
+        "free_as_in_fall_shorter.wmv": {
+            "name": "free_as_in_fall",
+            "length": 301.8333333333333
+        },
+        "music_to_accompany_lift_alarms.mp4": {
+            "name": "woolwich",
+            "length": 328.0
+        },
+        "20230521_125850.mp4": {
+            "name": "G5",
+            "length": 1242.5231222222221
+        }
+    },
+    "sequence": [
+        ["G5", ["00:17", 35]],
+        ["57", ["00:20", 147]],
+        ["G5", ["03:19", 18]],
+        ["free_as_in_fall", ["1:20", 149]],
+        ["G5", ["06:06", 4], "insert lounging solo here"],
+        ["timer10", ["2:20", 40]],
+        ["G5", ["06:50", 54]],
+        ["timer10", ["3:55", 28]],
+        ["G5", ["08:12", 46]],
+        ["timer10", ["5:10", 15]],
+        ["G5", ["09:13", 11]],
+        ["stairs", [0, 35]],
+        ["stairs", [1, 34]],
+        ["G5", ["11:32", 18]],
+        ["ww_subway", [0, 152]],
+        ["G5", ["14:22", 20]],
+        ["limehouse", [20, 54]],
+        ["G5", ["15:36", 19]],
+        ["limehouse", [94, 25]],
+        ["G5", ["16:20", 8]],
+        ["newbold", ["1:50", 92]],
+        ["G5", ["18:00", 162]]
+    ]
+}
