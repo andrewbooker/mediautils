@@ -67,18 +67,25 @@ if len(audioCmds) > 0:
 seq = j["sequence"]
 sync = j["sync"] if "sync" in j else None
 tt = 0
+
+def startFrom(s):
+    if type(s) != str:
+        return s
+    spl = s.split(":")
+    return (int(spl[0]) * 60) + int(spl[1])
+
+
 storyboard = []
 for s in seq:
     start = 0
     dur = 0
     if len(s[1]) > 1:
-        start = s[1][0]
+        start = startFrom(s[1][0])
         dur = s[1][1]
     else:
         dur = s[1][0]
 
-    startDur = "_".join([str(i) for i in s[1]])
-    fn = "%s_%s.%s" % (s[0], startDur, workingExt)
+    fn = "%s_%s.%s" % (s[0], "_".join([str(n) for n in [start, dur]]), workingExt)
     item = {
         "alias": s[0],
         "file": aliases[s[0]],
