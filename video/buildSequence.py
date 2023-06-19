@@ -45,8 +45,8 @@ for a in j["aliases"]:
         toRotate.append(n)
 
 print(longest)
-workingExt = "mov" if not loRes else "avi"
-compression = "-c:v qtrle -pix_fmt rgb24" if not loRes else "-b:v 40M -c:v mpeg4 -vtag XVID"
+workingExt = "avi"
+compression = "-c:v utvideo -pix_fmt yuv422p" if not loRes else "-b:v 40M -c:v mpeg4 -vtag XVID"
 
 #extract audio from sources
 audioCmds = []
