@@ -12,12 +12,12 @@ title = sys.argv[2]
 number = int(sys.argv[3])
 
 
-d = re.search(r"202[3-9]-[0-1][0-9]-[0-3][0-9]", sys.argv[1]).group()
+d = re.search(r"202[0-9]-[0-1][0-9]-[0-3][0-9]", sys.argv[1]).group()
 if not os.path.exists(d):
     os.makedirs(d)
 
 patterns = [
-    (r"202[3-9]_[0-9]{4}_.*\.MOV", "apeman"),
+    (r"202[0-9]_[0-9]{4}_.*\.MOV", "apeman"),
     (r"FILE.*\.MOV", "apexcam"),
     (r"NORM.*\.MP4", "dragon"),
     (r"[0-9]{8}_[0-9]{6}\.mp4", "G5")
