@@ -1,0 +1,52 @@
+{
+    "projectName": "Sapperton",
+    "number": 22,
+    "aliases": {
+        "VID_20231127_124233499.mp4": {
+            "name": "NP2_1",
+            "length": 1500.1283666666668
+        },
+        "20231127_125959.mp4": {
+            "name": "G5_1",
+            "length": 1202.4598333333333
+        },
+        "VID_20231127_120539562.mp4": {
+            "name": "NP2_2",
+            "length": 141.94346666666667
+        },
+        "20231127_132153.mp4": {
+            "name": "G5_2",
+            "length": 105.49746666666667
+        },
+        "VID_20231127_120017480.mp4": {
+            "name": "NP2_3",
+            "length": 14.484111111111112
+        }
+    },
+    "sequence": [
+        ["G5_2", ["1:29", 3], "opening turrets"],
+        ["NP2_3", [4, 8], "pan over turrets"],
+        ["NP2_2", [32, 4], "walk towards"],
+        ["NP2_2", ["1:31", 9], "jump down"],
+        ["NP2_1", ["1:56", 3], "assemble pink"],
+        ["NP2_1", ["3:18", 3], "assemble blue"],
+        ["NP2_1", ["3:38", 5], "looking out, walk in with blue"],
+        ["NP2_1", ["6:17", 5], "walk in with blue and float"],
+        ["NP2_1", ["8:16", 3], "lights flicker on"],
+        ["NP2_1", ["9:43", 10], "switch on and walk away"],
+        ["NP2_1", ["14:08", 9], "me fiddling against south wall (switch on?)"],
+        ["NP2_1", ["14:59", 14], "actual switch-on, only time pink turns, followed by blue"],
+        ["NP2_1", ["16:04", 39], "ripples and movement towards north wall"],
+        ["G5_2", [14, 40], "against north wall"],
+        ["NP2_1", ["10:22", 5], "still against south wall"],
+        ["G5_2", ["3:49", 15], "against south wall, me videoing in shadow"],
+        ["G5_2", ["13:02", 5], "walk up to switch off"],
+        ["G5_2", ["12:24", 2], "switch off pink"],
+        ["G5_2", ["12:30", 2], "switch off blue"],
+        ["G5_2", ["17:43", 3], "zip up bag"],
+        ["G5_2", ["18:49", 6], "climb out"],
+        ["G5_2", ["19:20", 2], "walkaway1"],
+        ["G5_2", ["1:23", 4], "final walk up to turrets"],
+        ["G5_2", [12, 10], "final walkaway"],
+    ]
+}

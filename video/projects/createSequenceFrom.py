@@ -20,7 +20,8 @@ patterns = [
     (r"202[0-9]_[0-9]{4}_.*\.MOV", "apeman"),
     (r"FILE.*\.MOV", "apexcam"),
     (r"NORM.*\.MP4", "dragon"),
-    (r"[0-9]{8}_[0-9]{6}\.mp4", "G5")
+    (r"[0-9]{8}_[0-9]{6}\.mp4", "G5"),
+    (r"VID_[0-9]{8}_[0-9]{9}\.mp4", "NP2")
 ]
 
 out = {
@@ -32,6 +33,7 @@ out = {
 
 aliasCount = {}
 toJoin = {}
+edits = {}
 
 for f in files:
     print("reading length of", f)
@@ -50,6 +52,7 @@ for f in files:
                 out["aliases"][f] = { "name": "%s_%d" % (p[1], aliasCount[p[1]]), "length": length }
         else:
             out["aliases"][f] = { "name": ".".join(f.split(".")[:-1]), "length": length }
+        edits[f] = {"sync": 0, "edits": []}
 
 for (a, fs) in toJoin.items():
     cf = os.path.join(inDir, "%s.txt" % a)
@@ -63,6 +66,9 @@ for (a, fs) in toJoin.items():
     out["aliases"][outfile] = { "name": a, "length": tl }
 
 
-with open(os.path.join(d, "sequence.json"), "w") as js:
-    json.dump(out, js, indent=4)
+#with open(os.path.join(d, "sequence.json"), "w") as js:
+#    json.dump(out, js, indent=4)
+
+#with open(os.path.join(d, "edits.json"), "w") as ejs:
+#    json.dump(edits, ejs, indent=4)
 
