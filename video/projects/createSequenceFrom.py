@@ -7,7 +7,8 @@ import json
 import cv2
 
 inDir = sys.argv[1]
-files = filter(lambda f: not os.path.isdir(os.path.join(inDir, f)) and ".txt" not in f, os.listdir(inDir))
+#files = filter(lambda f: not os.path.isdir(os.path.join(inDir, f)) and ".txt" not in f, os.listdir(inDir))
+files = []
 title = sys.argv[2]
 number = int(sys.argv[3])
 
@@ -66,9 +67,22 @@ for (a, fs) in toJoin.items():
     out["aliases"][outfile] = { "name": a, "length": tl }
 
 
-#with open(os.path.join(d, "sequence.json"), "w") as js:
-#    json.dump(out, js, indent=4)
+with open(os.path.join(d, "sequence.json"), "w") as js:
+    json.dump(out, js, indent=4)
 
-#with open(os.path.join(d, "edits.json"), "w") as ejs:
-#    json.dump(edits, ejs, indent=4)
+with open(os.path.join(d, "edits.json"), "w") as ejs:
+    json.dump(edits, ejs, indent=4)
 
+buildDir = os.path.dirname(inDir)
+buildFn = os.path.join(buildDir, "build.py")
+resDir = os.path.dirname(os.getcwd())
+buildSeqFn = os.path.join(resDir, "buildSequence.py")
+seqFn = os.path.join(os.getcwd(), d, "sequence.json")
+
+with open(buildFn, "w") as build:
+    build.write("#!/bin/bash\n")
+    build.write(f"{buildSeqFn} {inDir} {seqFn} . 1\n")
+    build.write("./compile.sh")
+    build.write("./merge.sh")
+
+os.system(f"chmod +x {buildFn}")
