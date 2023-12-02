@@ -97,6 +97,8 @@ for s in seq:
     if len(s) > 2 and not type(s[2]) is str:
         if "multiplySpeed" in s[2]:
             item["multiplySpeed"] = float(s[2]["multiplySpeed"])
+        if "zoompan" in s[2]:
+            item["zoompan"] = s[2]["zoompan"]
         if "reverse" in s[2]:
             item["reverse"] = True
         if "splitScreenWith" in s[2]:
@@ -191,9 +193,23 @@ for item in storyboard:
             if item["alias"] in toRotate:
                 vf.append("vflip")
                 vf.append("hflip")
-            vf.append("scale=%s" % resolution)
+
+            frame_scale = 1.0
             if "multiplySpeed" in item:
                 vf.append("setpts=%.2f*PTS" % (1.0 / item["multiplySpeed"]))
+                frame_scale = item["multiplySpeed"]
+
+            if "zoompan" in item:
+                fps = 30
+                dur = float(item["duration"])
+                z = float(item["zoompan"]["coeff"])
+                x = "0"
+                if "endXOffset" in item["zoompan"]:
+                    x_offset = float(item["zoompan"]["endXOffset"])
+                    x = f"'iw/2+(iw/(2*{x_offset}*zoom))'"
+                vf.append(f"zoompan=z='min(max(zoom,pzoom)+(1.0/({frame_scale}*{z}*{fps}*{dur})),{z})':d=1:x={x}:y='ih/2-(ih/zoom/2)'")
+
+            vf.append("scale=%s" % resolution)
 
             if loRes:
                 startMins = item["fileStart"] % 60
