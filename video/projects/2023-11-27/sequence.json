@@ -36,13 +36,13 @@
         ["NP2_1", ["14:08", 9], "me fiddling against south wall (switch on?)"],
         ["NP2_1", ["14:59", 14], "actual switch-on, only time pink turns, followed by blue"],
         ["NP2_1", ["9:44", 8], "switch on and walk away"],
-        ["NP2_1", ["16:19", 24], { "zoompan": { "coeff": 1.5 } }, "ripples and movement towards north wall"],
+        ["NP2_1", ["16:19", 24], "ripples and movement towards north wall"],
         ["G5_1", [13, 31], "against north wall"],
         ["NP2_1", ["22:04", 10], "handheld drifting out west"],
         ["NP2_1", ["23:12", 40], "handheld looking to south wall"],
         ["NP2_1", ["22:22", 25], "handheld low shot looking west, money shot"],
         ["NP2_1", ["24:16", 20], "handheld looking to south wall"],
-        ["NP2_1", ["10:41", 60], { "multiplySpeed": 1.8, "zoompan": { "coeff": 1.8, "endXOffset": -1.25 } }, "still against south wall close-up break into pieces as there is very slow movement"],
+        ["NP2_1", ["10:41", 60], "still against south wall close-up break into pieces as there is very slow movement"],
         ["G5_1", ["10:36", 20], { "multiplySpeed": 1.5 }, "marooned against north wall, intersperse with NP2_1 10:41"],
         ["G5_1", ["13:00", 7], "walk up to switch off"],
         ["G5_1", ["13:24", 2], "switch off pink"],
@@ -53,6 +53,12 @@
         ["G5_2", ["1:23", 3], "final walk up to turrets"],
         ["G5_2", [13, 9], "final walkaway"]
     ],
+    "text": {
+        "yPos": 800,
+        "colour": "#FF143C",
+        "heading": { "start": 8, "dur": 10 },
+        "episode": { "start": 20, "dur": 15 }
+    },
     "spare": [
         ["NP2_1", ["10:41", 180], "still against south wall close-up break into pieces as there is very slow movement"],
         ["G5_1", ["10:36", 120], "marooned against north wall, intersperse with NP2_1 10:41"],
