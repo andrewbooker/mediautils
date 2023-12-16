@@ -84,5 +84,8 @@ with open(buildFn, "w") as build:
     build.write(f"{buildSeqFn} {inDir} {seqFn} . 1\n")
     build.write("./compile.sh")
     build.write("./merge.sh")
+    build.write("#./extractAudio.sh")
+    build.write("#~/Documents/wavmixer/mix.py ./Audio/ Audio/cues.json")
+    build.write("#ffmpeg -i merged/merged.avi -i Audio/cues_L.wav -i Audio/cues_R.wav -filter_complex \"[1:a]amerge=inputs=2[a]\" -ac 2 -map 0:v -map \"[a]\" -y merged/test.mp4")
 
 os.system(f"chmod +x {buildFn}")
