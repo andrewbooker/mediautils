@@ -10,6 +10,10 @@ scrollTextSize = 50
 reqTime = 28
 
 
+FONT_IMPACT = "/usr/local/share/fonts/impact.ttf"
+FONT_COURIER = "/usr/share/fonts/X11/Type1/c0419bt_.pfb"
+
+
 def addTextFilterCmdsTo(c, fontSize, x, y, fontFile, colour):
     c.append("fontcolor=%s" % colour)
     c.append("x=%s" % x)
@@ -22,7 +26,7 @@ def writeText(what, vf, startAt, dur, size, x, y, colour):
     txt = []
     txt.append("drawtext=enable=between(t\,%f\,%f)" % (startAt, startAt + dur))
     txt.append("text='%s'" % what)
-    addTextFilterCmdsTo(txt, size, x, y, "/usr/local/share/fonts/impact.ttf", colour)
+    addTextFilterCmdsTo(txt, size, x, y, FONT_IMPACT, colour)
 
     vf.append(":".join(txt))
 
@@ -30,7 +34,7 @@ def writeSmallText(what, vf, fontSize, x, y, startAt, dur, colour):
     txt = []
     txt.append("drawtext=enable=between(t\,%f\,%f)" % (startAt, startAt + dur))
     txt.append("text='%s'" % what)
-    addTextFilterCmdsTo(txt, fontSize, x, y, "/usr/share/fonts/X11/Type1/c0419bt_.pfb", colour) #courier regular
+    addTextFilterCmdsTo(txt, fontSize, x, y, FONT_IMPACT, colour)
 
     vf.append(":".join(txt))
 

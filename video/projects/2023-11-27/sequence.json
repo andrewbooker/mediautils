@@ -56,8 +56,8 @@
     "text": {
         "yPos": 800,
         "colour": "#FF143C",
-        "heading": { "start": 8, "dur": 10 },
-        "episode": { "start": 20, "dur": 15 }
+        "heading": { "start": 8, "dur": 12 },
+        "episode": { "start": 22, "dur": 15 }
     },
     "spare": [
         ["NP2_1", ["10:41", 180], "still against south wall close-up break into pieces as there is very slow movement"],
