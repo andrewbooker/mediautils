@@ -7,8 +7,7 @@ import json
 import cv2
 
 inDir = sys.argv[1]
-#files = filter(lambda f: not os.path.isdir(os.path.join(inDir, f)) and ".txt" not in f, os.listdir(inDir))
-files = []
+files = filter(lambda f: not os.path.isdir(os.path.join(inDir, f)) and ".txt" not in f, os.listdir(inDir))
 title = sys.argv[2]
 number = int(sys.argv[3])
 
@@ -29,7 +28,13 @@ out = {
     "projectName": title,
     "number": number,
     "aliases": {},
-    "sequence": []
+    "sequence": [],
+    "text": {
+        "yPos": 800,
+        "colour": "#FF143C",
+        "heading": { "start": 8, "dur": 12 },
+        "episode": { "start": 22, "dur": 15 }
+    }
 }
 
 aliasCount = {}
