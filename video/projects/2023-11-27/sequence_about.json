@@ -21,7 +21,21 @@
         "VID_20231127_120017480.mp4": {
             "name": "NP2_3",
             "length": 14.484111111111112
+        },
+        "apexcam.MOV": {
+            "name": "apexcam",
+            "length": 1285.0170666666668
+        },
+        "dragon.MP4": {
+            "name": "dragon",
+            "length": 1278.7666666666667
         }
+    },
+    "sync": {
+        "G5_1": 0,
+        "apexcam": 472,
+        "NP2_1": 1048,
+        "dragon": 37.4
     },
     "sequence": [
         ["NP2_2", ["1:18", 8], "tunnel portal"],
@@ -33,14 +47,9 @@
         ["NP2_1", ["6:52", 17], { "multiplySpeed": 10 }, "setting up "],
         ["NP2_1", ["9:42", 40], "back to camera, pick it up and reposition"],
         ["NP2_1", ["13:40", 140], "wading towards on south wall, startup - break this up with interleaves from G5_1"],
-        ["NP2_1", [1080, 30], "15s of stillness, then pick up camera, handheld along north wall"],
-        ["G5_1", [62, 12], "same view from south wall"],
-        ["NP2_1", [1122, 70], "handheld along north wall, clear water then silt"],
-        ["G5_1", [144, 30], "looking at handheld, from fixed south wall"],
-        ["NP2_1", [1222, 60], "zoom out and push"],
-        ["G5_1", [235, 20], "with tripod against north wall"],
-        ["NP2_1", [1310, 20], "pushing"],
-        ["G5_1", [283, 97], "with tripod against north wall"],
+        ["NP2_1", [1048, 100], { "splitScreenWith": ["G5_1", "apexcam", "dragon"] }, "stillness, then pick up camera, handheld along north wall"],
+        ["NP2_1", [1148, 34], "silt"],
+        ["NP2_1", [1182, 350], { "splitScreenWith": ["G5_1", "apexcam", "dragon"] }, "4-camera view of handheld section"],
         ["NP2_1", [1428, 4], "filler while skipping G5 view"],
         ["G5_1", [403, 27], "with tripod against north wall"],
         ["NP2_1", [1478, 22], "to end"],
@@ -51,5 +60,13 @@
         ["G5_1", ["18:40", 18], "climbing out"],
         ["G5_1", ["19:04", 29], "picking up bags and walking off"],
         ["G5_1", ["19:52", 5], "come back for the camera"]
+    ],
+    "spare": [
+        ["NP2_1", [1122, 70], "handheld along north wall, clear water then silt"],
+        ["G5_1", [144, 30], "looking at handheld, from fixed south wall"],
+        ["NP2_1", [1222, 60], "zoom out and push"],
+        ["G5_1", [235, 20], "with tripod against north wall"],
+        ["NP2_1", [1310, 20], "pushing"],
+        ["G5_1", [283, 97], "with tripod against north wall"]
     ]
 }
