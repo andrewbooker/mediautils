@@ -67,7 +67,7 @@ const loadOne = (f, i) => {
     v.setAttribute("id", id);
     v.load();
     if (model[f].sync) {
-        v.currentTime = new Number(modvideoCtlsel[f].sync)
+        v.currentTime = new Number(model[f].sync)
     }
 
     v.appendChild(vs);
