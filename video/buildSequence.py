@@ -236,7 +236,7 @@ for item in storyboard:
             ss = [item["fileStart"]]
             splits = item["splitScreenWith"] if "splitScreenWith" in item else item["splitVerticalWith"]
             for s in splits:
-                syncKey = s.split("_")[0]
+                syncKey = s  #.split("_")[0]
                 ss.append(item["fileStart"] + sync[syncKey] - primarySync)
                 srcs.append(aliases[s])
 
