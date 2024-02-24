@@ -1,0 +1,41 @@
+{
+    "projectName": "fixed",
+    "number": 0,
+    "aliases": {
+        "2020_1106_142739_002.MOV": {
+            "name": "apeman_forest"
+        },
+        "20201106_131823.mp4": {
+            "name": "G5_forest"
+        },
+        "20201117_135327.mp4": {
+            "name": "G5_aldersbrook"
+        },
+        "20201120_135258.mp4": {
+            "name": "Snares1"
+        },
+        "20201206_133414.mp4": {
+            "name": "G5_1",
+            "length": 640.0858888888889
+        },
+        "20230722_142126.mp4": {
+            "name": "G5_intro"
+        }
+    },
+    "sequence": [
+        ["G5_intro", ["5:17", 4], "funny, putting units on table"],
+        ["G5_intro", ["3:24", 60], "intro"],
+        ["G5_1", [26, 12], "hi I'm andrew, follow this with excavated tunnel clip"],
+        ["apeman_forest", [4, 4]],
+        ["G5_1", [43, 14], "2nd one Manor park, follow with Manor park at 0:56 (G5)"],
+        ["G5_aldersbrook", [0, 5]],
+        ["G5_1", [56, 18], "Snaresbrook"],
+        ["Snares1", [50, 5]],
+        ["G5_1", [149, 40], "so for each video..., follow with units on railings in forest"],
+        ["G5_forest", ["3:22", 5]],
+        ["G5_1", ["3:31", 256], "long discourse about wifi, paste over the crack with a closup of mic "],
+        ["G5_1", ["8:01", 35], "ambient mics"],
+        ["G5_1", ["8:47", 110], "wind-up, needs one more edit probably"],
+        ["G5_intro", ["5:17", 95], "epilogue"]
+    ]
+}
