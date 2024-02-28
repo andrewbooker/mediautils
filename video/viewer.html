@@ -95,9 +95,9 @@ const loadOne = (f, i) => {
 
     const ct = document.createElement("div");
     setInterval(() => {
-        ct.innerHTML = v.currentTime;
+        ct.innerHTML = v.currentTime + " (" + Math.floor(v.currentTime / 60) + ":" + new Number(v.currentTime % 60).toFixed(2) + ")";
         if (i === 0) {
-            document.getElementById("currentPos").innerHTML = new Number(v.currentTime - setOffset.value).toFixed(2);
+            document.getElementById("currentPos").innerHTML =  new Number(v.currentTime - setOffset.value).toFixed(2);
         }
         let inSection = false
         for (const e of model[f].edits) {
