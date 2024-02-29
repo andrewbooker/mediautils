@@ -53,26 +53,25 @@
     },
     "sequence": [
         ["NP2_1", [0, 7], "portals"],
-        
         ["apeman_2", ["6:19", 32], "closer, looking out"],
-        ["apeman_1", ["1:07", 30], "a way in, looking out"],
-        ["shoot", ["7:50", 23], "closer inside"],
+        ["shoot", ["7:50", 22], "closer inside"],
         ["apeman_2", [20, 28], "looking in, against wall"],
+        ["shoot", ["11:46", 14], "anticlockwise rotation in and out of view - perfect short or reel"],
         ["shoot", ["8:19", 75], "good movement inside, tunnel walls etc"],
-        
-        ["shoot", ["9:36", 38], "good inside, light on walls etc"],
-        
-        ["shoot", ["10:17", 35], "moving away, boat rotating in other direction"],
-        
-        ["shoot", ["11:13", 10], "quick bit between visible paddle"],
-        
-        ["shoot", ["11:40", 20], "anticlockwise rotation in and out of view - perfect short or reel"],
-        ["shoot", ["12:17", 10], "anticlockwise rotation out of view, closer up"],
-        
-        ["shoot", ["12:40", 115], "stationary then moving, nice backwards and forwards pans"]
+        ["apexcam", ["7:37", 9], "looking at pink clockwise"],
+        ["shoot", ["9:44", 30], "no pink visible at first, good inside, light on walls etc"],
+        ["apexcam", ["7:55", 10], "looking at pink clockwise, stops"],
+        ["shoot", ["10:17", 35], "moving away, boat rotating in other direction, pink ends anticlockwise"],
+        ["apexcam", ["7:46", 8], "looking at pink anticlockwise then clockwise"],
+        ["shoot", ["11:13", 9], "quick bit between visible paddle"],
+        ["apexcam", ["8:07", 9], "looking at pink anticlockwise"],
+        ["shoot", ["12:45", 110], "stationary then moving, nice backwards and forwards pans"]
     ],
     "spares": [
-        ["shoot", ["6:59", 20], "looking in at units (shakey, maybe another 10s)"]
+        ["shoot", ["6:59", 20], "looking in at units (shakey, maybe another 10s)"],
+        ["apeman_1", ["1:07", 30], "a way in, looking out, boat visible"],
+        ["shoot", ["12:17", 10], "anticlockwise rotation out of view, closer up"]
+        
     ],
     "text": {
         "yPos": 800,
