@@ -36,22 +36,29 @@ print("diff", diff)
 print("stretch", stretch)
 required_length = len(data_from_start) * stretch
 print("required length", required_length)
-print("iterating over output")
+print("iterating over output samples")
 
-out_arr = [0.0] * math.ceil(required_length)
-for i in range(len(out_arr)):
-    p = i / stretch
-    p0 = math.floor(p)
-    p1 = math.ceil(p)
-    e = p - p0
-    if p1 >= len(out_arr):
-        break
-    out_arr[i] = ((1.0 - e) * data_from_start[p0]) + (e * data_from_start[p1])
-
-
+array_length = math.ceil(required_length)
 fn_spl = fn.split(".")
 out_fn = f"{fn_spl[0]}_out.{fn_spl[1]}"
 print("writing", out_fn)
-sf.write(out_fn, out_arr, sample_rate)
+
+with sf.SoundFile(out_fn, "wb", sample_rate, 1) as out_file:
+    block = [0.0] * 1024
+    for i in range(array_length):
+        p = i / stretch
+        p0 = math.floor(p)
+        p1 = math.ceil(p)
+        e = p - p0
+        overrun = p1 >= array_length
+
+        if (i % 1024 == 0 and i != 0) or overrun:
+            out_file.write(block)
+            block = [0.0] * 1024
+        if overrun:
+            break
+
+        block[i % 1024] = ((1.0 - e) * data_from_start[p0]) + (e * data_from_start[p1])
+
 print("done")
 
