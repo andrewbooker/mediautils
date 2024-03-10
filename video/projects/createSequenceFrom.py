@@ -79,10 +79,12 @@ with open(os.path.join(d, "edits.json"), "w") as ejs:
     json.dump(edits, ejs, indent=4)
 
 buildDir = os.path.dirname(inDir)
-buildFn = os.path.join(buildDir, "build.py")
+buildFn = os.path.join(buildDir, "build.sh")
 resDir = os.path.dirname(os.getcwd())
 buildSeqFn = os.path.join(resDir, "buildSequence.py")
-seqFn = os.path.join(os.getcwd(), d, "sequence.json")
+seqDir = os.path.join(os.getcwd(), d)
+seqFn = os.path.join(seqDir, "sequence.json")
+audioMixdownFn = os.path.join(resDir, "projects", "createAudioMixLof.py")
 
 with open(buildFn, "w") as build:
     build.write("#!/bin/bash\n")
@@ -91,6 +93,10 @@ with open(buildFn, "w") as build:
     build.write("./merge.sh\n")
     build.write("#./extractAudio.sh\n")
     build.write("#~/Documents/wavmixer/mix.py ./Audio/ Audio/cues.json\n")
-    build.write("#ffmpeg -i merged/merged.avi -i Audio/cues_L.wav -i Audio/cues_R.wav -filter_complex \"[1:a]amerge=inputs=2[a]\" -ac 2 -map 0:v -map \"[a]\" -y merged/test.mp4\n")
+    build.write(f"#{audioMixdownFn} {seqDir} ./Audio/ audio_mixdown.wav\n")
+    build.write("#~/Documents/wavmixer/mix.py ./Audio/ Audio/mixdown_cues.json\n")
+    build.write("#ffmpeg -i merged/merged.avi -i Audio/cues_L.wav -i Audio/cues_R.wav -filter_complex \"[1:a]amerge=inputs=2,pan=stereo|FL<c0|FR<c1[a]\" -ac 2 -map 0:v -map \"[a]\" -y merged/test.mp4\n")
+    build.write("#ffmpeg -i merged/merged.avi -i Audio/mixdown_cues_L.wav -i Audio/mixdown_cues_R.wav -filter_complex \"[1:a]amerge=inputs=2,pan=stereo|FL<c0|FR<c1[a]\" -ac 2 -map 0:v -map \"[a]\" -y merged/test_mixdown.mp4
+\n")
 
 os.system(f"chmod +x {buildFn}")
