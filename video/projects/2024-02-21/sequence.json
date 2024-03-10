@@ -51,6 +51,12 @@
             "length": 2187.0849
         }
     },
+    "audioSync": {
+        "shoot": 439,
+        "apeman_2": 0,
+        "apexcam": 460,
+        "audioMixdown": "50"
+    },
     "sequence": [
         ["NP2_1", [0, 7], "portals"],
         ["apeman_2", ["6:19", 32], "closer, looking out"],
