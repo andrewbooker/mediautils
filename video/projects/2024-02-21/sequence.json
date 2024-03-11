@@ -83,12 +83,12 @@
         "yPos": 800,
         "colour": "#FF143C",
         "heading": {
-            "start": 8,
-            "dur": 12
+            "start": 5,
+            "dur": 10
         },
         "episode": {
-            "start": 22,
-            "dur": 15
+            "start": 16,
+            "dur": 14
         }
     }
 }
