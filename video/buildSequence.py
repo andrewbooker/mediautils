@@ -45,8 +45,8 @@ for a in j["aliases"]:
         toRotate.append(n)
 
 print(longest)
-workingExt = "avi"
-compression = "-c:v utvideo -pix_fmt yuv422p" if not loRes else "-b:v 40M -c:v mpeg4 -vtag XVID"
+workingExt = "avi" if loRes else "mp4"
+compression = "-crf 0" if not loRes else "-b:v 40M -c:v mpeg4 -vtag XVID"
 
 #extract audio from sources
 audioCmds = []
@@ -319,12 +319,13 @@ if os.path.exists(soundtrackFqFn):
     mp4Cmd.append("-b:a 192k")
 mp4Cmd.append("-t")
 mp4Cmd.append(str(tt))
+mp4Cmd.append("-c:v libx264 -crf 17")
 if len(vf):
     mp4Cmd.append("-vf")
     mp4Cmd.append("\"%s\"" % ",".join(vf))
 
 mp4Cmd.append("-y")
-mp4Cmd.append(os.path.join(mergedDir, "%s.mp4" % baseOutFn))
+mp4Cmd.append(os.path.join(mergedDir, "%s_tomerge_crf0_libx264_crf17.mp4" % baseOutFn))
 
 with open("./toMp4.sh", "w") as cf:
     cf.write("\n%s\n" % " ".join(mp4Cmd))
