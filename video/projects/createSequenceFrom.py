@@ -28,6 +28,9 @@ out = {
     "projectName": title,
     "number": number,
     "aliases": {},
+    "audioSync": {
+        "": 0
+    },
     "sequence": [],
     "text": {
         "yPos": 800,
@@ -81,14 +84,17 @@ with open(os.path.join(d, "edits.json"), "w") as ejs:
 buildDir = os.path.dirname(inDir)
 buildFn = os.path.join(buildDir, "build.sh")
 resDir = os.path.dirname(os.getcwd())
-buildSeqFn = os.path.join(resDir, "buildSequence.py")
 seqDir = os.path.join(os.getcwd(), d)
 seqFn = os.path.join(seqDir, "sequence.json")
 audioMixdownFn = os.path.join(resDir, "projects", "createAudioMixLof.py")
 
 with open(buildFn, "w") as build:
-    build.write("#!/bin/bash\n")
-    build.write(f"{buildSeqFn} {inDir} {seqFn} . 1\n")
+    build.write("#!/bin/bash\n\n")
+
+    build.write(f"libDir={resDir}\n")
+    build.write(f"workingDir={buildDir}\n\n")
+
+    build.write(f"$libDir/buildSequence.py $workingDir/raw $libDir/projects/{d}/raw . 1\n")
     build.write("./compile.sh\n")
     build.write("./merge.sh\n")
     build.write("#./extractAudio.sh\n")
