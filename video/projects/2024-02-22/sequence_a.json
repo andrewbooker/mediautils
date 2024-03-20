@@ -1,0 +1,71 @@
+{
+    "projectName": "Manchester Piccadilly Part One",
+    "number": 24,
+    "aliases": {
+        "2024_0222_105410_002A.MOV": {
+            "name": "apeman",
+            "length": 1223.6333333333334
+        },
+        "FILE240222-111603F.MOV": {
+            "name": "FILE240222-111603F",
+            "length": 900.1993
+        },
+        "FILE240222-113105F.MOV": {
+            "name": "FILE240222-113105F",
+            "length": 92.9929
+        },
+        "FILE240222-113245F.MOV": {
+            "name": "FILE240222-113245F",
+            "length": 153.52003333333334
+        },
+        "VID_20240221_200716924.mp4": {
+            "name": "NP2_0"
+        },
+        "VID_20240222_105507462.mp4": {
+            "name": "NP2_1",
+            "length": 936.1172111111111
+        },
+        "apexcam.MOV": {
+            "name": "apexcam",
+            "length": 1146.7122333333332
+        }
+    },
+    "audioSync": {
+        "apeman": 222,
+        "NP2_1": 0,
+        "apexcam": 263
+    },
+    "sequence": [
+        ["NP2_0", [0, 12], "intro in the dark"],
+        ["apeman", ["5:30", 18], "starting spinning"],
+        ["NP2_1", ["2:05", 32], "starting playing"],
+        ["apeman", ["6:22", 5], "against side"],
+        ["NP2_1", ["2:59", 7], "close-up from above"],
+        ["NP2_1", ["4:16", 6], "further from west"],
+        ["apeman", ["8:11", 20], "drifting south"],
+        ["NP2_1", ["4:40", 12], "low down from walkway"],
+        ["NP2_1", ["10:19", 50], "backwards and forwards looking south"],
+        ["NP2_1", ["5:15", 27], "on walkway looking west"],
+        ["apeman", ["9:18", 10], "while I shoot from east"],
+        ["NP2_1", ["6:10", 9], "very low on walkway looking west"],
+        ["NP2_1", ["6:31", 9], "on walkway looking east"],
+        ["apeman", ["9:40", 16], "while I shoot from east crouching"],
+        ["NP2_1", ["8:58", 29], "they go behind a pillar, trying to maneouvre"],
+        ["NP2_1", ["9:33", 40], "trying to steer them back to the walkway"],
+        ["apeman", ["16:03", 10], "grabbing"],
+        ["NP2_1", ["12:51", 3], "slide west"],
+        ["NP2_1", ["13:06", 10], "slide west to end"]
+    ],
+    "text": {
+        "yPos": 800,
+        "colour": "#FF143C",
+        "heading": {
+            "start": 8,
+            "dur": 12
+        },
+        "episode": {
+            "start": 22,
+            "dur": 15
+        }
+    }
+}

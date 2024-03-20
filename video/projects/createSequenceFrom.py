@@ -96,7 +96,6 @@ with open(buildFn, "w") as build:
     build.write(f"#{audioMixdownFn} {seqDir} ./Audio/ audio_mixdown.wav\n")
     build.write("#~/Documents/wavmixer/mix.py ./Audio/ Audio/mixdown_cues.json\n")
     build.write("#ffmpeg -i merged/merged.avi -i Audio/cues_L.wav -i Audio/cues_R.wav -filter_complex \"[1:a]amerge=inputs=2,pan=stereo|FL<c0|FR<c1[a]\" -ac 2 -map 0:v -map \"[a]\" -y merged/test.mp4\n")
-    build.write("#ffmpeg -i merged/merged.avi -i Audio/mixdown_cues_L.wav -i Audio/mixdown_cues_R.wav -filter_complex \"[1:a]amerge=inputs=2,pan=stereo|FL<c0|FR<c1[a]\" -ac 2 -map 0:v -map \"[a]\" -y merged/test_mixdown.mp4
-\n")
+    build.write("#ffmpeg -i merged/merged.avi -i Audio/mixdown_cues_L.wav -i Audio/mixdown_cues_R.wav -filter_complex \"[1:a]amerge=inputs=2,pan=stereo|FL<c0|FR<c1[a]\" -ac 2 -map 0:v -map \"[a]\" -y merged/test_mixdown.mp4\n")
 
 os.system(f"chmod +x {buildFn}")
