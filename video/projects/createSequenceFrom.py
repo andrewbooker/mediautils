@@ -46,7 +46,10 @@ edits = {}
 
 for f in files:
     print("reading length of", f)
-    v = cv2.VideoCapture(os.path.join(inDir, f))
+    fn = os.path.join(inDir, f)
+    os.system(f"chmod 444 {fn}")
+
+    v = cv2.VideoCapture(fn)
     length = v.get(cv2.CAP_PROP_FRAME_COUNT) / v.get(cv2.CAP_PROP_FPS)
     for p in patterns:
         if len(re.findall(p[0], f)):
