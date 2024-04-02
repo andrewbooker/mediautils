@@ -88,7 +88,6 @@ buildDir = os.path.dirname(inDir)
 buildFn = os.path.join(buildDir, "build.sh")
 resDir = os.path.dirname(os.getcwd())
 seqDir = os.path.join(os.getcwd(), d)
-seqFn = os.path.join(seqDir, "sequence.json")
 audioMixdownFn = os.path.join(resDir, "projects", "createAudioMixLof.py")
 
 with open(buildFn, "w") as build:
@@ -97,7 +96,7 @@ with open(buildFn, "w") as build:
     build.write(f"libDir={resDir}\n")
     build.write(f"workingDir={buildDir}\n\n")
 
-    build.write(f"$libDir/buildSequence.py $workingDir/raw $libDir/projects/{d}/raw . 1\n")
+    build.write(f"$libDir/buildSequence.py $workingDir/raw $libDir/projects/{d}/sequence.json . 1\n")
     build.write("./compile.sh\n")
     build.write("./merge.sh\n")
     build.write("#./extractAudio.sh\n")
