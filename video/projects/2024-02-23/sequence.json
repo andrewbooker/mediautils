@@ -47,38 +47,27 @@
         "": 0
     },
     "sequence": [
-        ["NP2_1", [0, 6], "waterfall"],
+        ["NP2_1", [0, 5], "waterfall"],
         ["NP2_2", [0, 7], "south portal"],
-        ["NP2_3", ["6:54", 60], "sliding into view from north to south"],
+        ["NP2_3", ["6:54", 42], "sliding into view from north to south"],
+        ["NP2_3", ["4:35", 18], "looking south above rail, movement"],
         ["NP2_3", ["2:06", 14], "looking south above bar"],
         ["NP2_3", ["2:32", 26], "looking south below bar"],
-
-        ["NP2_3", ["4:33", 26], "looking south above rail, movement"],
-        ["NP2_3", ["6:16", 10], "looking north below rail, sweep up to portal"],
-
-        ["NP2_3", ["9:26", 5]],
-        ["NP2_3", ["10:04", 86], "clamped to rail facing north, only cut at 86 because I got in the way of the north tunnel portal"],
-
-        ["NP2_3", ["10:36", 96], "clamped to rail facing north, continued"],
-
         ["NP2_3", ["13:07", 15], "handheld facing north"],
-        ["NP2_3", ["13:41", 14], "handheld facing south, distant"],
         ["NP2_3", ["14:16", 9], "clamped facing south, distant wide"],
-
+        ["NP2_3", ["13:41", 14], "handheld facing south, distant"],
         ["NP2_3", ["14:37", 60], "clamped facing south lower, normal"],
-        ["NP2_3", ["15:50", 23], "excellent low level short south down the tunnel"],
-
+        ["NP2_3", ["15:52", 21], "excellent low level short south down the tunnel"],
+        ["NP2_3", ["11:00", 30], "shorter section of longer edit used in meditation"],
         ["NP2_3", ["17:06", 8], "brief closeup looking south, handheld movement"],
         ["NP2_3", ["17:48", 4], "walking south to rock section"],
-        ["NP2_3", ["18:16", 8], "rock section southward movement"],
-
         ["NP2_3", ["20:17", 6], "sweeping up at rock section then down looking north"],
-        ["NP2_3", ["19:25", 45], "rock section looking north"],
+        ["NP2_3", ["18:16", 8], "rock section southward movement"],
         ["NP2_3", ["20:44", 20], "rock section looking south"],
-
-        ["NP2_3", ["21:20", 10], "suddenly reaching out to pink"],
-        ["NP2_3", ["21:50", 10], "swivelling blue"],
-        ["NP2_3", ["22:24", 10], "disconnect v-bar"]
+        ["NP2_3", ["19:27", 43], "rock section looking north"],
+        ["NP2_3", ["21:19", 11], "suddenly reaching out to pink"],
+        ["NP2_3", ["21:50", 6], "swivelling blue"],
+        ["NP2_3", ["22:24", 15], "disconnect v-bar"]
     ],
     "meditation": [
         ["apeman_1", ["12:48", 72]],
@@ -91,10 +80,17 @@
         ["apeman_2", ["3:08", 22]],
         ["apeman_2", ["4:46", 145]],
         ["dragon", ["5:20", 776], "just after manoeuvring"],
-        ["dragon", ["18:16", 256], "just after manoeuvring"]
+        ["dragon", ["18:16", 256], "just after manoeuvring"],
+        ["NP2_3", ["10:04", 86], "clamped to rail facing north, only cut at 86 because I got in the way of the north tunnel portal"],
+        ["NP2_3", ["10:36", 96], "clamped to rail facing north, continued"]
+    ],
+    "spare": [
+        ["NP2_3", ["6:16", 10], "looking north below rail, sweep up to portal"],
+        ["NP2_3", ["9:26", 5]]
     ],
     "goodScreenshots": [
-        ["apeman_2", "2:23"]
+        ["apeman_2", "2:23"],
+        ["NP2_3", "2:40"]
     ],
     "text": {
         "yPos": 800,
