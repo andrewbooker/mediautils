@@ -87,14 +87,14 @@
         ["NP2_1", ["8:11", 15], "towards east waterfall units drifting back"]
     ],
     "text": {
-        "yPos": 180,
-        "colour": "#FF143C",
+        "yPos": 860,
+        "colour": "#88FFFF",
         "heading": {
             "start": 2,
             "dur": 12
         },
         "episode": {
-            "start": 14,
+            "start": 16,
             "dur": 12
         }
     }
