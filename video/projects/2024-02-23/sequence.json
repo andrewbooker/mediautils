@@ -44,7 +44,8 @@
         }
     },
     "audioSync": {
-        "": 0
+        "NP2_3": 0,
+        "audioMixdown": 0
     },
     "sequence": [
         ["NP2_1", [0, 5], "waterfall"],
@@ -69,19 +70,19 @@
         ["NP2_3", ["21:50", 6], "swivelling blue"],
         ["NP2_3", ["22:24", 15], "disconnect v-bar"]
     ],
-    "meditation": [
-        ["apeman_1", ["12:48", 72]],
-        ["apeman_1", ["17:30", 54]],
-        ["apeman_1", ["18:46", 136], "approaching from north then disappearing out of view"],
+    "meditation_sequence": [
+        ["apeman_1", ["17:30", 54], "blank, approaching from north"],
+        ["apeman_1", ["12:48", 72], "excellent lit view from north"],
+        ["apeman_1", ["18:48", 134], "approaching from north then disappearing out of view"],
         ["apeman_1", ["21:30", 165], "approaching from north until camera swivelled, lens wet"],
-        ["apeman_1", ["24:18", 42], "drifting leftwards"],
+        ["apeman_1", ["24:19", 41], "drifting leftwards"],
         ["apeman_2", [0, 28], "left drift continued"],
         ["apeman_2", [42, 78]],
-        ["apeman_2", ["3:08", 22]],
         ["apeman_2", ["4:46", 145]],
-        ["dragon", ["5:20", 776], "just after manoeuvring"],
-        ["dragon", ["18:16", 256], "just after manoeuvring"],
+        ["dragon", ["5:20", 770], "just after manoeuvring"],
+        ["apeman_2", ["3:08", 22]],
         ["NP2_3", ["10:04", 86], "clamped to rail facing north, only cut at 86 because I got in the way of the north tunnel portal"],
+        ["dragon", ["18:16", 256], "just after manoeuvring"],
         ["NP2_3", ["10:36", 96], "clamped to rail facing north, continued"]
     ],
     "spare": [
@@ -94,14 +95,14 @@
     ],
     "text": {
         "yPos": 800,
-        "colour": "#FF143C",
+        "colour": "yellow",
         "heading": {
-            "start": 8,
-            "dur": 12
+            "start": 4,
+            "dur": 10
         },
         "episode": {
-            "start": 22,
-            "dur": 15
+            "start": 15,
+            "dur": 9
         }
     }
 }
