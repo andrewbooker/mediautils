@@ -48,7 +48,6 @@
         "audioMixdown": 0
     },
     "sequence": [
-        ["NP2_1", [0, 5], "waterfall"],
         ["NP2_2", [0, 7], "south portal"],
         ["NP2_3", ["6:54", 42], "sliding into view from north to south"],
         ["NP2_3", ["4:35", 18], "looking south above rail, movement"],
@@ -97,11 +96,11 @@
         "yPos": 800,
         "colour": "yellow",
         "heading": {
-            "start": 4,
-            "dur": 10
+            "start": 2,
+            "dur": 9
         },
         "episode": {
-            "start": 15,
+            "start": 12,
             "dur": 9
         }
     }
