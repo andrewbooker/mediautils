@@ -101,6 +101,8 @@ for s in seq:
             item["zoompan"] = s[2]["zoompan"]
         if "reverse" in s[2]:
             item["reverse"] = True
+        if "flip" in s[2]:
+            item["flip"] = s[2]["flip"][0]
         if "splitScreenWith" in s[2]:
             item["splitScreenWith"] = s[2]["splitScreenWith"]
             item["clipFn"] = "split_%s" % fn
@@ -193,6 +195,9 @@ for item in storyboard:
             if item["alias"] in toRotate:
                 vf.append("vflip")
                 vf.append("hflip")
+            if "flip" in item:
+                f = item["flip"]
+                vf.append(f"{f}flip")
 
             frame_scale = 1.0
             if "multiplySpeed" in item:
