@@ -109,6 +109,8 @@ for s in seq:
         if "splitVerticalWith" in s[2]:
             item["splitVerticalWith"] = s[2]["splitVerticalWith"]
             item["clipFn"] = "split_%s" % fn
+        if "crop" in s[2]:
+            item["crop"] = s[2]["crop"]
 
     item["clipFqFn"] = os.path.join(toMergeDir, item["clipFn"])
     storyboard.append(item)
@@ -213,6 +215,10 @@ for item in storyboard:
                     x_offset = float(item["zoompan"]["endXOffset"])
                     x = f"'iw/2+(iw/(2*{x_offset}*zoom))'"
                 vf.append(f"zoompan=z='min(max(zoom,pzoom)+(1.0/({frame_scale}*{z}*{fps}*{dur})),{z})':d=1:x={x}:y='ih/2-(ih/zoom/2)'")
+
+            if "crop" in item:
+                crop = ":".join([str(i) for i in item["crop"]])
+                vf.append(f"crop={crop}")
 
             vf.append("scale=%s" % resolution)
 

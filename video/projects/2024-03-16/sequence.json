@@ -40,7 +40,7 @@
         ["dragon_1", ["4:30", 4], "view of bank while being dragged in"],
         ["G5", ["2:46", 16], "dragging in"],
         ["apeman_1", ["5:14", 12], "dragging further in"],
-        ["NP2_2", [0, 78], "against south portal, finishes blue in front of pink"],
+        ["NP2_2", [0, 78], { "crop": [2880, 1620, 960, 0] }, "against south portal, finishes blue in front of pink"],
         ["NP2_2", ["2:02", 90], "starts pink in front of blue, making it look like the other portal"],
         ["dragon_1", ["12:32", 110], "slowly eclipsing south portal"],
         ["apeman_1", ["11:26", 30], {"reverse": true}],
