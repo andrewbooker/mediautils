@@ -74,15 +74,15 @@
         ["NP2_2", ["6:38", 6], "against north portal"]
     ],
     "text": {
-        "yPos": 800,
+        "yPos": 90,
         "colour": "#FF143C",
         "heading": {
             "start": 8,
-            "dur": 12
+            "dur": 10
         },
         "episode": {
             "start": 22,
-            "dur": 15
+            "dur": 16
         }
     }
 }
