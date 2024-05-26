@@ -3,11 +3,11 @@
     "number": 28,
     "aliases": {
         "20240317_091221.mp4": {
-            "name": "20240317_091221",
+            "name": "G5",
             "length": 1002.1919333333333
         },
         "2024_0317_091838_002A.MOV": {
-            "name": "2024_0317_091838_002A",
+            "name": "apeman",
             "length": 907.9
         },
         "FILE240317-094009F.MOV": {
@@ -38,7 +38,27 @@
     "audioSync": {
         "": 0
     },
-    "sequence": [],
+    "sequence": [
+        ["NP2_1", [2, 8], "east portal"],
+        ["G5", ["3:22", 20], "start tow-in"],
+        ["apexcam", ["4:08", 20], "drag-in facing forwards"],
+        ["G5", ["5:44", 515], "still, about to start (could cut 40s and begin video here after portal), then the shoot until 14:16 (8m35s)"],
+        ["apeman", ["13:13", 50], "drifting with current, overexposed"],
+        ["NP2_3", [20, 25], "drifting with current, overexposed"],
+        ["NP2_3", ["1:08", 25], "drifting with current, overexposed"]
+    ],
+    "spare_promo": [
+        ["NP2_2", [9, 4], "approach 1"],
+        ["NP2_2", [22, 9], "approach 2"],
+        ["NP2_2", [33, 6], "approach 2"],
+        ["NP2_2", [49, 9], "moderate closeup driting right to left"],
+        ["NP2_2", ["1:10", 37], "good colours, drifing away from camera"],
+        ["NP2_2", ["2:00", 22], "down the water, drifting away"],
+        ["NP2_2", ["2:30", 16], "down the water higher up, possibly substitute for crash"],
+        ["NP2_2", ["2:54", 30], "high up down the water, walking towards, recording unit against opposite wall"],
+        ["apexcam", ["13:00", 90], "or longer"]
+    ],
+    "spare": [],
     "text": {
         "yPos": 800,
         "colour": "#FF143C",
