@@ -1,0 +1,44 @@
+{
+    "projectName": "Highams Park Live",
+    "number": 28,
+    "aliases": {
+        "2024_0524_190304_002A.MOV": {
+            "name": "apeman_1",
+            "length": 1500.1333333333334
+        },
+        "VID_20240524_195635187.mp4": {
+            "name": "NP2_1",
+            "length": 176.8641
+        },
+        "VID_20240524_195936036.mp4": {
+            "name": "NP2_2",
+            "length": 58.90082222222222
+        }
+    },
+    "audioSync": {
+        "": 0
+    },
+    "sequence": [
+        ["NP2_2", [3, 11], "from back"],
+        ["NP2_1", ["1:16", 8], "walk towards"],
+        ["apeman_1", ["21:14", 24], "apeman below, dry ice"],
+        ["apeman_1", ["24:16", 16], "apeman below facing lettering"],
+        ["NP2_1", ["2:01", 54], "closeup POV rotation, finishes anticlockwise green blue"],
+        ["apeman_1", ["11:20", 46], "apeman below beer visible"],
+        ["NP2_1", [15, 32], "closeup, starts stationary green blue facing voltmeter, walk away"],
+        ["NP2_1", [55, 15], "from middle near door"],
+        ["NP2_2", [30, 10], "from back"]
+    ],
+    "text": {
+        "yPos": 800,
+        "colour": "#FF143C",
+        "heading": {
+            "start": 8,
+            "dur": 12
+        },
+        "episode": {
+            "start": 22,
+            "dur": 15
+        }
+    }
+}
