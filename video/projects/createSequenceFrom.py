@@ -84,7 +84,7 @@ with open(os.path.join(d, "sequence.json"), "w") as js:
 with open(os.path.join(d, "edits.json"), "w") as ejs:
     json.dump(edits, ejs, indent=4)
 
-buildDir = f"{os.path.dirname(inDir)}_{number}"
+buildDir = os.path.dirname(inDir)
 buildFn = os.path.join(buildDir, "build.sh")
 resDir = os.path.dirname(os.getcwd())
 seqDir = os.path.join(os.getcwd(), d)
