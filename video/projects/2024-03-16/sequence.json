@@ -56,7 +56,7 @@
         ["apeman_1", ["24:12", 10], "hauling out 2"],
         ["apeman_1", ["24:37", 12], "out of south portal"]
     ],
-    "fb_short": [
+    "sequence_short_fb": [
         ["dragon_1", ["12:19", 13], "pink rotating past blue to south portal"],
         ["NP2_2", ["3:45", 14], "looking up, slowly dropping"]
     ],
