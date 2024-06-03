@@ -4,6 +4,8 @@ from reportlab.pdfgen.canvas import Canvas
 from reportlab.lib.pagesizes import A6, landscape
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.graphics import renderPDF
+from svglib.svglib import svg2rlg
 
 def add_rhs_address(canvas, size):
     canvas.setLineWidth(0.5)
@@ -59,7 +61,7 @@ def add_lower_details(canvas, size):
     t = canvas.beginText()
     margin = 10
 
-    t.setTextOrigin(margin, 36)
+    t.setTextOrigin(margin, 44)
     t.setFont("Impact", 10)
     t.textLine("Andrew Booker")
     t.setFont("Helvetica", 8)
@@ -67,6 +69,13 @@ def add_lower_details(canvas, size):
     t.textLine("randomatones.co.uk")
 
     canvas.drawText(t)
+
+    yt_logo = svg2rlg("./logo-youtube.svg")
+    yt_logo.scale(0.2, 0.2)
+    renderPDF.draw(yt_logo, canvas, margin, margin)
+    t.textLine("       @Randomatones")
+    canvas.drawText(t)
+
 
 
 size = landscape(A6)
