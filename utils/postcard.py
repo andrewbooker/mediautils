@@ -56,7 +56,17 @@ def add_upper_details(canvas, size):
 
 
 def add_lower_details(canvas, size):
-    pass
+    t = canvas.beginText()
+    margin = 10
+
+    t.setTextOrigin(margin, 36)
+    t.setFont("Impact", 10)
+    t.textLine("Andrew Booker")
+    t.setFont("Helvetica", 8)
+    t.textLine("improvizone@gmail.com")
+    t.textLine("randomatones.co.uk")
+
+    canvas.drawText(t)
 
 
 size = landscape(A6)
