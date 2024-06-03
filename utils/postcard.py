@@ -12,6 +12,15 @@ def add_rhs_address(canvas, size):
     y_margin = 10
     canvas.line(half_x, y_margin, half_x, size[1] - y_margin)
 
+    canvas.setStrokeColor("lightgrey")
+    addr_margin = 30
+    for p in [0.6, 0.48, 0.36, 0.24]:
+        canvas.line(half_x + addr_margin, size[1] * p, size[0] - addr_margin, size[1] * p)
+
+    canvas.setFillColorCMYK(0, 0, 0, 0.05)
+    w, h = (50, 60)
+    canvas.rect(size[0] - (w + y_margin), size[1] - (h + y_margin), w, h, stroke=0, fill=1)
+
 
 def add_heading(canvas, size):
     t = canvas.beginText()
