@@ -6,6 +6,8 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.graphics import renderPDF
 from svglib.svglib import svg2rlg
+import qrcode
+from reportlab.lib.utils import ImageReader
 
 def add_rhs_address(canvas, size):
     canvas.setLineWidth(0.5)
@@ -26,7 +28,6 @@ def add_rhs_address(canvas, size):
 
 def add_heading(canvas, size):
     t = canvas.beginText()
-    pdfmetrics.registerFont(TTFont("Impact", "/usr/local/share/fonts/impact.ttf"))
     margin = 10
     font_size = 14
     t.setTextOrigin(margin, size[1] - (margin + font_size))
@@ -58,33 +59,34 @@ def add_upper_details(canvas, size):
 
 
 def add_lower_details(canvas, size):
-    t = canvas.beginText()
-    margin = 10
+    img = qrcode.make("http://randomatones.co.uk/portfolio.html")
+    canvas.drawImage(ImageReader(img.get_image()), 5, 5, width=60, height=60, mask="auto")
 
-    t.setTextOrigin(margin, 44)
+    t = canvas.beginText()
+    x_pos = 70
+    t.setFillColorCMYK(0, 0, 0, 0.8)
+    t.setTextOrigin(x_pos, 50)
     t.setFont("Impact", 10)
     t.textLine("Andrew Booker")
-    t.setFont("Helvetica", 8)
+    t.setFont("Helvetica", 6)
     t.textLine("improvizone@gmail.com")
     t.textLine("randomatones.co.uk")
+    t.textLine("youtube.com/@Randomatones")
+
+    t.setTextOrigin(x_pos, 12)
+    t.textLine("QR code for video portfolio")
 
     canvas.drawText(t)
 
-    yt_logo = svg2rlg("./logo-youtube.svg")
-    yt_logo.scale(0.2, 0.2)
-    renderPDF.draw(yt_logo, canvas, margin, margin)
-    t.textLine("       @Randomatones")
-    canvas.drawText(t)
 
-
-
+pdfmetrics.registerFont(TTFont("Impact", "/usr/local/share/fonts/impact.ttf"))
 size = landscape(A6)
 canvas = Canvas("postcard_reverse.pdf", pagesize=size)
 items = {
     add_heading,
     add_upper_details,
     add_lower_details,
-    add_rhs_address
+    add_rhs_address,
 }
 
 for i in items:
