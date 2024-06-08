@@ -39,13 +39,30 @@
         "": 0
     },
     "sequence": [
-        ["NP2_1", [2, 8], "east portal"],
-        ["G5", ["3:22", 20], "start tow-in"],
-        ["apexcam", ["4:08", 20], "drag-in facing forwards"],
-        ["G5", ["5:44", 515], "still, about to start (could cut 40s and begin video here after portal), then the shoot until 14:16 (8m35s)"],
-        ["apeman", ["13:13", 50], "drifting with current, overexposed"],
-        ["NP2_3", [20, 25], "drifting with current, overexposed"],
-        ["NP2_3", ["1:08", 25], "drifting with current, overexposed"]
+        ["NP2_1", [2, 6], "east portal"],
+        ["apexcam", [90, 6], "moving in from east portal"],
+        ["G5", ["3:22", 10], "start tow-in"],
+        ["apeman", [128, 10], "continue tow-in"],
+        ["G5", ["4:55", 8], "tow-in"],
+        ["apexcam", [275, 5], "still looking out of west portal"],
+        ["G5", ["5:44", 40], "still then starting"],
+        ["apeman", [280, 9], "drifting round to west"],
+        ["G5", [400, 10], "looking west"],
+        ["apeman", [311, 10], "taking over spin"],
+        ["G5", [443, 23], "slow dift and change of direction"],
+        ["NP2_2", [31, 9], "walking towards"],
+        ["G5", [476, 8], "one spin"],
+        ["NP2_2", [48, 10], "against south wall"],
+        ["G5", [494, 30], "drift east looking west"],
+        ["NP2_2", [90, 17], "against south wall"],
+        ["G5", [542, 45], "drift east looking west"],
+        ["NP2_2", ["2:30", 16], "down the water, drifting away"],
+        ["apeman", [499, 6], "mostly in the dark"],
+        ["NP2_2", ["3:08", 18], "high up down the water, recording unit against opposite wall"],
+        ["apeman", [537, 18], "rotate to face east"],
+        ["G5", [662, 202], "G5 showcase until coming to rest"],
+        ["apeman", ["13:13", 30], "drifting with current, overexposed"],
+        ["NP2_3", [20, 25], "drifting with current, overexposed"]
     ],
     "spare_promo": [
         ["NP2_2", [9, 4], "approach 1"],
@@ -53,12 +70,15 @@
         ["NP2_2", [33, 6], "approach 2"],
         ["NP2_2", [49, 9], "moderate closeup driting right to left"],
         ["NP2_2", ["1:10", 37], "good colours, drifing away from camera"],
-        ["NP2_2", ["2:00", 22], "down the water, drifting away"],
-        ["NP2_2", ["2:30", 16], "down the water higher up, possibly substitute for crash"],
-        ["NP2_2", ["2:54", 30], "high up down the water, walking towards, recording unit against opposite wall"],
+        ["NP2_2", ["2:00", 20], "down the water, drifting away, untidy weeds visible"],
+        ["NP2_2", ["2:54", 32], "high up down the water, walking towards, recording unit against opposite wall"],
         ["apexcam", ["13:00", 90], "or longer"]
     ],
-    "spare": [],
+    "spare": [
+        ["G5", ["5:44", 515], "still, about to start (could cut 40s and begin video here after portal), then the shoot until 14:16 (8m35s)"],
+        ["G5", [443, 186], "slow dift and change of direction"],
+        ["NP2_3", ["1:08", 25], "drifting with current, overexposed"]
+    ],
     "text": {
         "yPos": 800,
         "colour": "#FF143C",
