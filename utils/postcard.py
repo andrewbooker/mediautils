@@ -47,10 +47,12 @@ def add_upper_details(canvas, size):
     t.textLine("Pop-up aleatoric music installations")
 
     t.setFont("Helvetica", 5)
+    t.textLine("Clockwise from top left:")
     loc_key = [
+        "Snarestone",
         "Walthamstow Forest",
-        "Woolwich Foot Tunnel",
-        "Cwmbran Tunnel"
+        "Lisson Grove",
+        "Woolwich Foot Tunnel"
     ]
     for i in range(len(loc_key)):
         t.textLine(f"{i + 1}. {loc_key[i]}")
