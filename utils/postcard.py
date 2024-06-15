@@ -9,13 +9,15 @@ from svglib.svglib import svg2rlg
 import qrcode
 from reportlab.lib.utils import ImageReader
 
-def add_rhs_address(canvas, size):
+def add_divider(canvas, size):
     canvas.setLineWidth(0.5)
     canvas.setStrokeColor("lightgrey")
     half_x = size[0] / 2
     y_margin = 10
     canvas.line(half_x, y_margin, half_x, size[1] - y_margin)
 
+
+def add_rhs_address(canvas, size):
     canvas.setStrokeColor("lightgrey")
     addr_margin = 30
     for p in [0.6, 0.48, 0.36, 0.24]:
@@ -49,9 +51,9 @@ def add_upper_details(canvas, size):
     t.setFont("Helvetica", 5)
     t.textLine("Clockwise from top left:")
     t.textLine(", ".join([
-        "Snarestone",
+        "Cwmbran Tunnel",
         "Walthamstow Forest",
-        "Lisson Grove",
+        "South Woodford",
         "Woolwich Foot Tunnel"
     ]))
 
@@ -65,16 +67,22 @@ def add_lower_details(canvas, size):
     t = canvas.beginText()
     x_pos = 70
     t.setFillColorCMYK(0, 0, 0, 0.8)
-    t.setTextOrigin(x_pos, 50)
+
+    t.setTextOrigin(x_pos, 40)
+    t.setFont("Helvetica", 6)
+    t.textLine("Artist:")
+
+    t.setTextOrigin(x_pos + 18, 39.8)
     t.setFont("Impact", 10)
     t.textLine("Andrew Booker")
+
+    t.setTextOrigin(x_pos, 30)
     t.setFont("Helvetica", 6)
-    t.textLine("improvizone@gmail.com")
     t.textLine("randomatones.co.uk")
     t.textLine("youtube.com/@Randomatones")
 
     t.setTextOrigin(x_pos, 12)
-    t.textLine("QR code for video portfolio")
+    t.textLine("Scan QR code for video portfolio")
 
     canvas.drawText(t)
 
@@ -86,7 +94,8 @@ items = {
     add_heading,
     add_upper_details,
     add_lower_details,
-    add_rhs_address,
+    #add_rhs_address,
+    add_divider
 }
 
 for i in items:
