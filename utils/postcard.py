@@ -44,6 +44,7 @@ def add_upper_details(canvas, size):
     t = canvas.beginText()
     margin = 10
 
+    t.setFillColorCMYK(0, 0, 0, 0.9)
     t.setTextOrigin(margin, size[1] - 36)
     t.setFont("Helvetica", 8)
     t.textLine("Pop-up aleatoric music installations")
@@ -66,13 +67,19 @@ def add_lower_details(canvas, size):
 
     t = canvas.beginText()
     x_pos = 70
-    t.setFillColorCMYK(0, 0, 0, 0.8)
-
-    t.setTextOrigin(x_pos, 40)
+    a_black = 0.36
+    t.setFillColorCMYK(0, 0, 0, a_black)
+    t.setTextOrigin(x_pos, 54)
     t.setFont("Helvetica", 6)
-    t.textLine("Artist:")
+    t.textLine("Artist")
 
-    t.setTextOrigin(x_pos + 18, 39.8)
+    canvas.setStrokeColorCMYK(0, 0, 0, a_black)
+    canvas.setLineWidth(0.5)
+    y_line = 52
+    canvas.line(x_pos, y_line, x_pos + 86, y_line)
+
+    t.setFillColorCMYK(0, 0, 0, 0.9)
+    t.setTextOrigin(x_pos, 39.8)
     t.setFont("Impact", 10)
     t.textLine("Andrew Booker")
 
@@ -81,6 +88,7 @@ def add_lower_details(canvas, size):
     t.textLine("randomatones.co.uk")
     t.textLine("youtube.com/@Randomatones")
 
+    t.setFillColorCMYK(0, 0, 0, a_black)
     t.setTextOrigin(x_pos, 12)
     t.textLine("Scan QR code for video portfolio")
 
