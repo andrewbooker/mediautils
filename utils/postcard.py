@@ -108,7 +108,7 @@ items = {
     add_divider
 }
 
-bleed = 0.6 * cm
+bleed = 0.3 * cm
 canvas.setPageSize(tuple([t + (bleed * 2) for t in landscape(A6)]))
 canvas.translate(bleed, bleed)
 
