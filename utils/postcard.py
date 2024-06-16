@@ -8,6 +8,8 @@ from reportlab.graphics import renderPDF
 from svglib.svglib import svg2rlg
 import qrcode
 from reportlab.lib.utils import ImageReader
+from reportlab.lib.units import cm
+
 
 def add_divider(canvas, size):
     canvas.setLineWidth(0.5)
@@ -105,6 +107,10 @@ items = {
     #add_rhs_address,
     add_divider
 }
+
+bleed = 0.6 * cm
+canvas.setPageSize(tuple([t + (bleed * 2) for t in landscape(A6)]))
+canvas.translate(bleed, bleed)
 
 for i in items:
     i(canvas, size)
