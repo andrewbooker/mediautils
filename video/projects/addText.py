@@ -60,7 +60,7 @@ def applyTextTo(vf, spec):
     readingTime = 2.5
     startTime = spec["heading"]["start"] + 1
     toScroll = [
-        "randomised ambient music generators",
+        "Randomised ambient music generators",
         "running on battery-powered Raspberry Pi computers"
     ]
     
