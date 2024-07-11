@@ -25,11 +25,14 @@ mergedDir = os.path.join(baseOutDir, "merged")
 if not os.path.exists(mergedDir):
     os.makedirs(mergedDir)
 
-loQ = True
+loQ = False
+demo = False
+execute = print if demo else os.system
+
 h = 1080
 w = 1920
 workingExt = "avi" if loQ else "mp4"
-compression = "-crf 0" if not loQ else "-b:v 40M -c:v mpeg4 -vtag XVID"
+compression = "-crf 15" if not loQ else "-b:v 40M -c:v mpeg4 -vtag XVID"
 
 dur = None
 for f in inFiles:
@@ -46,11 +49,12 @@ for f in inFiles:
         cmd.append(f"-ss {ss}")
     cmd.append(f"-t {dur}")
     cmd.append(f"-i \"{i}\"")
+    cmd.append(compression)
     cmd.append(f"-vf \"scale={int(w / 2)}x{int(h / 2)}\"")
     fn = os.path.join(toMergeDir, f"{len(srcs)}.{workingExt}")
     cmd.append(f"-y {fn}")
 
-    print(" ".join(cmd))
+    execute(" ".join(cmd))
     srcs.append(fn)
 
 
@@ -69,5 +73,5 @@ mCmd.append("-an -r 30 -y")
 mCmd.append(compression)
 jfn = os.path.join(mergedDir, f"contact.{workingExt}")
 mCmd.append(jfn)
-os.system(" ".join(mCmd))
+execute(" ".join(mCmd))
 
