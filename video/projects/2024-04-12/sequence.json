@@ -55,14 +55,16 @@
         ["NP2_4", ["13:12", 5], "high shot descending"],
         ["NP2_4", ["13:21", 10], "mid distance"],
         ["NP2_4", ["13:39", 40], "good choreography"],
-        ["G5", ["1:54", 40], "obscure intro against east wall"],
-        ["G5", ["7:34", 180], "darkness and red light then rotating into view, possible 3 minute long shot, tight closeup in the middle"],
-        ["G5", ["10:56", 50], "rotating in and eventually out of view"],
-        ["G5", ["11:58", 26], "retreating then rotating out of view"],
         ["G5", ["13:17", 31], "rotating into and out of view with great closeup"],
         ["G5", ["17:33", 60], "tow-out"],
         ["G5", ["18:51", 10], "gradual stop"],
         ["G5", ["21:00", 20], "the end"]
+    ],
+    "spares": [
+        ["G5", ["1:54", 40], "obscure intro against east wall"],
+        ["G5", ["7:34", 180], "darkness and red light then rotating into view, possible 3 minute long shot, tight closeup in the middle"],
+        ["G5", ["10:56", 50], "rotating in and eventually out of view"],
+        ["G5", ["11:58", 26], "retreating then rotating out of view"]
     ],
     "text": {
         "yPos": 800,
