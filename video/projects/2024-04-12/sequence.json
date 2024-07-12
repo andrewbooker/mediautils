@@ -6,13 +6,9 @@
             "name": "G5",
             "length": 1404.2715444444445
         },
-        "2024_0412_133346_002A.MOV": {
-            "name": "apeman_1",
-            "length": 1500.1666666666667
-        },
-        "2024_0412_135846_003A.MOV": {
-            "name": "apeman_2",
-            "length": 241.86666666666667
+        "apeman.mp4": {
+            "name": "apeman",
+            "length": 1741.86666666666667
         },
         "VID_20240412_132806620.mp4": {
             "name": "NP2_1",
@@ -39,28 +35,43 @@
         "": 0
     },
     "sequence": [
-        ["NP2_2", [0, 10], "south portal"],
+        ["NP2_3", [0, 8], "south portal"],
         ["NP2_4", ["1:48", 16], "nice intro from inside south portal"],
         ["NP2_4", ["2:34", 5], "ceiling reflections south portal"],
-        ["NP2_4", ["3:28", 6], "in silhouette against south portal"],
+        ["dragon", [546, 7], "view of orange sweeping"],
+        ["apeman", [524, 13], "more reflections"],
         ["NP2_4", ["3:45", 18], "cooking"],
+        ["dragon", [635, 7], "red wall"],
+        ["apeman", [606, 14], "blue against west wall"],
         ["NP2_4", ["4:20", 18], "cooking a bit further in"],
-        ["NP2_4", ["5:04", 8], "water and silhouette against south portal"],
-        ["NP2_4", ["7:04", 41], "approaching and fly-past"],
-        ["NP2_4", ["7:51", 15], "rotate into opposite view"],
-        ["NP2_4", ["8:25", 60], "rotate into view, cut before orange crashes into the side and other camera mount is visible"],
-        ["NP2_4", ["10:19", 30], "closeups facing the other way"],
-        ["NP2_4", ["12:17", 20], "further away, nice high shot"],
-        ["NP2_4", ["12:43", 7], "continuation of high shot"],
-        ["NP2_4", ["13:12", 5], "high shot descending"],
+        ["apeman", [644, 10], "blue starting anticlockwise against east wall"],
+        ["dragon", [805, 8], "sweep back from north portal"],
+        ["NP2_4", ["7:05", 6], "approaching and fly-past"],
+        ["apeman", [795, 5], "flashing blue against east wall"],
+        ["NP2_4", ["7:30", 12], "fly-past"],
+        ["apeman", [834, 4], "close against east wall"],
+        ["NP2_4", ["7:53", 13], "rotate into opposite view"],
+        ["G5", ["7:48", 13], "stating red light in camera"],
+        ["NP2_4", ["8:35", 50], "rotate other way into view, cut before orange crashes into the side and other camera mount is visible"],
+        ["G5", ["9:16", 10], "same position after crash, swapping orientation"],
+        ["NP2_4", ["12:18", 16], "further away, nice high shot"],
+        ["G5", ["11:29", 6], "beautiful low shot"],
         ["NP2_4", ["13:21", 10], "mid distance"],
-        ["NP2_4", ["13:39", 40], "good choreography"],
-        ["G5", ["13:17", 31], "rotating into and out of view with great closeup"],
-        ["G5", ["17:33", 60], "tow-out"],
+        ["apeman", ["19:34", 8], "blue horn dimly lit purple"],
+        ["NP2_4", ["13:39", 39], "good choreography"],
+        ["NP2_4", ["12:56", 12], "continuation of high shot"],
+        ["G5", ["13:21", 27], "rotating into and out of view with great closeup"],
+        ["G5", ["17:43", 10], "tow-out"],
+        ["G5", ["18:13", 20], "tow-out"],
         ["G5", ["18:51", 10], "gradual stop"],
         ["G5", ["21:00", 20], "the end"]
     ],
     "spares": [
+        ["NP2_4", ["13:12", 5], "high shot descending"],
+        ["dragon", [684, 22], "sweep to north portal and back"],
+        ["NP2_4", ["5:04", 8], "water and silhouette against south portal"],
+        ["NP2_4", ["10:19", 30], "closeups facing the other way"],
+        ["NP2_4", ["3:28", 6], "in silhouette against south portal"],
         ["G5", ["1:54", 40], "obscure intro against east wall"],
         ["G5", ["7:34", 180], "darkness and red light then rotating into view, possible 3 minute long shot, tight closeup in the middle"],
         ["G5", ["10:56", 50], "rotating in and eventually out of view"],
