@@ -81,14 +81,16 @@
     ],
     "text": {
         "yPos": 800,
-        "colour": "#FF143C",
+        "colour": "white",
         "heading": {
-            "start": 8,
-            "dur": 12
+            "start": 10,
+            "dur": 10,
+            "colour": "#ff3a00"
         },
         "episode": {
-            "start": 22,
-            "dur": 15
+            "start": 29,
+            "dur": 13,
+            "colour": "#ff4a00"
         }
     }
 }

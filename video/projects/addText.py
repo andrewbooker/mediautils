@@ -52,16 +52,18 @@ def writeScrollText(what, vf, startAt, readingTime, x, y, colour):
 def applyTextTo(vf, spec):
     number = spec["number"]
     title = spec["title"]
+    masterColour = spec["colour"] if "colour" in spec["heading"] else "white"
     totalRunningTime = spec["tt"]
-    headingColour = spec["colour"] if "colour" in spec else "white"
-    episodeColour = spec["colour"] if "colour" in spec else "white"
+    headingColour = spec["heading"]["colour"] if "colour" in spec["heading"] else masterColour
+    episodeColour = spec["episode"]["colour"] if "colour" in spec["episode"] else masterColour
+    madeByColour = spec["madeBy"]["colour"] if "madeBy" in spec and "colour" in spec["madeBy"] else masterColour
     textBaseY = spec["yPos"]
     textColour = episodeColour
     readingTime = 2.5
     startTime = spec["heading"]["start"] + 1
     toScroll = [
         "Randomised ambient music generators",
-        "running on battery-powered Raspberry Pi computers"
+        "running on battery-powered Raspberry Pi devices"
     ]
     
     for i in range(len(toScroll)):
@@ -81,9 +83,9 @@ def applyTextTo(vf, spec):
     writeText(title, vf, startTime + 3, ed - 3, 100, textBaseX, textBaseY + scrollTextSize + 50, episodeColour)
 
     endingTextStart = totalRunningTime - 13
-    madeByDur = writeScrollText("made by", vf, endingTextStart, 10, textBaseX, textBaseY, textColour)
+    madeByDur = writeScrollText("made by", vf, endingTextStart, 10, textBaseX, textBaseY, madeByColour)
     nameOffSet = 1
-    writeText("Andrew Booker", vf, endingTextStart + nameOffSet, madeByDur - nameOffSet, 80, textBaseX, textBaseY + scrollTextSize, headingColour)
+    writeText("Andrew Booker", vf, endingTextStart + nameOffSet, madeByDur - nameOffSet, 80, textBaseX, textBaseY + scrollTextSize, madeByColour)
 
 def applyFadeTo(vf, totalRunningTime):
     vf.append("fade=type=in:duration=3,fade=type=out:duration=6:start_time=%d" % (totalRunningTime - 6))
