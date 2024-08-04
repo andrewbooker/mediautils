@@ -14,11 +14,11 @@ headingSize = 90
 titleSize = int(headingSize * 0.8)
 headingStart = 730
 
-
-titleColour = "#5190ff"
 episodeColour = "#ff2d00"
+titleColour = "#5190ff"
 
-img = Image.open(os.path.join(workingDir, frameFn))
+img = Image.open(os.path.join(workingDir, frameFn)).convert("RGB")
+
 d = ImageDraw.Draw(img)
 d.text([60, headingStart], "Randomatones.", fill=titleColour, font=ImageFont.truetype("impact.ttf", headingSize))
 
@@ -26,7 +26,7 @@ d.text([60 + (len("Randomatones") * 0.532 * headingSize), int(headingStart + (he
 
 d.text([60, headingStart + headingSize], title, fill=episodeColour, font=ImageFont.truetype("impact.ttf", titleSize))
 
-outFn = os.path.join(workingDir, "splash_%s.png" % frameFn.split(".")[0])
+outFn = os.path.join(workingDir, "splash_%s.jpg" % frameFn.split(".")[0])
 print("saving as", outFn)
 img.save(outFn)
 img.close()
