@@ -1,0 +1,59 @@
+{
+    "projectName": "Heart Of Noise 5",
+    "number": 32,
+    "aliases": {
+        "VID_20240730_200819464.mp4": {
+            "name": "NP2_1",
+            "length": 27.342944444444445
+        },
+        "VID_20240730_195510601.mp4": {
+            "name": "NP2_2",
+            "length": 176.11735555555555
+        },
+        "VID_20240730_200654476.mp4": {
+            "name": "NP2_3",
+            "length": 5.170277777777778
+        },
+        "VID_20240730_200718116.mp4": {
+            "name": "NP2_4",
+            "length": 45.232099999999996
+        },
+        "2024_0730_190405_002A.MOV": {
+            "name": "apeman",
+            "length": 1500.1333333333334
+        }
+    },
+    "audioSync": {
+        "": 0
+    },
+    "sequence": [
+        ["NP2_3", [2, 2], "in through the door"],
+        ["NP2_4", [0, 3], "inside"],
+        ["NP2_2", [29, 10], "walk through audience towards"],
+        ["apeman", [0, 35], "adjusting, then play"],
+        ["NP2_2", [170, 5], "from back of auditorium"],
+        ["NP2_2", [84, 42], "stage left sweep from audience then walk around"],
+        ["NP2_2", [46, 28], "approaching from stage left"],
+        ["NP2_2", [137, 10], "blurry tracking to stage left from auditorium"],
+        ["apeman", ["16:26", 63], "Chas arrives"],
+        ["NP2_4", [11, 25], "inside, Chas visible"]
+    ],
+    "spares": [
+        ["apeman", ["20:32", 13], "Chas standing to play"],
+        ["NP2_2", [5, 12], {"reverse": true}, "inside, Chasless"],
+        ["apeman", ["2:54", 5], {"reverse": true}, "reaching down for ipad (maybe reverse)"],
+        ["NP2_2", [132, 4], "blurry disappearing behind back of cameraman"]
+    ],
+    "text": {
+        "yPos": 800,
+        "colour": "#FF143C",
+        "heading": {
+            "start": 8,
+            "dur": 12
+        },
+        "episode": {
+            "start": 22,
+            "dur": 15
+        }
+    }
+}
