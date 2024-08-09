@@ -262,7 +262,7 @@ for item in storyboard:
                 sCmd.append("-t %d" % item["duration"])
 
                 if "splitVerticalWith" in item and i == 0:
-                    sCmd.append("-vf \"scale=%s,crop=%d:%d:0:0\"" % (resolution, horiz / 2, vert))
+                    sCmd.append(f"-vf \"scale={resolution},crop={horiz / 2}:{vert}:{horiz / 4}:0\"")
                 else:
                     sCmd.append("-vf \"scale=%dx%d\"" % (horiz / 2, vert / 2))
 
