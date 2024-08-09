@@ -1,36 +1,28 @@
 {
-    "projectName": "Staircase",
+    "projectName": "Stair case",
     "number": 31,
     "aliases": {
-        "NORM0002.MP4": {
-            "name": "NORM0002",
-            "length": 254.7
-        },
         "2024_0615_133908_003.MOV": {
-            "name": "2024_0615_133908_003",
+            "name": "apeman_2",
             "length": 247.36666666666667
         },
         "VID_20240615_143241126.mp4": {
-            "name": "NP2_1",
+            "name": "NP2_2",
             "length": 17.9043
         },
         "20240615_140220.mp4": {
-            "name": "20240615_140220",
+            "name": "G5",
             "length": 1816.5823777777778
         },
         "2024_0615_131408_002.MOV": {
-            "name": "2024_0615_131408_002",
+            "name": "apeman_1",
             "length": 1500.1333333333334
         },
-        "NORM0001.MP4": {
-            "name": "NORM0001",
-            "length": 1357.3333333333333
-        },
         "VID_20240615_141611072.mp4": {
-            "name": "NP2_2",
+            "name": "NP2_1",
             "length": 867.7653444444445
         },
-        "dragon.MP4": {
+        "NORM0001.MP4": {
             "name": "dragon",
             "length": 1612.0333333333333
         }
@@ -38,7 +30,24 @@
     "audioSync": {
         "": 0
     },
-    "sequence": [],
+    "sync": {
+        "G5": 899.25,
+        "apeman_1": 844,
+        "dragon": 718,
+        "NP2_1": 0
+    },
+    "sequence": [
+        ["NP2_1", [0, 3], "static dining room"],
+        ["dragon", [718, 3], "static bottom of stairs"],
+        ["apeman_1", [844, 3], "static stairs"],
+        ["G5", [899, 3], "static top of stairs"],
+        ["G5", [903.25, 90], { "splitScreenWith": ["apeman_1", "dragon", "NP2_1"]}, "4s into NP2 shoot"],
+        ["NP2_1", [94, 11], "handheld closeups"],
+        ["apeman_1", [959, 14], "to stop"],
+        ["G5", [1028, 9], "to stop"],
+        ["G5", [1037, 38], { "splitVerticalWith": ["apeman_1", "dragon"]}],
+        ["NP2_1", [175, 5]]
+    ],
     "text": {
         "yPos": 800,
         "colour": "#FF143C",
