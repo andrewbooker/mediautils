@@ -50,37 +50,41 @@ def writeScrollText(what, vf, startAt, readingTime, x, y, colour):
 
 
 def applyTextTo(vf, spec):
-    number = spec["number"]
-    title = spec["title"]
-    masterColour = spec["colour"] if "colour" in spec["heading"] else "white"
-    totalRunningTime = spec["tt"]
-    headingColour = spec["heading"]["colour"] if "colour" in spec["heading"] else masterColour
-    episodeColour = spec["episode"]["colour"] if "colour" in spec["episode"] else masterColour
+    masterColour = spec["colour"] if "colour" in spec else "white"
     madeByColour = spec["madeBy"]["colour"] if "madeBy" in spec and "colour" in spec["madeBy"] else masterColour
     textBaseY = spec["yPos"]
-    textColour = episodeColour
+    totalRunningTime = spec["tt"]
     readingTime = 2.5
-    startTime = spec["heading"]["start"] + 1
-    toScroll = [
-        "Randomised ambient music generators",
-        "running on battery-powered Raspberry Pi devices"
-    ]
-    
-    for i in range(len(toScroll)):
-        s = toScroll[i]
-        print(len(s), "chars", len(s) * 1.0 / charsPerSec, startTime)
-        startTime += writeScrollText(s, vf, startTime, readingTime, textBaseX, textBaseY + titleSize, textColour)
-    if len(toScroll) == 0:
-        startTime += 10
 
-    writeText("Randomatones", vf, spec["heading"]["start"], spec["heading"]["dur"], titleSize, textBaseX, textBaseY, headingColour)
+    if "title" in spec and "episode" in spec:
+        number = spec["number"]
+        title = spec["title"]
+        masterColour = spec["heading"]["colour"] if "colour" in spec["heading"] else "white"
+        headingColour = spec["heading"]["colour"] if "colour" in spec["heading"] else masterColour
+        episodeColour = spec["episode"]["colour"] if "colour" in spec["episode"] else masterColour
 
-    startTime = spec["episode"]["start"]
-    dur = spec["episode"]["dur"] if "dur" in spec["episode"] else 10
-    if "yPos" in spec["episode"]:
-        textBaseY = spec["episode"]["yPos"]
-    ed = writeScrollText("episode %d" % number, vf, startTime, dur, textBaseX, textBaseY + 50, textColour)
-    writeText(title, vf, startTime + 3, ed - 3, 100, textBaseX, textBaseY + scrollTextSize + 50, episodeColour)
+        textColour = episodeColour
+        startTime = spec["heading"]["start"] + 1
+        toScroll = [
+            "Randomised ambient music generators",
+            "running on battery-powered Raspberry Pi devices"
+        ]
+
+        for i in range(len(toScroll)):
+            s = toScroll[i]
+            print(len(s), "chars", len(s) * 1.0 / charsPerSec, startTime)
+            startTime += writeScrollText(s, vf, startTime, readingTime, textBaseX, textBaseY + titleSize, textColour)
+        if len(toScroll) == 0:
+            startTime += 10
+
+        writeText("Randomatones", vf, spec["heading"]["start"], spec["heading"]["dur"], titleSize, textBaseX, textBaseY, headingColour)
+
+        startTime = spec["episode"]["start"]
+        dur = spec["episode"]["dur"] if "dur" in spec["episode"] else 10
+        if "yPos" in spec["episode"]:
+            textBaseY = spec["episode"]["yPos"]
+        ed = writeScrollText("episode %d" % number, vf, startTime, dur, textBaseX, textBaseY + 50, textColour)
+        writeText(title, vf, startTime + 3, ed - 3, 100, textBaseX, textBaseY + scrollTextSize + 50, episodeColour)
 
     endingTextStart = totalRunningTime - 13
     madeByDur = writeScrollText("made by", vf, endingTextStart, 10, textBaseX, textBaseY, madeByColour)
