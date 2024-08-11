@@ -54,36 +54,32 @@ def applyTextTo(vf, spec):
     madeByColour = spec["madeBy"]["colour"] if "madeBy" in spec and "colour" in spec["madeBy"] else masterColour
     textBaseY = spec["yPos"]
     totalRunningTime = spec["tt"]
-    readingTime = 2.5
+    readingTime = 9
 
-    if "title" in spec and "episode" in spec:
-        number = spec["number"]
-        title = spec["title"]
-        masterColour = spec["heading"]["colour"] if "colour" in spec["heading"] else "white"
+    if "heading" in spec:
         headingColour = spec["heading"]["colour"] if "colour" in spec["heading"] else masterColour
-        episodeColour = spec["episode"]["colour"] if "colour" in spec["episode"] else masterColour
-
-        textColour = episodeColour
         startTime = spec["heading"]["start"] + 1
         toScroll = [
-            "Randomised ambient music generators",
-            "running on battery-powered Raspberry Pi devices"
+            "Randomised ambient music generators"
         ]
 
         for i in range(len(toScroll)):
             s = toScroll[i]
             print(len(s), "chars", len(s) * 1.0 / charsPerSec, startTime)
-            startTime += writeScrollText(s, vf, startTime, readingTime, textBaseX, textBaseY + titleSize, textColour)
+            startTime += writeScrollText(s, vf, startTime, readingTime, textBaseX, textBaseY + titleSize, headingColour)
         if len(toScroll) == 0:
             startTime += 10
 
         writeText("Randomatones", vf, spec["heading"]["start"], spec["heading"]["dur"], titleSize, textBaseX, textBaseY, headingColour)
 
+    if "episode" in spec:
+        number = spec["number"]
+        episodeColour = spec["episode"]["colour"] if "colour" in spec["episode"] else masterColour
         startTime = spec["episode"]["start"]
         dur = spec["episode"]["dur"] if "dur" in spec["episode"] else 10
         if "yPos" in spec["episode"]:
             textBaseY = spec["episode"]["yPos"]
-        ed = writeScrollText("episode %d" % number, vf, startTime, dur, textBaseX, textBaseY + 50, textColour)
+        ed = writeScrollText("episode %d" % number, vf, startTime, dur, textBaseX, textBaseY + 50, episodeColour)
         writeText(title, vf, startTime + 3, ed - 3, 100, textBaseX, textBaseY + scrollTextSize + 50, episodeColour)
 
     endingTextStart = totalRunningTime - 13

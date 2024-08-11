@@ -37,10 +37,11 @@
         "NP2_1": 0
     },
     "sequence": [
+        ["G5", ["10:24", 10], "switch on blue"],
+        ["G5", ["10:40", 5], "switch on red"],
         ["NP2_1", [0, 2], "static dining room"],
         ["dragon", [718, 2], "static bottom of stairs"],
         ["apeman_1", [844, 2], "static stairs"],
-        ["G5", [899, 2], "static top of stairs"],
         ["G5", [903.25, 10], { "splitScreenWith": ["apeman_1", "dragon", "NP2_1"]}, "4s into NP2 shoot"],
         ["NP2_1", [504, 7], "half through glass"],
         ["NP2_1", [607, 15], "directly from stairs"],
@@ -61,6 +62,10 @@
     ],
     "text": {
         "yPos": 800,
-        "colour": "white"
+        "colour": "white",
+        "heading": {
+            "start": 3,
+            "dur": 12
+        }
     }
 }
