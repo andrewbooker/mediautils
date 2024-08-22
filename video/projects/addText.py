@@ -74,6 +74,7 @@ def applyTextTo(vf, spec):
 
     if "episode" in spec:
         number = spec["number"]
+        title = spec["title"]
         episodeColour = spec["episode"]["colour"] if "colour" in spec["episode"] else masterColour
         startTime = spec["episode"]["start"]
         dur = spec["episode"]["dur"] if "dur" in spec["episode"] else 10
