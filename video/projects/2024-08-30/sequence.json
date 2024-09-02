@@ -1,0 +1,46 @@
+{
+    "projectName": "Floating Randomatones",
+    "number": 99,
+    "aliases": {
+        "VID_20240830_150601126.mp4": {
+            "name": "NP2_2",
+            "length": 78.02946666666666
+        },
+        "VID_20240830_142009697.mp4": {
+            "name": "NP2_1",
+            "length": 1503.3437888888889
+        },
+        "VID_20240901_123112764.mp4": { "name": "NP2_rpi" },
+        "VID_20240901_123327290.mp4": { "name": "NP2_hbridge" },
+        "VID_20240901_123518418.mp4": { "name": "NP2_batterysocket" },
+        "VID_20240901_123716701.mp4": { "name": "NP2_spotlight" },
+        "VID_20240901_123734059.mp4": { "name": "NP2_hifiberry" },
+        "VID_20240901_123833471.mp4": { "name": "NP2_battery_plug" },
+        "VID_20240901_124320416.mp4": { "name": "NP2_newfloat" },
+        "VID_20240901_124516058.mp4": { "name": "NP2_newfloatundeside" },
+        "carrying_lisson.mp4": { "name": "carrying_lisson" },
+        "cwmbran_walls.mp4": { "name": "cwmbran_walls" },
+        "HoN.MOV": { "name": "HoN" },
+        "newbold_blue_light.mp4": { "name": "newbold_blue_light" },
+        "sapperton.mp4": { "name": "sapperton" },
+        "scout_moving.mp4": { "name": "scout_moving" },
+        "shrewley_entrance.mp4": { "name": "shrewley_entrance" },
+        "shrewley_inside.MOV": { "name": "shrewley_inside" },
+        "snarestone.mp4": { "name": "snarestone" },
+        "stairs.mp4": { "name": "stairs" }
+    },
+    "audioSync": {
+        "": 0
+    },
+    "sequence": [
+        ["NP2_1", [43, 1457], "the talk"],
+        ["NP2_2", [14, 52], "the add-on"]
+    ],
+    "text": {
+        "commentary": {
+            "text": "the lateral motor had siezed (dirt in the axle)",
+            "start": "13:00",
+            "dur": 6
+        }
+    }
+}
