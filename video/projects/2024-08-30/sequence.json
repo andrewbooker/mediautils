@@ -33,7 +33,22 @@
         "": 0
     },
     "sequence": [
-        ["NP2_1", [43, 1457], "the talk"],
+        ["NP2_1", [43, 1], "the talk"],
+        ["NP2_1", [44, 15], "the talk"],
+        ["snarestone", [0, 4]],
+        ["NP2_1", ["1:03", 87], "the talk"],
+        ["NP2_rpi", [0, 4]],
+        ["NP2_1", ["2:34", 173], "the talk"],
+        ["stairs", [0, 4]],
+        ["NP2_1", ["5:31", 77], "the talk"],
+        ["scout_moving", [0, 4]],
+        ["NP2_1", ["6:52", 56], "the talk"],
+        ["newbold_blue_light", [0, 4]],
+        ["NP2_1", ["7:52", 18], "the talk"],
+        ["cwmbran_walls", [0, 4]],
+        ["NP2_1", ["8:14", 511], "the talk"],
+        ["shrewley_entrance", [0, 3]],
+        ["NP2_1", ["16:48", 449], "the talk"],
         ["NP2_2", [14, 52], "the add-on"]
     ],
     "text": {
