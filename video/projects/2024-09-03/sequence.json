@@ -1,0 +1,35 @@
+{
+    "projectName": "New floating",
+    "number": 98,
+    "aliases": {
+        "VID_20231215_104504248.mp4": {
+            "name": "NP2_1",
+            "length": 535.6787111111112
+        },
+        "VID_20240903_180449769.mp4": {
+            "name": "NP2_2",
+            "length": 311.5796888888889
+        },
+        "20220817_202133_HDR.jpg": { "name": "waterworks" },
+        "20200829_104308.jpg": { "name": "snaresbrook" },
+        "20220817_203606_HDR.jpg": { "name": "south_woodford" },
+        "waterworks.MOV": { "name": "waterworks_vid" },
+        "snaresbrook.mp4": { "name": "snaresbrook_vid" }
+    },
+    
+    "audioSync": {
+        "": 0
+    },
+    "sequence": [
+        ["NP2_2", [20, 1], "intro"],
+        ["NP2_2", [21, 102], "intro"],
+        ["waterworks_vid", [0, 18]],
+        ["snaresbrook_vid", [0, 7]],
+        ["snaresbrook", [0, 9]],
+        ["south_woodford", [0, 5]],
+        ["NP2_2", ["2:46", 69], "playing start should be 2:22 (142) to 3:30. Raw to 3:55"],
+        ["NP2_1", [10, 520], "main talk"],
+        ["NP2_2", ["4:06", 53], "coda"],
+        ["NP2_2", ["5:02", 7], "the end"]
+    ]
+}
