@@ -22,12 +22,12 @@
     },
     "sequence": [
         ["NP2_2", [20, 1], "intro"],
-        ["NP2_2", [21, 102], "intro"],
-        ["waterworks_vid", [0, 18]],
+        ["NP2_2", [21, 110], "intro"],
+        ["waterworks_vid", [0, 10]],
         ["snaresbrook_vid", [0, 7]],
-        ["snaresbrook", [0, 9]],
+        ["snaresbrook", [0, 10]],
         ["south_woodford", [0, 5]],
-        ["NP2_2", ["2:46", 69], "playing start should be 2:22 (142) to 3:30. Raw to 3:55"],
+        ["NP2_2", ["2:47", 68], "playing start should be 2:22 (142) to 3:30. Raw to 3:55"],
         ["NP2_1", [10, 520], "main talk"],
         ["NP2_2", ["4:06", 53], "coda"],
         ["NP2_2", ["5:02", 7], "the end"]

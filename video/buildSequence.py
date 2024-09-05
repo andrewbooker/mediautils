@@ -55,7 +55,7 @@ for a in aliases:
     audioFiles[a] = "%s.wav" % a
     outFn = os.path.join(audioDir, audioFiles[a])
     srcFn = os.path.join(rawDir, aliases[a])
-    if not os.path.exists(outFn):
+    if not os.path.exists(outFn) and ".jpg" not in outFn:
         audioCmds.append("ffmpeg -i \"%s\" -ac 2 -ar 44100 -y %s" % (srcFn, outFn))
 
 if len(audioCmds) > 0:
@@ -182,18 +182,26 @@ cmds = []
 for item in storyboard:
     if not os.path.exists(item["clipFqFn"]):
         if "splitScreenWith" not in item and "splitVerticalWith" not in item:
+            vf = []
+            is_still = ".jpg" in item["file"]
+            fileDir = rawDir if not is_still else os.path.join(os.path.dirname(rawDir), "stills")
             cmd = ["ffmpeg"]
             if item["fileStart"]:
                 cmd.append("-ss")
                 cmd.append(str(item["fileStart"]))
+            elif is_still:
+                cmd.append("-loop 1")
             cmd.append("-i")
-            cmd.append("\"%s\"" % os.path.join(rawDir, item["file"]))
+            cmd.append("\"%s\"" % os.path.join(fileDir, item["file"]))
             cmd.append("-t")
             cmd.append(str(item["duration"]))
-            cmd.append("-an -r 30 -y")
-            cmd.append(compression)
+            if is_still:
+                vf.append("zoompan=z='max(1.001,zoom+0.0015)':x='iw/2-(iw/zoom)/1.8':y='ih/2-(ih/zoom)/2':d=125")
+            else:
+                cmd.append("-an -r 30")
+                cmd.append(compression)
+            cmd.append("-y")
 
-            vf = []
             if item["alias"] in toRotate:
                 vf.append("vflip")
                 vf.append("hflip")
