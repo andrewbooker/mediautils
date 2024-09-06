@@ -14,7 +14,9 @@
         "20200829_104308.jpg": { "name": "snaresbrook" },
         "20220817_203606_HDR.jpg": { "name": "south_woodford" },
         "waterworks.MOV": { "name": "waterworks_vid" },
-        "snaresbrook.mp4": { "name": "snaresbrook_vid" }
+        "snaresbrook.mp4": { "name": "snaresbrook_vid" },
+        "heartOfNoise.mp4": { "name": "heartOfNoise" },
+        "highamsPark.mp4": { "name": "highamsPark" }
     },
     
     "audioSync": {
@@ -23,13 +25,38 @@
     "sequence": [
         ["NP2_2", [20, 1], "intro"],
         ["NP2_2", [21, 110], "intro"],
-        ["waterworks_vid", [0, 10]],
-        ["snaresbrook_vid", [0, 7]],
-        ["snaresbrook", [0, 10]],
-        ["south_woodford", [0, 5]],
+        ["waterworks_vid", [0, 11]],
+        ["snaresbrook_vid", [0, 6]],
+        ["snaresbrook", [0, 10], { "zoompan": {} }],
+        ["south_woodford", [0, 5], { "zoompan": {} }],
         ["NP2_2", ["2:47", 68], "playing start should be 2:22 (142) to 3:30. Raw to 3:55"],
         ["NP2_1", [10, 520], "main talk"],
-        ["NP2_2", ["4:06", 53], "coda"],
+        ["NP2_2", ["4:06", 22], "coda"],
+        ["highamsPark", [0, 3]],
+        ["NP2_2", ["4:31", 8], "coda"],
+        ["heartOfNoise", [0, 8]],
+        ["NP2_2", ["4:47", 11], "the end"],
         ["NP2_2", ["5:02", 7], "the end"]
-    ]
+    ],
+    "text": {
+        "yPos": 200,
+        "colour": "yellow",
+        "commentary": [
+            {
+                "text": "October 2020",
+                "start": "1:51",
+                "dur": 6
+            },
+            {
+                "text": "August 2020",
+                "start": "2:08",
+                "dur": 6
+            },
+            {
+                "text": "August 2022",
+                "start": "2:18",
+                "dur": 6
+            }
+        ]
+    }
 }

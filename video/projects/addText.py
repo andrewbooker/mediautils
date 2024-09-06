@@ -13,6 +13,12 @@ reqTime = 28
 FONT_IMPACT = "/usr/local/share/fonts/impact.ttf"
 FONT_COURIER = "/usr/share/fonts/X11/Type1/c0419bt_.pfb"
 
+def startFrom(s):
+    if type(s) != str:
+        return s
+    spl = s.split(":")
+    return (int(spl[0]) * 60) + int(spl[1])
+
 
 def addTextFilterCmdsTo(c, fontSize, x, y, fontFile, colour):
     c.append("fontcolor=%s" % colour)
@@ -83,11 +89,18 @@ def applyTextTo(vf, spec):
         ed = writeScrollText("episode %d" % number, vf, startTime, dur, textBaseX, textBaseY + 50, episodeColour)
         writeText(title, vf, startTime + 3, ed - 3, 100, textBaseX, textBaseY + scrollTextSize + 50, episodeColour)
 
-    endingTextStart = totalRunningTime - 13
-    madeByDur = writeScrollText("made by", vf, endingTextStart, 10, textBaseX, textBaseY, madeByColour)
-    nameOffSet = 1
-    writeText("Andrew Booker", vf, endingTextStart + nameOffSet, madeByDur - nameOffSet, 80, textBaseX, textBaseY + scrollTextSize, madeByColour)
+    if "commentary" in spec:
+        for commentary in spec["commentary"]:
+            commentaryColour = commentary["colour"] if "colour" in commentary else masterColour
+            writeScrollText(commentary["text"], vf, startFrom(commentary["start"]), int(commentary["dur"]), textBaseX, textBaseY + 50, commentaryColour)
+
+    #endingTextStart = totalRunningTime - 13
+    #madeByDur = writeScrollText("made by", vf, endingTextStart, 10, textBaseX, textBaseY, madeByColour)
+    #nameOffSet = 1
+    #writeText("Andrew Booker", vf, endingTextStart + nameOffSet, madeByDur - nameOffSet, 80, textBaseX, textBaseY + scrollTextSize, madeByColour)
 
 def applyFadeTo(vf, totalRunningTime):
-    vf.append("fade=type=in:duration=3,fade=type=out:duration=6:start_time=%d" % (totalRunningTime - 6))
+    fade_in = 1
+    fade_out = 1
+    vf.append(f"fade=type=in:duration={fade_in},fade=type=out:duration={fade_out}:start_time={totalRunningTime - fade_out}")
 
