@@ -195,11 +195,12 @@ for item in storyboard:
             cmd.append("\"%s\"" % os.path.join(fileDir, item["file"]))
             cmd.append("-t")
             cmd.append(str(item["duration"]))
-            if is_still:
-                vf.append("zoompan=z='max(1.001,zoom+0.0015)':x='iw/2-(iw/zoom)/1.8':y='ih/2-(ih/zoom)/2':d=125")
+            cmd.append("-r 30")
+            cmd.append(compression)
+            if not is_still:
+                cmd.append("-an")
             else:
-                cmd.append("-an -r 30")
-                cmd.append(compression)
+                cmd.append("-pix_fmt yuv420p")
             cmd.append("-y")
 
             if item["alias"] in toRotate:
@@ -217,12 +218,12 @@ for item in storyboard:
             if "zoompan" in item:
                 fps = 30
                 dur = float(item["duration"])
-                z = float(item["zoompan"]["coeff"])
-                x = "0"
-                if "endXOffset" in item["zoompan"]:
-                    x_offset = float(item["zoompan"]["endXOffset"])
-                    x = f"'iw/2+(iw/(2*{x_offset}*zoom))'"
-                vf.append(f"zoompan=z='min(max(zoom,pzoom)+(1.0/({frame_scale}*{z}*{fps}*{dur})),{z})':d=1:x={x}:y='ih/2-(ih/zoom/2)'")
+                total_frames = fps * dur
+                horiz, vert = tuple([int(r) for r in resolution.split("x")])
+                dx = 1 * (horiz / 2) / total_frames
+                dy = 1 * (vert / 2) / total_frames
+
+                vf.append(f"zoompan=z='zoom+0.001':x='x+{dx}':y='y+{dy}':d={total_frames}")
 
             if "crop" in item:
                 crop = ":".join([str(i) for i in item["crop"]])
