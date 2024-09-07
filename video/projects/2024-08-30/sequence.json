@@ -18,6 +18,7 @@
         "VID_20240901_123833471.mp4": { "name": "NP2_battery_plug" },
         "VID_20240901_124320416.mp4": { "name": "NP2_newfloat" },
         "VID_20240901_124516058.mp4": { "name": "NP2_newfloatundeside" },
+        "VID_20240904_204943335.mp4": { "name": "NP2_electronics" },
         "carrying_lisson.mp4": { "name": "carrying_lisson" },
         "cwmbran_walls.mp4": { "name": "cwmbran_walls" },
         "HoN.MOV": { "name": "HoN" },
@@ -36,9 +37,10 @@
         ["NP2_1", [43, 1], "the talk"],
         ["NP2_1", [44, 15], "the talk"],
         ["snarestone", [0, 4]],
-        ["NP2_1", ["1:03", 87], "the talk"],
-        ["NP2_rpi", [0, 4]],
-        ["NP2_1", ["2:34", 173], "the talk"],
+        ["NP2_1", ["1:03", 82], "the talk"],
+        ["NP2_hifiberry", [0, 6]],
+        ["NP2_rpi", [12, 6]],
+        ["NP2_1", ["3:05", 141], "the talk"],
         ["stairs", [0, 4]],
         ["NP2_1", ["5:31", 77], "the talk"],
         ["scout_moving", [0, 4]],
@@ -52,10 +54,14 @@
         ["NP2_2", [14, 52], "the add-on"]
     ],
     "text": {
-        "commentary": {
-            "text": "the lateral motor had siezed (dirt in the axle)",
-            "start": "13:00",
-            "dur": 6
-        }
+        "yPos": 80,
+        "commentary": [
+            {
+                "colour": "yellow",
+                "text": "the lateral motor had siezed (dirt in the axle)",
+                "start": "13:00",
+                "dur": 6
+            }
+        ]
     }
 }
