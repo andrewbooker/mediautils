@@ -26,9 +26,15 @@
         "sapperton.mp4": { "name": "sapperton" },
         "scout_moving.mp4": { "name": "scout_moving" },
         "shrewley_entrance.mp4": { "name": "shrewley_entrance" },
-        "shrewley_inside.MOV": { "name": "shrewley_inside" },
         "snarestone.mp4": { "name": "snarestone" },
-        "stairs.mp4": { "name": "stairs" }
+        "stairs.mp4": { "name": "stairs" },
+        "highamsPark.mp4": { "name": "highamsPark" },
+        "bowFlyover.mp4": { "name": "bowFlyover" },
+        "cwmbran_boat.MOV": { "name": "cwmbran_boat" },
+        "kidderminster.MOV": { "name": "kidderminster" },
+        "limehouse.mp4": { "name": "limehouse" },
+        "birlec.mp4": { "name": "birlec" },
+        "mcr_1.MOV": { "name": "mcr_1" }
     },
     "audioSync": {
         "": 0
@@ -43,19 +49,37 @@
         ["NP2_1", ["3:05", 141], "the talk"],
         ["stairs", [0, 4]],
         ["NP2_1", ["5:30", 6], "prob only 6 secs then cut to movement with voiceover"],
-        ["scout_moving", [0, 5]],
+        ["limehouse", [0, 5], "use something here that looks much better eg Limehouse"],
         ["NP2_1", ["5:41", 30]],
         ["NP2_hbridge", [0, 5]],
         ["NP2_1", ["6:16", 92], "the talk"],
         ["NP2_spotlight", [0, 5]],
         ["NP2_1", ["7:53", 7], "the talk"],
-        ["newbold_blue_light", [0, 5]],
+        ["newbold_blue_light", [0, 5], "cut a bit here"],
         ["NP2_1", ["8:05", 5], "the talk"],
         ["cwmbran_walls", [0, 4]],
-        ["NP2_1", ["8:14", 511], "the talk"],
+        ["NP2_1", ["8:14", 127], "the talk"],
+        ["NP2_battery_plug", [5, 3]],
+        ["NP2_batterysocket", [0, 3]],
+        ["NP2_1", ["10:27", 126]],
+        ["sapperton", [0, 5]],
+        ["NP2_1", ["12:38", 149]],
+        ["carrying_lisson", [0, 3], "want it at 13:55"],
+        ["NP2_1", ["15:10", 95], "the talk"],
         ["shrewley_entrance", [0, 3]],
-        ["NP2_1", ["16:48", 449], "the talk"],
-        ["NP2_2", [14, 52], "the add-on"]
+        ["NP2_1", ["16:48", 301], "the talk up to turning off the blue light"],
+        ["NP2_2", [15, 51], "the add-on"],
+        ["NP2_1", ["22:24", 62], "starting 21:29... so, they need their electronics..."],
+        ["NP2_electronics", [0, 4]],
+        ["NP2_1", ["23:30", 13], "starting 22:35"],
+        ["highamsPark", [0, 9]],
+        ["HoN", [0, 11]],
+        ["NP2_1", ["24:03", 9]],
+        ["kidderminster", [0, 5]],
+        ["bowFlyover", [0, 4]],
+        ["mcr_1", [0, 4]],
+        ["cwmbran_boat", [0, 4]],
+        ["NP2_1", ["24:29", 33]]
     ],
     "text": {
         "yPos": 80,
@@ -63,7 +87,7 @@
             {
                 "colour": "yellow",
                 "text": "the lateral motor had siezed (dirt in the axle)",
-                "start": "13:00",
+                "start": "12:09",
                 "dur": 6
             }
         ]
