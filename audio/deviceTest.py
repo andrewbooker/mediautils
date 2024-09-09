@@ -18,16 +18,18 @@ sound = []
 sampleRate = 44100
 durSecs = 2
 fHz = 200
+level = 0.5
 
 
 detune = []
 for c in range(channels):
-    detune.append(0.01 * (random.random() * 0.5))
+    detune.append(-0.005 + (0.01 * (random.random() * 0.5)))
 
 for i in range(sampleRate * durSecs):
     sample = []
     for c in range(channels):
-        sample.append(1.0 + (0.5 * (math.sin(i * fHz * (1.0 + detune[c]) * 2 * math.pi / (1.0 * sampleRate)))))
+        v = 1.0 + (0.5 * (math.sin(i * fHz * 2 * math.pi * (1.0 + detune[c]) / (1.0 * sampleRate))))
+        sample.append(v * level)
     sound.append(sample)
 
 sd.default.channels = channels
