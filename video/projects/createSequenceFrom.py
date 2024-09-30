@@ -97,6 +97,7 @@ with open(buildFn, "w") as build:
     build.write(f"workingDir={buildDir}\n\n")
 
     build.write(f"$libDir/buildSequence.py $workingDir/raw $libDir/projects/{d}/sequence.json . 1\n")
+    build.write("if [ $? == 1 ]\nthen\n    exit\nfi\n")
     build.write("./compile.sh\n")
     build.write("./merge.sh\n")
     build.write("#./extractAudio.sh\n")
