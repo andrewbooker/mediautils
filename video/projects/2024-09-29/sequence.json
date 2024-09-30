@@ -1,5 +1,5 @@
 {
-    "projectName": "Musician Leicester",
+    "projectName": "The Musician Leicester",
     "number": 31,
     "aliases": {
         "20240929_200508.mp4": {
@@ -30,14 +30,21 @@
     ],
     "text": {
         "yPos": 800,
-        "colour": "#FF143C",
+        "colour": "white",
         "heading": {
             "start": 8,
-            "dur": 12
+            "dur": 9
         },
         "episode": {
-            "start": 22,
-            "dur": 15
-        }
+            "start": 19,
+            "dur": 9
+        },
+        "commentary": [
+            {
+                "text": "Pre-show for Beatrix Players",
+                "start": 28,
+                "dur": 7
+            }
+        ]
     }
 }
