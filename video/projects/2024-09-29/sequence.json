@@ -1,0 +1,43 @@
+{
+    "projectName": "Musician Leicester",
+    "number": 31,
+    "aliases": {
+        "20240929_200508.mp4": {
+            "name": "G5",
+            "length": 180.60694444444445
+        },
+        "20240929_201932.mp4": {
+            "name": "G5_2"
+        },
+        "2024_0929_192403_003A.MOV": {
+            "name": "apeman",
+            "length": 1500.1666666666667
+        }
+    },
+    "audioSync": {
+        "": 0
+    },
+    "sequence": [
+    	["G5", [0, 64]],
+    	["apeman", [8, 25]],
+    	["G5", ["1:14", 8], "over drums, use direct audio"],
+    	["G5_2", [50, 27], "over drums from corner, to stop"],
+    	["apeman", ["16:58", 10], {"reverse": true}, "restart"],
+    	["G5", ["1:47", 72]]
+    ],
+    "spares": [
+    	["apeman", ["3:28", 12], "me videoing. Could use on fb"]
+    ],
+    "text": {
+        "yPos": 800,
+        "colour": "#FF143C",
+        "heading": {
+            "start": 8,
+            "dur": 12
+        },
+        "episode": {
+            "start": 22,
+            "dur": 15
+        }
+    }
+}
