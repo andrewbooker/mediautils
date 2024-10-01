@@ -15,8 +15,8 @@ headingStart = int(sys.argv[5]) if len(sys.argv) > 5 else 730
 headingSize = 90
 titleSize = int(headingSize * 0.8)
 
-episodeColour = "#5190ff" #"#ff2d00"
-titleColour = "white"   #"#5190ff"
+episodeColour = sys.argv[6] if len(sys.argv) > 6 else "#5190ff" #"#ff2d00"
+titleColour = sys.argv[7] if len(sys.argv) > 7 else "white"   #"#5190ff"
 
 img = Image.open(os.path.join(workingDir, frameFn)).convert("RGB")
 
