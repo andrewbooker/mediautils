@@ -1,0 +1,104 @@
+{
+    "projectName": "Papplewick",
+    "number": 34,
+    "aliases": {
+        "20240930_103507.mp4": {
+            "name": "G5_2",
+            "length": 36.22801111111111
+        },
+        "VID_20240930_102511426.mp4": {
+            "name": "NP2_1",
+            "length": 131.62002222222222
+        },
+        "2024_0930_103138_003.MOV": {
+            "name": "apeman_2",
+            "length": 179.53333333333333
+        },
+        "VID_20240930_113124053.mp4": {
+            "name": "NP2_3",
+            "length": 7.605144444444445
+        },
+        "20240930_104912.mp4": {
+            "name": "G5_3",
+            "length": 1350.2088666666666
+        },
+        "20240930_103101.mp4": {
+            "name": "G5_1",
+            "length": 160.2307888888889
+        },
+        "VID_20240930_104246172.mp4": {
+            "name": "NP2_2",
+            "length": 1741.1298444444444
+        },
+        "2024_0930_100638_002.MOV": {
+            "name": "apeman_1",
+            "length": 1500.2333333333333
+        }
+    },
+    "audioSync": {
+        "": 0
+    },
+    "sequence": [
+        ["NP2_3", [0, 6], "stone steps up"],
+        ["NP2_1", [37, 15], "walk to camera distance background"],
+        ["NP2_1", ["1:54", 3], "walk into entrance"],
+        ["G5_1", [24, 8], "towards and down steps"],
+        ["G5_2", [17, 6], "down steps into reservoir"],
+        ["NP2_2", [17, 14], "setting up, taking out 1st stand"],
+        ["NP2_2", [39, 4], "2nd stand"],
+        ["NP2_2", [57, 10], "mount blue"],
+        ["NP2_2", ["1:16", 11], "mount red"],
+        ["NP2_2", ["1:50", 3], "in place"],
+        ["NP2_2", ["2:46", 6], "in place looking into light, switch-on"],
+        ["apeman_1", ["2:11", 11], "start rotation manually"],
+        ["NP2_2", ["5:56", 22], "sound begins"],
+        ["NP2_2", ["6:33", 15], "facing west, insert G5 after"],
+        ["apeman_1", [1088, 30]],
+        ["NP2_2", [1202, 15]],
+        ["NP2_2", [660, 16]],
+        ["NP2_2", [826, 10]],
+        ["G5_3", [14, 16]],
+        ["G5_3", [37, 5]],
+        ["G5_3", [97, 20]],
+        ["G5_3", [121, 40]],
+        ["G5_3", [187, 40]],
+        ["G5_3", [272, 46]],
+        ["G5_3", [333, 50]],
+        ["G5_3", [417, 14]],
+        ["G5_3", [441, 40]],
+        ["G5_3", [490, 43]],
+        ["G5_3", [543, 18]],
+        ["G5_3", [635, 36], "units mainly not visible, until end"],
+        ["G5_3", [730, 40], "fixed pos, much longer available"],
+        ["G5_3", [988, 25], "closeups"],
+        ["G5_3", [1092, 19]],
+        ["G5_3", [1136, 10]],
+        ["NP2_2", [1563, 35], "finish with walk towards"],
+        ["G5_3", [1221, 5], "stop red"],
+        ["apeman_1", [1464, 4], "walk around red"],
+        ["G5_3", [1311, 10], "walk way from red"],
+        ["NP2_2", [1701, 7], "walking out of view"],
+        ["apeman_2", [6, 4], "final still shot"],
+        ["NP2_2", [1730, 11], "walking towards camera to turn it off"]
+    ],
+    "spares": [
+        ["NP2_2", ["7:01", 34], "facing west, louder"],
+        ["apeman_1", [341, 26]],
+        ["NP2_2", [1428, 23]],
+        ["G5_2", [11, 2], "up steps"],
+        ["NP2_1", ["1:42", 3], "walkaway to camera"],
+        ["NP2_1", [10, 14], "walkaway"]
+    ],
+    "text": {
+        "yPos": 800,
+        "colour": "#FF143C",
+        "heading": {
+            "start": 8,
+            "dur": 12
+        },
+        "episode": {
+            "start": 22,
+            "dur": 15
+        }
+    }
+}
