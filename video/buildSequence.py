@@ -277,7 +277,7 @@ for item in storyboard:
                 sCmd.append("\"%s\"" % os.path.join(rawDir, s))
                 sCmd.append("-t %d" % item["duration"])
 
-                if "splitVerticalWith" in item and i == 0:
+                if ("splitVerticalWith" in item and i == 0) or len(srcs) == 2:
                     sCmd.append(f"-vf \"scale={resolution},crop={horiz / 2}:{vert}:{horiz / 4}:0\"")
                 else:
                     sCmd.append("-vf \"scale=%dx%d\"" % (horiz / 2, vert / 2))
@@ -298,6 +298,8 @@ for item in storyboard:
             if "splitVerticalWith" in item:
                 fc.append("[1][2]vstack[right]")
                 fc.append("[0][right]hstack[out]")
+            elif len(srcs) == 2:
+                fc.append("[0][1]hstack[out]")
             else:
                 fc.append("[0][1]hstack[top]")
                 fc.append("[2][3]hstack[bottom]")
