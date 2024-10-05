@@ -106,6 +106,9 @@ for s in seq:
         if "splitScreenWith" in s[2]:
             item["splitScreenWith"] = s[2]["splitScreenWith"]
             item["clipFn"] = "split_%s" % fn
+        if "splitScreenTimeline" in s[2]:
+            item["splitScreenTimeline"] = s[2]["splitScreenTimeline"]
+            item["clipFn"] = "split_%s" % fn
         if "splitVerticalWith" in s[2]:
             item["splitVerticalWith"] = s[2]["splitVerticalWith"]
             item["clipFn"] = "split_%s" % fn
@@ -181,7 +184,7 @@ def asTime(t):
 cmds = []
 for item in storyboard:
     if not os.path.exists(item["clipFqFn"]):
-        if "splitScreenWith" not in item and "splitVerticalWith" not in item:
+        if "splitScreenWith" not in item and "splitVerticalWith" not in item and "splitScreenTimeline" not in item:
             vf = []
             is_still = ".jpg" in item["file"]
             fileDir = rawDir if not is_still else os.path.join(os.path.dirname(rawDir), "stills")
@@ -252,13 +255,17 @@ for item in storyboard:
 
         else:
             srcs = [item["file"]]
-            primarySync = sync[item["alias"]]
+            primarySync = sync[item["alias"]] if "splitScreenTimeline" not in item else None
             ss = [item["fileStart"]]
-            splits = item["splitScreenWith"] if "splitScreenWith" in item else item["splitVerticalWith"]
+            splits = item["splitScreenWith"] if "splitScreenWith" in item else item["splitVerticalWith"] if "splitVerticalWith" in item else item["splitScreenTimeline"]
             for s in splits:
-                syncKey = s  #.split("_")[0]
-                ss.append(item["fileStart"] + sync[syncKey] - primarySync)
-                srcs.append(aliases[s])
+                if "splitScreenTimeline" not in item:
+                    syncKey = s  #.split("_")[0]
+                    ss.append(item["fileStart"] + sync[syncKey] - primarySync)
+                    srcs.append(aliases[s])
+                else:
+                    srcs.append(item["file"])
+                    ss.append(s)
 
             splitSrcs = []
             for i in range(len(srcs)):
@@ -315,7 +322,7 @@ os.chmod("./compile.sh", 0o777)
 
 #text
 def rgbToHex(rgb):
-	return "0x%s" % "".join(["%02x" % i for i in rgb])
+    return "0x%s" % "".join(["%02x" % i for i in rgb])
 
 number = j["number"]
 
