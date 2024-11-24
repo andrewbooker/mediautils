@@ -1,5 +1,5 @@
 {
-    "projectName": "Papplewick",
+    "projectName": "Papplewick Old Reservoir",
     "number": 34,
     "aliases": {
         "20240930_103507.mp4": {
@@ -68,12 +68,11 @@
         ["G5_3", [368, 18], "still looking north east between pillars, then movement"],
         ["G5_3", [450, 25], { "splitScreenTimeline": [487, 545, 634] }, "walking through crypt (#1 of split 4)"],
         ["G5_3", [522, 8], "good shot looking west, comes after split screen"],
-        ["G5_3", [694, 8], "looking east, on the ground"],
         ["G5_3", [730, 20], "fixed pos, much longer available"],
         ["NP2_2", [1568, 30], "finish with walk towards"],
         ["G5_3", [1221, 5], "stop red"],
         ["apeman_1", [1464, 3], "walk around red"],
-        ["G5_3", [1311, 10], "walk way from red"],
+        ["G5_3", [1314, 7], "walk way from red"],
         ["NP2_2", [1701, 7], "walking out of view"],
         ["NP2_2", ["3:03", 6], { "flip": "h" }, "still"],
         ["NP2_2", [1730, 11], "walking towards camera to turn it off"]
@@ -90,6 +89,7 @@
         ["G5_3", [634, 25], "(#4 of split 4?) units mainly not visible, until end"],
         ["G5_3", [490, 25], "exploratory (#2 of split 4?) ending in blurred view"],
         ["G5_3", [272, 13], "anticlockwise from pillar to straight ahead, fixed shot next?"],
+        ["G5_3", [694, 8], "looking east, on the ground"],
         ["apeman_1", [341, 26]],
         ["apeman_2", [6, 4], "final still shot"],
         ["NP2_2", [1428, 23]],
@@ -98,15 +98,16 @@
         ["NP2_1", [10, 14], "walkaway"]
     ],
     "text": {
-        "yPos": 800,
-        "colour": "#FF143C",
+        "yPos": 840,
+        "colour": "white",
         "heading": {
-            "start": 8,
+            "start": 4,
             "dur": 12
         },
         "episode": {
-            "start": 22,
-            "dur": 15
-        }
+            "start": 23,
+            "dur": 10
+        },
+        "endingTextStart": 11
     }
 }
