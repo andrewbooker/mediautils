@@ -1,0 +1,64 @@
+{
+    "projectName": "Tapton",
+    "number": 35,
+    "aliases": {
+        "20241123_233728.mp4": {
+            "name": "G5",
+            "length": 1016.5298222222223
+        },
+        "VID_20241123_231720456.mp4": {
+            "name": "NP2_1",
+            "length": 9.208033333333333
+        },
+        "VID_20241123_233549134.mp4": {
+            "name": "NP2_2",
+            "length": 776
+        },
+        "2024_1123_235740_002.MOV": {
+            "name": "apeman",
+            "length": 994.8666666666667
+        }
+    },
+    "audioSync": {
+        "": 0
+    },
+    "sequence": [
+        ["NP2_1", [1, 6], "at north portal, car going overhead"],
+        ["apeman", [56, 13], "distance, for heading"],
+        ["apeman", ["5:39", 15], "nearer distance, for title"],
+        ["NP2_2", ["2:09", 45], "first NP2 looking north"],
+        ["apeman", ["6:39", 20], "distance, for heading"],
+        ["NP2_2", ["3:14", 43], "closeup against east wall"],
+        ["apeman", ["7:42", 26]],
+        ["NP2_2", ["4:23", 20], "looking north"],
+        ["G5", ["3:45", 10], "far distance south"],
+        ["NP2_2", ["4:53", 72], "looking north"],
+        ["apeman", ["9:50", 10]],
+        ["NP2_2", ["6:15", 13], "looking north"],
+        ["G5", ["5:30", 6], "middle distance south"],
+        ["NP2_2", ["6:34", 70], "looking north"],
+        ["apeman", ["11:29", 45], "approach and drift-past"],
+        ["G5", ["7:31", 15], "middle distance south"],
+        ["NP2_2", ["8:44", 13], "clamped further north,"],
+        ["G5", [479, 20], "drift-past"],
+        ["NP2_2", ["9:17", 52], "picked up connecting rod, hiding"],
+        ["G5", ["9:11", 12], "at north end"],
+        ["NP2_2", ["10:21", 15], "approach with hook"],
+        ["NP2_2", ["11:20", 4], "lift up blue"],
+        ["NP2_2", ["12:06", 4], "switch off blue"],
+        ["NP2_2", ["12:21", 4], "lift up red"],
+        ["NP2_2", ["12:32", 22], "switch off red, switch off recording and apeman"]
+    ],
+    "text": {
+        "yPos": 800,
+        "colour": "white",
+        "heading": {
+            "start": 8,
+            "dur": 11
+        },
+        "episode": {
+            "start": 22,
+            "dur": 12
+        }
+    }
+}
