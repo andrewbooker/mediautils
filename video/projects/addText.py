@@ -94,7 +94,7 @@ def applyTextTo(vf, spec):
             commentaryColour = commentary["colour"] if "colour" in commentary else masterColour
             writeScrollText(commentary["text"], vf, startFrom(commentary["start"]), int(commentary["dur"]), textBaseX, textBaseY + 50, commentaryColour)
 
-    endingTextStart = totalRunningTime - int(spec["endingTextStart"]) if "endingTextStart" in spec else 13
+    endingTextStart = totalRunningTime - (int(spec["endingTextStart"]) if "endingTextStart" in spec else 13)
     madeByDur = writeScrollText("made by", vf, endingTextStart, 10, textBaseX, textBaseY, madeByColour)
     nameOffSet = 1
     writeText("Andrew Booker", vf, endingTextStart + nameOffSet, madeByDur - nameOffSet, 80, textBaseX, textBaseY + scrollTextSize, madeByColour)
