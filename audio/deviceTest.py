@@ -9,28 +9,42 @@ import random
 print(sd.query_devices())
 
 device = int(sys.argv[1]) if len(sys.argv) > 1 else None
-channels = int(sys.argv[2]) if len(sys.argv) > 1 else 1
+channels = int(sys.argv[2]) if len(sys.argv) > 2 else 1
+level = float(sys.argv[3]) if len(sys.argv) > 3 else 1.0
+
 
 if device is None:
     exit()
 
-use_pg = True
+use_pg = False
 sound = []
 sampleRate = 44100
-durSecs = 2
-fHz = 200
-level = 0.5
+durSecs = 3
+fHz = 220
 
 
 detune = []
 for c in range(channels):
     detune.append(-0.005 + (0.01 * (random.random() * 0.5)))
 
-for i in range(sampleRate * durSecs):
+totalDur = sampleRate * (durSecs + 2.0)
+rampTime = sampleRate * durSecs * 0.25
+rampUpFinish = sampleRate + rampTime
+rampDownStart = totalDur - (sampleRate + rampTime)
+
+for i in range(int(totalDur)):
     sample = []
     for c in range(channels):
-        v = 1.0 + (0.5 * (math.sin(i * fHz * 2 * math.pi * (1.0 + detune[c]) / (1.0 * sampleRate))))
-        sample.append(v * level)
+        if i < sampleRate or i > (sampleRate * (durSecs + 1)):
+            sample.append(0.0)
+        else:
+            v = 1.0 + (0.5 * (math.sin(i * fHz * 2 * math.pi * (1.0 + detune[c]) / (1.0 * sampleRate))))
+            vol = level
+            if i > sampleRate and i < rampUpFinish:
+                vol *= ((i - sampleRate) / rampTime)
+            elif i > rampDownStart and i < (totalDur - sampleRate):
+                vol *= (1.0 - ((i - rampDownStart) / rampTime))
+            sample.append(v * vol)
     sound.append(sample)
 
 print("using device", device)
@@ -40,7 +54,9 @@ if not use_pg:
     sd.default.device = device
 
     sd.play(sound, sampleRate)
+    print("playing")
     time.sleep(len(sound) / (1.0 * sampleRate))
+    print("stopping")
 else:
     import pygame as pg
     import numpy as np
