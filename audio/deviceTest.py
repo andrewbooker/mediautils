@@ -16,7 +16,7 @@ level = float(sys.argv[3]) if len(sys.argv) > 3 else 1.0
 if device is None:
     exit()
 
-use_pg = True
+use_pg = device < 2
 sound = []
 sampleRate = 44100
 durSecs = 3 
@@ -62,22 +62,25 @@ else:
     import pygame as pg
     import numpy
     
+    devices = ["PCM2902 Audio Codec Analog Stereo", "High Definition Audio Controller Digital Stereo (HDMI 2)"]
+    
     print("initialising pygame")
-    pg.init()
     print("initialising mixer")
-    pg.mixer.init(frequency=sampleRate, size=-16, channels=channels, buffer=1024, devicename="HDA NVidia: EP-HDMI-RX (hw:1,7), ALSA (0 in, 8 out)")
+    pg.mixer.pre_init(devicename=devices[device], frequency=sampleRate, size=-16, channels=8, buffer=1024)
+    pg.init()
+    pg.mixer.init()
     pg.mixer.set_num_channels(1) # simultaneous notes
     
     print(len(sound))
     print("converting buffer to byte array")
-    buf = numpy.zeros((len(sound), channels), dtype = numpy.int16)
+    buf = numpy.zeros(len(sound), dtype = numpy.int16)
     max_sample = 2**(16 - 1) - 1
+    print(max_sample)
     for s in range(len(sound)):
         for c in range(channels):
-            buf[s][c] = int(max_sample * sound[s][c])
+            buf[s] = int(max_sample * sound[s][c])
     
     print(len(buf))
-    print(len(buf[0]))
     print("creating pg sound")
     pgs = pg.mixer.Sound(array=buf)    
     print("selecting a channel")
