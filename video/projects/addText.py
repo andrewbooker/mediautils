@@ -58,7 +58,7 @@ def writeScrollText(what, vf, startAt, readingTime, x, y, colour):
 def applyTextTo(vf, spec):
     masterColour = spec["colour"] if "colour" in spec else "white"
     madeByColour = spec["madeBy"]["colour"] if "madeBy" in spec and "colour" in spec["madeBy"] else masterColour
-    textBaseY = spec["yPos"]
+    textBaseY = spec["yPos"] if "yPos" in spec else 60 
     totalRunningTime = spec["tt"]
     readingTime = 9
 
@@ -91,8 +91,9 @@ def applyTextTo(vf, spec):
 
     if "commentary" in spec:
         for commentary in spec["commentary"]:
+            baseY = commentary["yPos"] if "yPos" in commentary else textBaseY
             commentaryColour = commentary["colour"] if "colour" in commentary else masterColour
-            writeScrollText(commentary["text"], vf, startFrom(commentary["start"]), int(commentary["dur"]), textBaseX, textBaseY + 50, commentaryColour)
+            writeScrollText(commentary["text"], vf, startFrom(commentary["start"]), int(commentary["dur"]), textBaseX, baseY + 50, commentaryColour)
 
     endingTextStart = totalRunningTime - (int(spec["endingTextStart"]) if "endingTextStart" in spec else 13)
     madeByDur = writeScrollText("made by", vf, endingTextStart, 10, textBaseX, textBaseY, madeByColour)

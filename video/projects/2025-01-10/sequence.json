@@ -1,0 +1,95 @@
+{
+    "projectName": "EngineHouseSiteVisit",
+    "number": 0,
+    "aliases": {
+        "VID_20250110_135013018.mp4": {
+            "name": "NP2_1",
+            "length": 8.586333333333334
+        },
+        "VID_20250112_134331427.mp4": {
+            "name": "NP2_2"
+        },
+        "VID_20250111_153358948.mp4": {
+            "name": "NP2_3",
+            "length": 222.91285555555555
+        },
+        "VID_20250110_133823419.mp4": {
+            "name": "NP2_4",
+            "length": 5.513988888888889
+        },
+        "VID_20250110_125842632.mp4": {
+            "name": "NP2_5",
+            "length": 9.31928888888889
+        },
+        "VID_20250110_133830288.mp4": {
+            "name": "NP2_6",
+            "length": 16.411966666666668
+        },
+        "VID_20250110_134837633.mp4": {
+            "name": "NP2_7",
+            "length": 15.315677777777777
+        },
+        "VID_20250110_125733728.mp4": {
+            "name": "NP2_8",
+            "length": 54.24911111111111
+        },
+        "VID_20250110_133729002.mp4": {
+            "name": "NP2_9",
+            "length": 29.8001
+        },
+        "VID_20250110_134948649.mp4": {
+            "name": "NP2_10",
+            "length": 11.880755555555556
+        },
+        "VID_20250110_134646513.mp4": {
+            "name": "NP2_11",
+            "length": 11.095600000000001
+        },
+        "VID_20250110_134407010.mp4": {
+            "name": "NP2_12",
+            "length": 9.700422222222223
+        },
+        "hanging.mp4": {
+            "name": "hanging"
+        }
+    },
+    "audioSync": {
+        "": 0
+    },
+    "sequence": [
+        ["NP2_2", [32, 14], "intro"],
+        ["NP2_12", [0, 5], "road entrance"],
+        ["NP2_7", [1, 4], "from bottom of car park"],
+        ["NP2_10", [0, 5], "from west"],
+        ["NP2_5", [0, 8], "wide inside, bikes and desks"],
+        ["NP2_8", [5, 25], "closer to i-beams"],
+        ["NP2_8", [38, 13], "closer to i-beams"],
+        ["NP2_2", ["2:43", 25], "continue with talk"],
+        ["hanging", [11, 20]],
+        ["NP2_2", ["3:16", 118], "continue with talk"],
+        ["hanging", [149, 35]]
+    ],
+    "text": {
+        "colour": "white",
+        "commentary": [
+            {
+                "yPos": 700,
+                "text": "Engine House, 2 Forest Road, London N17 9NH",
+                "start": "2:55",
+                "dur": 20
+            },
+            {
+                "yPos": 780,
+                "text": "02 Feb 2025 from 10:30am to 3:30pm",
+                "start": "3:00",
+                "dur": 15
+            },
+            {
+                "yPos": 860,
+                "text": "Free admission",
+                "start": "3:05",
+                "dur": 10
+            }
+        ]
+    }
+}
