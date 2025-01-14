@@ -59,11 +59,11 @@
     "sequence": [
         ["NP2_2", [32, 14], "intro"],
         ["NP2_12", [0, 5], "road entrance"],
-        ["NP2_7", [1, 4], "from bottom of car park"],
+        ["NP2_7", [1, 5], "from bottom of car park"],
         ["NP2_10", [0, 5], "from west"],
-        ["NP2_5", [0, 8], "wide inside, bikes and desks"],
-        ["NP2_8", [5, 25], "closer to i-beams"],
-        ["NP2_8", [38, 13], "closer to i-beams"],
+        ["NP2_5", [0, 9], "wide inside, bikes and desks"],
+        ["NP2_8", [5, 24], "closer to i-beams"],
+        ["NP2_8", [38, 12], "closer to i-beams"],
         ["NP2_2", ["2:43", 25], "continue with talk"],
         ["hanging", [11, 20]],
         ["NP2_2", ["3:16", 118], "continue with talk"],
@@ -79,16 +79,22 @@
                 "dur": 20
             },
             {
-                "yPos": 780,
-                "text": "02 Feb 2025 from 10:30am to 3:30pm",
-                "start": "3:00",
-                "dur": 15
+                "yPos": 770,
+                "text": "02 Feb 2025",
+                "start": "2:59",
+                "dur": 16
             },
             {
-                "yPos": 860,
+                "yPos": 840,
+                "text": "10.30am to 3.30pm",
+                "start": "3:03",
+                "dur": 12
+            },
+            {
+                "yPos": 910,
                 "text": "Free admission",
-                "start": "3:05",
-                "dur": 10
+                "start": "3:07",
+                "dur": 8
             }
         ]
     }
