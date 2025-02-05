@@ -1,0 +1,102 @@
+{
+    "projectName": "The Engine House",
+    "number": 36,
+    "aliases": {
+        "20250202_111858.mp4": {
+            "name": "20250202_111858",
+            "length": 820.8680555555555
+        },
+        "VID_20250202_110630352.mp4": {
+            "name": "NP2_1",
+            "length": 184.5458111111111
+        },
+        "VID_20250202_111403755.mp4": {
+            "name": "NP2_2",
+            "length": 101.88897777777778
+        },
+        "VID_20250202_152330532.mp4": {
+            "name": "NP2_3",
+            "length": 49.76553333333334
+        },
+        "20250202_100006.mp4": {
+            "name": "G5_1",
+            "length": 898.3971888888889
+        },
+        "VID_20250202_134227398.mp4": {
+            "name": "NP2_4",
+            "length": 50.49693333333333
+        },
+        "VID_20250202_131913032.mp4": {
+            "name": "NP2_5",
+            "length": 20.563666666666666
+        },
+        "20250202_113340.mp4": {
+            "name": "20250202_113340",
+            "length": 64.59544444444445
+        },
+        "20250202_102329.mp4": {
+            "name": "G5_long",
+            "length": 1844.1825444444444
+        },
+        "VID_20250202_112003510.mp4": {
+            "name": "NP2_6",
+            "length": 835.3495333333333
+        },
+        "VID_20250202_111550188.mp4": {
+            "name": "NP2_7",
+            "length": 47.024966666666664
+        },
+        "VID_20250202_142251352.mp4": {
+            "name": "NP2_8",
+            "length": 26.01201111111111
+        },
+        "VID_20250202_152137559.mp4": {
+            "name": "NP2_9",
+            "length": 27.056677777777775
+        },
+        "VID_20250202_152548036.mp4": {
+            "name": "NP2_10",
+            "length": 40.298
+        },
+        "VID_20250202_111659204.mp4": {
+            "name": "NP2_11",
+            "length": 88.6338
+        },
+        "2025_0202_134644_009.MOV": {
+            "name": "2025_0202_134644_009",
+            "length": 1500.2333333333333
+        }
+    },
+    "audioSync": {
+        "": 0
+    },
+    "sequence": [
+        ["NP2_5", [10, 9], "chimney sweeping down"],
+        ["G5_long", ["28:36", 14], "setting out postcards"],
+        ["NP2_6", [1, 30], "looking north west, goes on for 5 mins"],
+        ["NP2_6", ["5:11", 30], "looking upwards west, goes on for 3 mins"],
+        ["NP2_6", ["8:35", 30], "looking upwards south, goes on for 2 mins"],
+        ["NP2_6", ["12:05", 30], "looking straight upwards west, goes on for 2 mins to the end"],
+        ["NP2_2", [45, 15], "phone vidoer"],
+        ["NP2_8", [1, 24], "grainy, against sun"],
+        ["NP2_4", [35, 13], "Stubbsy, James & Sophie"],
+        ["NP2_9", [9, 17], "bright sunlight, 16:21, Charles visible"],
+        ["NP2_10", [5, 35]]
+    ],
+    "spares": [
+        ["NP2_1", [0, 142]],
+        ["NP2_3", [0, 49], "last sunlight"]
+    ],
+    "text": {
+        "yPos": 80,
+        "colour": "#FF143C",
+        "heading": {
+            "start": 3,
+            "dur": 12
+        },
+        "episode": {
+            "start": 16,
+            "dur": 15
+        }
+    }
+}
