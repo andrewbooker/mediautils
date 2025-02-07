@@ -72,11 +72,10 @@
     },
     "sequence": [
         ["NP2_5", [10, 9], "chimney sweeping down"],
-        ["G5_long", ["28:36", 14], "setting out postcards"],
         ["NP2_6", [1, 30], "looking north west, goes on for 5 mins"],
         ["NP2_6", ["5:11", 30], "looking upwards west, goes on for 3 mins"],
         ["NP2_6", ["8:35", 30], "looking upwards south, goes on for 2 mins"],
-        ["NP2_6", ["12:05", 30], "looking straight upwards west, goes on for 2 mins to the end"],
+        ["NP2_6", ["12:05", 44], "looking straight upwards west, goes on for 2 mins to the end"],
         ["NP2_2", [45, 15], "phone vidoer"],
         ["NP2_8", [1, 24], "grainy, against sun"],
         ["NP2_4", [35, 13], "Stubbsy, James & Sophie"],
@@ -85,17 +84,18 @@
     ],
     "spares": [
         ["NP2_1", [0, 142]],
-        ["NP2_3", [0, 49], "last sunlight"]
+        ["NP2_3", [0, 49], "last sunlight"],
+        ["G5_long", ["28:36", 14], "setting out postcards"]
     ],
     "text": {
         "yPos": 80,
-        "colour": "#FF143C",
+        "colour": "#A0FFA0",
         "heading": {
-            "start": 3,
+            "start": 1,
             "dur": 12
         },
         "episode": {
-            "start": 16,
+            "start": 14,
             "dur": 15
         }
     }

@@ -8,7 +8,11 @@ rawDir = sys.argv[1]
 seqFn = sys.argv[2]
 baseOutDir = sys.argv[3]
 loRes = bool(sys.argv[4]) if len(sys.argv) > 4 else False
+hiRes = True
 resolution = "768x432" if loRes else "1920x1080"
+if hiRes:
+    resolution = "3840x2160"
+
 horiz = int(resolution.split("x")[0])
 vert = int(resolution.split("x")[1])
 
@@ -179,7 +183,7 @@ from projects.addText import writeSmallText
 import math
 
 def asTime(t):
-    return "%02d\:%02d" % (math.floor(t / 60), t % 60)
+    return f"{int(t / 60):02d}:{int(t % 60):02d}"
 
 cmds = []
 for item in storyboard:
@@ -366,5 +370,5 @@ with open("./toStoryboard.sh", "w") as cf:
     for s in storyboard:
         startAsTime = str(datetime.timedelta(seconds=int(s["seqStart"])))[-4:].replace(":", "-")
         fn = "%d_%s_%s_%d_%d.bmp" % (s["seqStart"], startAsTime, s["alias"], s["fileStart"], s["duration"])
-        cf.write("ffmpeg -i %s -vf \"select=eq(n\,0)\" -vframes 1 %s\n" % (s["clipFqFn"], os.path.join(storyboardDir, fn)))
+        cf.write("ffmpeg -i %s -vf \"select=eq(n\\,0)\" -vframes 1 %s\n" % (s["clipFqFn"], os.path.join(storyboardDir, fn)))
 os.chmod("./toStoryboard.sh", 0o777)
