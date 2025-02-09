@@ -7,12 +7,16 @@ import json
 rawDir = sys.argv[1]
 seqFn = sys.argv[2]
 baseOutDir = sys.argv[3]
-loRes = bool(sys.argv[4]) if len(sys.argv) > 4 else False
-hiRes = True
-resolution = "768x432" if loRes else "1920x1080"
-if hiRes:
-    resolution = "3840x2160"
 
+res_options = [
+    "1920x1080",
+    "768x432",
+    "3840x2160"
+]
+
+res = int(sys.argv[4]) if len(sys.argv) > 4 else 0
+loRes = res == 1
+resolution = res_options[res]
 horiz = int(resolution.split("x")[0])
 vert = int(resolution.split("x")[1])
 
