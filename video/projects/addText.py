@@ -102,6 +102,6 @@ def applyTextTo(vf, spec):
 
 def applyFadeTo(vf, totalRunningTime):
     fade_in = 1
-    fade_out = 1
+    fade_out = 10
     vf.append(f"fade=type=in:duration={fade_in},fade=type=out:duration={fade_out}:start_time={totalRunningTime - fade_out}")
 

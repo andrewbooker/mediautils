@@ -76,19 +76,19 @@
         ["NP2_6", ["5:11", 30], "looking upwards west, goes on for 3 mins"],
         ["NP2_6", ["8:35", 30], "looking upwards south, goes on for 2 mins"],
         ["NP2_6", ["12:05", 44], "looking straight upwards west, goes on for 2 mins to the end"],
-        ["NP2_2", [45, 15], "phone videoer"],
+        ["NP2_2", [45, 15], "phone vidoer"],
         ["NP2_8", [1, 24], "grainy, against sun"],
         ["NP2_4", [35, 13], "Stubbsy, James & Sophie"],
-        ["NP2_3", [0, 40], "last sunlight"],
-        ["NP2_9", [9, 12], "bright sunlight people, Charles visible"]
+        ["NP2_9", [9, 17], "bright sunlight, 16:21, Charles visible"],
+        ["NP2_3", [0, 35], "last sunlight"]
     ],
     "spares": [
         ["NP2_1", [0, 142]],
         ["G5_long", ["28:36", 14], "setting out postcards"]
     ],
     "text": {
-        "yPos": 100,
-        "colour": "yellow",
+        "yPos": 1800,
+        "colour": "green",
         "heading": {
             "start": 1,
             "dur": 12
