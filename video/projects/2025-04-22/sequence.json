@@ -1,0 +1,113 @@
+{
+    "projectName": "Kew Bridge Water and Steam Museum",
+    "number": 37,
+    "aliases": {
+        "20250422_115223.mp4": {
+            "name": "G5",
+            "length": 2000.0312000000001
+        },
+        "gopro.mp4": {
+            "name": "gopro"
+        },
+        "GX050004.MP4": {
+            "name": "gopro2"
+        },
+        "2025_0422_115654_009A.MOV": {
+            "name": "2025_0422_115654_009A",
+            "length": 284.6
+        },
+        "VID_20250422_130340875.mp4": {
+            "name": "NP2_1",
+            "length": 6.5463
+        },
+        "2025_0422_113154_008A.MOV": {
+            "name": "2025_0422_113154_008A",
+            "length": 1500.1333333333334
+        },
+        "VID_20250422_130348738.mp4": {
+            "name": "upperfloor",
+            "length": 36.84061111111111
+        },
+        "2025_0422_112422_002A.MOV": {
+            "name": "2025_0422_112422_002A",
+            "length": 146.0
+        },
+        "VID_20250422_112544447.mp4": {
+            "name": "walkin2",
+            "length": 40.73508888888889
+        },
+        "VID_20250422_112901653.mp4": {
+            "name": "NP2_4",
+            "length": 47.90035555555556
+        },
+        "20250422_122547.mp4": {
+            "name": "20250422_122547",
+            "length": 822.6075777777778
+        },
+        "VID_20250422_114418436.mp4": {
+            "name": "shoot",
+            "length": 2499.3413666666665
+        },
+        "VID_20250422_112420017.mp4": {
+            "name": "walkin1",
+            "length": 65.39578888888889
+        },
+        "VID_20250422_110457159.mp4": {
+            "name": "outside",
+            "length": 14.185344444444445
+        },
+        "VID_20250422_112655502.mp4": {
+            "name": "lookover",
+            "length": 63.43224444444444
+        }
+    },
+    "audioSync": {
+        "": 0
+    },
+    "sequence": [
+        ["outside", [0, 10]],
+        ["walkin1", [38, 10]],
+        ["walkin2", [18, 12]],
+        ["lookover", [28, 4]],
+        ["shoot", ["9:11", 34]],
+        ["G5", ["2:18", 11], "ends anticlocwise horns west"],
+        ["shoot", ["10:44", 10], "starts anticlocwise horns west, ends facing east"],
+        ["G5", ["3:42", 12], "ends facing west"],
+        ["shoot", ["11:40", 18]],
+        ["G5", ["6:55", 31], "water level approaching from west"],
+        ["shoot", ["14:53", 108]],
+        ["gopro", ["18:06", 90]],
+        ["shoot", ["18:33", 22]],
+        ["G5", ["11:28", 15]],
+        ["shoot", ["19:12", 33]],
+        ["G5", ["12:18", 44], "in final position"],
+        ["shoot", ["20:29", 63], "from stairs"],
+        ["G5", ["14:05", 16]],
+        ["gopro", ["23:12", 10]],
+        ["shoot", ["22:31", 20], "on ground floor"],
+        ["upperfloor", [19, 17]],
+        ["shoot", ["23:34", 52], "directly above (split with G5 16:07?)"],
+        ["G5", ["16:59", 180], "very long period that could be multiplexed, runs all the way to the end basically"],
+        ["shoot", ["27:26", 154], "very long period that could be multiplexed"],
+        ["G5", ["22:31", 40]],
+        ["shoot", ["30:38", 22], "above from stairs"],
+        ["G5", ["23:34", 4]],
+        ["shoot", ["31:13", 79], "above from stairs wide angle"],
+        ["gopro", ["41:14", 6], "taking off apeman"],
+        ["shoot", ["40:06", 3]],
+        ["gopro2", ["20", 6]],
+        ["walkin2", [8, 8]]
+    ],
+    "text": {
+        "yPos": 800,
+        "colour": "#FF143C",
+        "heading": {
+            "start": 8,
+            "dur": 12
+        },
+        "episode": {
+            "start": 22,
+            "dur": 15
+        }
+    }
+}
