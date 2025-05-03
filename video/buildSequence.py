@@ -187,7 +187,7 @@ from projects.addText import writeSmallText
 import math
 
 def asTime(t):
-    return f"{int(t / 60):02d}:{int(t % 60):02d}"
+    return f"{int(t / 60):02d}\:{int(t % 60):02d}"
 
 cmds = []
 for item in storyboard:
