@@ -21,7 +21,7 @@
             "length": 6.5463
         },
         "2025_0422_113154_008A.MOV": {
-            "name": "2025_0422_113154_008A",
+            "name": "apeman",
             "length": 1500.1333333333334
         },
         "VID_20250422_130348738.mp4": {
@@ -59,6 +59,9 @@
         "VID_20250422_112655502.mp4": {
             "name": "lookover",
             "length": 63.43224444444444
+        },
+        "cropped_above_right_with_flip.mp4": {
+            "name": "cropped_above_right"
         }
     },
     "audioSync": {
@@ -66,26 +69,30 @@
     },
     "sequence": [
         ["outside", [0, 10]],
-        ["walkin1", [40, 7]],
+        ["walkin1", [41, 6]],
         ["walkin2", [18, 12]],
         ["lookover", [28, 4]],
         ["shoot", ["9:26", 20]],
-        ["G5", ["16:41", 30]],
-        ["shoot", ["19:42", 10]],
-        ["shoot", ["23:34", 52], "directly above (split with G5 16:07?)"],
-        ["shoot", ["19:42", 10]],
-        ["shoot", ["5:33", 56]],
-        ["shoot", ["20:59", 33], "from stairs"],
-        ["shoot", ["16:01", 18], "from west"],
-        ["shoot", ["25:55", 10], "from far west"],
+        ["G5", ["16:41", 21]],
+        ["shoot", ["23:35", 49], "directly above (split with G5 16:07?)"],
+        ["shoot", ["25:28", 7], "joins up well with next"],
+        ["shoot", ["18:35", 17]],
+        ["cropped_above_right", [8, 17], {"splitScreenTimeline": [125, 89, 160]}],
+        ["shoot", ["21:11", 19], "from stairs"],
+        ["shoot", ["18:48", 8], "from west"],
+        ["shoot", ["25:54", 11], "from far west"],
+        ["apeman", ["12:10", 19]],
         ["shoot", ["30:50", 14], "above from stairs"],
-        ["shoot", ["32:14", 14], "coming to rest"],
+        ["G5", ["11:38", 9]],
+        ["shoot", ["32:12", 15], "coming to rest"],
         ["gopro", ["41:16", 4], "taking off apeman"],
-        ["shoot", ["40:06", 3]],
-        ["gopro2", [15, 7]],
+        ["shoot", ["40:06", 4]],
+        ["gopro2", [15, 6]],
         ["walkin2", [8, 8]]
     ],
     "spare": [
+        ["apeman", ["10:38", 12]],
+        ["shoot", ["19:12", 31]],
         ["shoot", ["22:31", 20], "on ground floor"],
         ["upperfloor", [19, 17]],
         ["G5", ["2:18", 11], "ends anticlocwise horns west"],
