@@ -60,9 +60,10 @@
             "name": "lookover",
             "length": 63.43224444444444
         },
-        "cropped_above_right_with_flip.mp4": {
-            "name": "cropped_above_right"
-        }
+        "prepared_split1.mp4": {
+            "name": "prepared_split1"
+        },
+        "prepared_gropro_split_3210_240.mp4": { "name": "prepared_gropro_split_3210_240" }
     },
     "audioSync": {
         "": 0
@@ -77,7 +78,7 @@
         ["shoot", ["23:35", 49], "directly above (split with G5 16:07?)"],
         ["shoot", ["25:28", 7], "joins up well with next"],
         ["shoot", ["18:35", 17]],
-        ["cropped_above_right", [8, 17], {"splitScreenTimeline": [125, 89, 160]}],
+        ["prepared_split1", [0, 17]],
         ["shoot", ["21:11", 19], "from stairs"],
         ["shoot", ["18:48", 8], "from west"],
         ["shoot", ["25:54", 11], "from far west"],
