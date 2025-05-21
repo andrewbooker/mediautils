@@ -1,0 +1,60 @@
+{
+    "projectName": "One hour of sonic meditation in the Scout Tunnel",
+    "number": 38,
+    "aliases": {
+        "2024_0223_125450_002A.MOV": {
+            "name": "apeman_1",
+            "length": 1500.2666666666667
+        },
+        "2024_0223_131951_003A.MOV": {
+            "name": "apeman_2",
+            "length": 935.5
+        },
+        "VID_20240223_120647900.mp4": {
+            "name": "NP2_1",
+            "length": 8.703866666666666
+        },
+        "VID_20240223_121308809.mp4": {
+            "name": "NP2_2",
+            "length": 7.102966666666667
+        },
+        "VID_20240223_130245456.mp4": {
+            "name": "NP2_3",
+            "length": 1487.2857111111111
+        },
+        "NORM0002.MP4": {
+            "name": "dragon"
+        }
+    },
+    "audioSync": {
+        "NP2_3": 0,
+        "audioMixdown": 0
+    },
+    "sequence": [
+        ["apeman_1", ["17:30", 54], "blank, approaching from north"],
+        ["apeman_1", ["12:48", 72], "excellent lit view from north"],
+        ["apeman_1", ["18:48", 134], "approaching from north then disappearing out of view"],
+        ["apeman_1", ["21:30", 165], "approaching from north until camera swivelled, lens wet"],
+        ["apeman_1", ["24:19", 41], "drifting leftwards"],
+        ["apeman_2", [0, 28], "left drift continued"],
+        ["apeman_2", [42, 78]],
+        ["apeman_2", ["4:46", 145]],
+        ["dragon", ["4:35", 770], "just after manoeuvring"],
+        ["apeman_2", ["3:08", 22]],
+        ["NP2_3", ["10:04", 86], "clamped to rail facing north, only cut at 86 because I got in the way of the north tunnel portal"],
+        ["dragon", ["17:31", 256], "just after manoeuvring"],
+        ["NP2_3", ["10:36", 96], "clamped to rail facing north, continued"]
+    ],
+    "text": {
+        "yPos": 800,
+        "colour": "white",
+        "heading": {
+            "start": 2,
+            "dur": 9
+        },
+        "episode": {
+            "start": 12,
+            "dur": 9
+        }
+    }
+}
