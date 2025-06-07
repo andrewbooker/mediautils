@@ -13,14 +13,22 @@
         "VID_20250521_175032657.mp4": {
             "name": "NP2_3",
             "length": 260.08714444444445
-        }
+        },
+        "engine_house.mp4": { "name": "engine_house" },
+        "engine_house_observer.mp4": { "name": "engine_house_observer" },
+        "engine_house_outside.mp4": { "name": "engine_house_outside" }
     },
     "audioSync": {
         "": 0
     },
     "sequence": [
-        ["NP2_1", [20, 1], "intro"],
-        ["NP2_1", [21, 351], "intro"],
+        ["NP2_1", [20, 12], "intro"],
+        ["engine_house", [0, 5]],
+        ["NP2_1", [37, 113], "intro"],
+        ["engine_house_observer", [0, 5]],
+        ["NP2_1", [155, 15], "intro"],
+        ["engine_house_outside", [0, 3]],
+        ["NP2_1", [173, 199], "intro"],
         ["NP2_2", [1, 289], "screen"],
         ["NP2_3", [14, 245]]
     ]
