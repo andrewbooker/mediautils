@@ -1,0 +1,68 @@
+{
+    "projectName": "Woodbridge Ambient Music Festival Friday 19 Sep 2025",
+    "number": 40,
+    "aliases": {
+        "VID_20250919_193353848.mp4": {
+            "name": "NP2_1",
+            "length": 23.71978888888889
+        },
+        "VID_20250919_191835934.mp4": {
+            "name": "NP2_2",
+            "length": 64.78093333333334
+        },
+        "ZOOM0027.MOV": {
+            "name": "zoom",
+            "length": 2225.223
+        },
+        "2025_0919_203444_002A.MOV": {
+            "name": "apeman1",
+            "length": 1500.2333333333333
+        },
+        "2025_0919_205944_003A.MOV": {
+            "name": "apeman2",
+            "length": 1230.5
+        },
+        "VID_20250919_192359488.mp4": {
+            "name": "NP2_3",
+            "length": 17.2425
+        },
+        "VID_20250919_193157088.mp4": {
+            "name": "NP2_4",
+            "length": 34.464911111111114
+        },
+        "VID_20250919_190554712.mp4": {
+            "name": "NP2_5",
+            "length": 92.99316666666667
+        }
+    },
+    "audioSync": {
+        "": 0
+    },
+    "sequence": [
+        ["zoom", ["11:05", 15], "me coming into view videoing"],
+        ["apeman1", [0, 21], "putting into position"],
+        ["NP2_5", [29, 60], "looking over the river"],
+        ["NP2_2", [12, 50], "river and people, darker"],
+        ["apeman1", ["11:48", 20], "from below, me talking"],
+        ["zoom", [27, 40], "looking north"],
+        ["zoom", ["12:12", 10], "looking east"],
+        ["NP2_3", [0, 16], "darker, red one stopped spinning, me talking"],
+        ["NP2_4", [2, 10], "stopped, darker looking south"],
+        ["NP2_4", [27, 6], "stopped, darker looking south into venue"],
+        ["NP2_1", [1, 10], "stopped, looking north"],
+        ["zoom", ["22:48", 10], "dark closeup, my hand adjusts"],
+        ["zoom", ["25:20", 35], { "multiplySpeed": 10 }, "timelapse to the end"]
+    ],
+    "text": {
+        "yPos": 800,
+        "colour": "#FF143C",
+        "heading": {
+            "start": 8,
+            "dur": 12
+        },
+        "episode": {
+            "start": 22,
+            "dur": 15
+        }
+    }
+}
