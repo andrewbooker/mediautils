@@ -45,13 +45,17 @@
         ["NP2_2", [12, 50], "river and people, darker"],
         ["apeman1", ["11:48", 20], "from below, me talking"],
         ["zoom", [27, 40], "looking north"],
-        ["zoom", ["12:12", 10], "looking east"],
+        ["zoom", ["15:01", 20], "looking east, red one stops"],
         ["NP2_3", [0, 16], "darker, red one stopped spinning, me talking"],
         ["NP2_4", [2, 10], "stopped, darker looking south"],
         ["NP2_4", [27, 6], "stopped, darker looking south into venue"],
         ["NP2_1", [1, 10], "stopped, looking north"],
         ["zoom", ["22:48", 10], "dark closeup, my hand adjusts"],
         ["zoom", ["25:20", 35], { "multiplySpeed": 10 }, "timelapse to the end"]
+    ],
+    "spare": [
+        ["apeman1", ["3:07", 20], { "multiplySpeed": 60 }, "from below, me talking"],
+        ["zoom", ["12:18", 10], "looking east"]
     ],
     "text": {
         "yPos": 800,
