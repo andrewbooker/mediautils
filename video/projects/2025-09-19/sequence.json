@@ -1,5 +1,5 @@
 {
-    "projectName": "Woodbridge Ambient Music Festival Friday 19 Sep 2025",
+    "projectName": "Woodbridge Ambient Music Festival",
     "number": 40,
     "aliases": {
         "VID_20250919_193353848.mp4": {
@@ -68,14 +68,23 @@
     ],
     "text": {
         "yPos": 800,
-        "colour": "#FF143C",
+        "colour": "white",
         "heading": {
-            "start": 8,
+            "start": 3,
             "dur": 12
         },
         "episode": {
-            "start": 22,
-            "dur": 15
-        }
+            "start": 16,
+            "dur": 12
+        },
+        "commentary": [
+            {
+                "yPos": 800,
+                "colour": "white",
+                "text": "Friday 19 Sep 2025",
+                "start": "0:29",
+                "dur": 9
+            }
+        ]
     }
 }
