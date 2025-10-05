@@ -42,12 +42,16 @@
         "": 0
     },
     "sequence": [
-        ["NP2_1", [3, 5], "east portal"],
-        ["apeman_setup", [37, 9], "attach blue"],
-        ["apeman_setup", [50, 10], "attach red"],
+        ["NP2_1", [5, 8], "east portal"],
+        ["apeman_setup", [38, 8], "attach blue"],
+        ["apeman_setup", [54, 6], "attach red"],
         ["zoom", [10, 4], "switch-on"],
-        ["apeman", ["1:42", 4], "blue starts turning and stops"],
-        ["zoom", ["2:49", 60], "both start turning"],
+        ["apeman", ["1:42", 7], "blue starts turning and stops"],
+        ["zoom", ["2:51", 30], "both start turning"],
+        ["apeman", ["2:24", 30]],
+        ["apeman", ["2:54", 30], { "splitScreenWith": ["zoom"] }],
+        ["zoom", ["15:41", 30], "other angle"],
+        ["zoom", ["17:17", 30], "other other angle, red dying"],
         ["NP2_2", [0, 6], "west portal"],
         ["NP2_2", [7, 80], { "splitScreenWith": ["zoom", "apeman", "G5"] }],
         ["NP2_3", [12, 16], "handheld in the stream"], 
@@ -55,7 +59,7 @@
     ],
     "text": {
         "yPos": 800,
-        "colour": "#FF143C",
+        "colour": "white",
         "heading": {
             "start": 8,
             "dur": 12
