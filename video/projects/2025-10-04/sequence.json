@@ -1,0 +1,68 @@
+{
+    "projectName": "Barclay Park",
+    "number": 41,
+    "aliases": {
+        "2025_1004_125131_002.MOV": {
+            "name": "apeman_setup",
+            "length": 231.66666666666666
+        },
+        "ZOOM0027.MOV": {
+            "name": "zoom",
+            "sync": 759.5,
+            "length": 1319.318
+        },
+        "20251004_125858.mp4": {
+            "name": "G5",
+            "length": 151.44006666666667
+        },
+        "VID_20251004_123204590.mp4": {
+            "name": "NP2_1",
+            "length": 14.318244444444446
+        },
+        "2025_1004_125610_002A.MOV": {
+            "name": "apeman",
+            "length": 1351.2
+        },
+        "VID_20251004_130221989.mp4": {
+            "name": "NP2_2",
+            "length": 197.58553333333333
+        },
+        "VID_20251004_130900733.mp4": {
+            "name": "NP2_3",
+            "length": 31.484277777777777
+        }
+    },
+    "sync": {
+        "NP2_2": 97.8,
+        "zoom": 759.5,
+        "apeman": 704,
+        "G5": 96.0
+    },
+    "audioSync": {
+        "": 0
+    },
+    "sequence": [
+        ["NP2_1", [3, 5], "east portal"],
+        ["apeman_setup", [37, 9], "attach blue"],
+        ["apeman_setup", [50, 10], "attach red"],
+        ["zoom", [10, 4], "switch-on"],
+        ["apeman", ["1:42", 4], "blue starts turning and stops"],
+        ["zoom", ["2:49", 60], "both start turning"],
+        ["NP2_2", [0, 6], "west portal"],
+        ["NP2_2", [7, 80], { "splitScreenWith": ["zoom", "apeman", "G5"] }],
+        ["NP2_3", [12, 16], "handheld in the stream"], 
+        ["NP2_2", ["1:49", 80], "middle to exit"]
+    ],
+    "text": {
+        "yPos": 800,
+        "colour": "#FF143C",
+        "heading": {
+            "start": 8,
+            "dur": 12
+        },
+        "episode": {
+            "start": 22,
+            "dur": 15
+        }
+    }
+}
