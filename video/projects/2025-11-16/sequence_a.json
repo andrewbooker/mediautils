@@ -1,0 +1,44 @@
+{
+    "projectName": "New River at night",
+    "number": 41,
+    "aliases": {
+        "2025_1116_215036_002A.MOV": {
+            "name": "2025_1116_215036_002A",
+            "length": 472.56666666666666
+        },
+        "ZOOM0027.MOV": {
+            "name": "zoom",
+            "length": 328.32800000000003
+        },
+        "VID_20251116_204512270.mp4": {
+            "name": "NP2_1",
+            "length": 433.6032
+        },
+        "VID_20251116_203443376.mp4": {
+            "name": "NP2_2",
+            "length": 11.258877777777778
+        }
+    },
+    "audioSync": {
+        "": 0
+    },
+    "sequence": [
+        ["NP2_2", [0, 10], "road"],
+        ["NP2_1", [48, 10], "lit unit into water"],
+        ["NP2_1", ["1:35", 25], "looking west, floating under bridge"],
+        ["zoom", [36, 20], "lowered into the water then drifting off"],
+        ["NP2_1", ["3:34", 20], "looking east, bit of road above"]
+    ],
+    "text": {
+        "yPos": 800,
+        "colour": "#FF143C",
+        "heading": {
+            "start": 8,
+            "dur": 12
+        },
+        "episode": {
+            "start": 22,
+            "dur": 15
+        }
+    }
+}
