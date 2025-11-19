@@ -80,7 +80,7 @@ def startFrom(s):
     if type(s) != str:
         return s
     spl = s.split(":")
-    return (int(spl[0]) * 60) + int(spl[1])
+    return (int(spl[0]) * 60) + float(spl[1])
 
 
 storyboard = []

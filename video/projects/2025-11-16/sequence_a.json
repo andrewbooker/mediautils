@@ -1,9 +1,9 @@
 {
-    "projectName": "New River at night",
+    "projectName": "New River under a dual carriageway at night",
     "number": 41,
     "aliases": {
         "2025_1116_215036_002A.MOV": {
-            "name": "2025_1116_215036_002A",
+            "name": "apeman",
             "length": 472.56666666666666
         },
         "ZOOM0027.MOV": {
@@ -25,9 +25,28 @@
     "sequence": [
         ["NP2_2", [0, 10], "road"],
         ["NP2_1", [48, 10], "lit unit into water"],
-        ["NP2_1", ["1:35", 25], "looking west, floating under bridge"],
-        ["zoom", [36, 20], "lowered into the water then drifting off"],
-        ["NP2_1", ["3:34", 20], "looking east, bit of road above"]
+        ["zoom", [36, 3], "lowered into the water"],
+        ["apeman", ["3:20", 7], "I walk away into darkness"],
+        ["zoom", [45, 16], "drifting towards east entrance"],
+        ["NP2_1", ["1:43", 8]],
+        ["zoom", ["1:09", 18], "rotating"],
+        ["apeman", ["4:07", 7]],
+        ["NP2_1", ["2:08", 6], "looking west, before departure"],
+        ["zoom", ["1:30", 24], "drifting sideways"],
+        ["apeman", ["4:36", 18], "distant lights come into view"],
+        ["zoom", ["2:10", 24], "drift"],
+        ["NP2_1", ["2:58", 7], "emerging from footway underpass"],
+        ["NP2_1", ["3:07.5", 7], "round to look east"], 
+        ["zoom", ["2:38", 10], "drift"],
+        ["NP2_1", ["3:18", 34], "lower down looking east"],
+        ["zoom", ["2:57", 20], "drift and rotate"],
+        ["apeman", ["5:58", 14], "other side visible, approaching it"],
+        ["zoom", ["3:27", 20], "drift out fast"], 
+        ["NP2_1", ["4:18", 10], "just before hook"],
+        ["NP2_1", ["4:56", 6], "close-up then reach-down"],
+        ["apeman", ["7:10", 3], "lift-out"],
+        ["zoom", ["4:32", 3], "set-down"],
+        ["NP2_1", ["5:26", 10], "on the grass"]
     ],
     "text": {
         "yPos": 800,
