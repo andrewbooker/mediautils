@@ -1,6 +1,6 @@
 {
-    "projectName": "New River under a dual carriageway at night",
-    "number": 41,
+    "projectName": "Adrift in the dark",
+    "number": 42,
     "aliases": {
         "2025_1116_215036_002A.MOV": {
             "name": "apeman",
@@ -50,7 +50,7 @@
     ],
     "text": {
         "yPos": 800,
-        "colour": "#FF143C",
+        "colour": "white",
         "heading": {
             "start": 8,
             "dur": 12
