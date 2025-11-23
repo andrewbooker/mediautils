@@ -1,0 +1,111 @@
+{
+    "projectName": "Convoy under concrete",
+    "number": 44,
+    "aliases": {
+        "2025_1116_170029_002A.MOV": {
+            "name": "apeman"
+        },
+        "VID_20251116_155351487.mp4": {
+            "name": "NP2_setup"
+        },
+        "VID_20251116_161109124.mp4": {
+            "name": "NP2_1",
+            "length": 380.0148888888889
+        },
+        "VID_20251116_160652512.mp4": {
+            "name": "NP2_2",
+            "length": 19.567166666666665
+        },
+        "VID_20251116_160834175.mp4": {
+            "name": "NP2_3",
+            "length": 140.05976666666666
+        },
+        "VID_20251116_160742052.mp4": {
+            "name": "NP2_4",
+            "length": 15.846422222222223
+        },
+        "dragon.MP4": {
+            "name": "dragon",
+            "length": 823.6
+        },
+        "ZOOM0027.MOV": {
+            "name": "zoom"
+        }
+    },
+    "audioSync": {
+        "": 0
+    },
+    "sequence": [
+        ["NP2_2", [9, 8], "looking north across bridge"],
+        ["NP2_4", [6, 6], "looking north into portals"],
+        ["NP2_setup", ["2:24", 3], "lowering leader into water"],
+        ["NP2_setup", ["3:10", 3], "lowering trailer into water"],
+        ["NP2_setup", ["3:49", 5], "lowering red into water"],
+        ["NP2_setup", ["4:06", 5], "lowering blue into water"],
+        ["zoom", ["5:12", 6], "attaching connecting rod to blue"],
+        ["zoom", ["5:42", 6], "changing positions"],
+        ["zoom", ["6:34", 3], "moving to the back"],
+        ["NP2_setup", ["7:11", 6], "aligning units"],
+        ["zoom", ["7:57", 8], "first three units drift away"],
+        ["NP2_setup", ["9:56", 2], "getting up from the railings"],
+        ["dragon", ["1:42", 3], "me just visible leaving railings"],
+        ["apeman", ["10:36", 9], "towards north east portal, before I am visible with stick"],
+        ["dragon", ["1:47", 4], "towards north portal looking north"],
+        ["apeman", ["11:02", 5], "into portal looking west"],
+        ["dragon", ["2:16", 8], "swinging under north portal with daylight"],
+        ["apeman", ["11:17", 9], "facing south looking at both units"],
+        ["dragon", ["2:30", 10], "north portal with daylight, red passes to the right"],
+        ["apeman", ["11:28", 5], "both units swing out of view, white wall"],
+        ["dragon", ["2:43", 5], "both units visible"],
+        ["apeman", ["11:38", 12 ], "passing north joint"],
+        ["dragon", ["2:56", 18], "blue then red come into view"],
+        ["apeman", ["12:04", 30], "staring at white light, blue and red visible"],
+        ["dragon", ["3:42", 30], "blue then red slowly swing into view"],
+        ["apeman", ["13:05", 30], "light in face one off, rotate to wall"],
+        ["dragon", ["4:40", 35], "blue moves away, then both visible, then neither"],
+        ["NP2_3", [0, 5], "from south portal looking north into east tunnel"],
+        ["dragon", ["5:20", 25], "first inspection hatch passes"],
+        ["apeman", ["15:00", 15], "view of white wall"],
+        ["dragon", ["7:25", 30], "takes in second inspection hatch"],
+        ["NP2_1", [24, 5], "lower down into south portal"],
+        ["dragon", ["9:25", 16], "blue moving out of view"],
+        ["apeman", ["18:30", 18], "passing south joint"],
+        ["dragon", ["9:54", 16], "past south joint"],
+        ["NP2_1", [55, 10], "into south portal, convoy approaching"],
+        ["dragon", ["10:20", 14], "to exit"],
+        ["apeman", ["19:28", 4], "exit"],
+        ["dragon", ["10:38", 5], "exit"],
+        ["NP2_1", ["1:25", 4], "exit"],
+        ["dragon", ["11:05", 11], "both units coming into view"],
+        ["NP2_1", ["2:32", 10], "fixed from metal footbridge"],
+        ["apeman", ["21:05", 12], "towards metal footbridge, me visible"],
+        ["NP2_1", ["3:03", 5], "from metal footbridge looking down"],
+        ["apeman", ["21:39", 30], "under footbridge"],
+        ["NP2_1", ["4:23", 9], "bend down to reach red and blue"],
+        ["apeman", ["22:44", 3], "reach to blue"],
+        ["NP2_1", ["4:37", 7], "pull out blue"],
+        ["apeman", ["23:04", 3], "reach to red"],
+        ["NP2_1", ["4:55", 9], "pull out red"],
+        ["NP2_1", ["5:13", 12], "pull out tail"]
+    ],
+    "spares": [
+        ["zoom", ["2:59", 3]],
+        ["zoom", ["3:52", 3]],
+        ["zoom", ["5:24", 4], "attaching connecting rod to red"],
+        ["dragon", ["6:21", 90], "takes in second inspection hatch"],
+        ["dragon", ["13:13", 4], "removed from water"],
+        ["dragon", ["12:43", 13], "swung under footbridge"]
+    ],
+    "text": {
+        "yPos": 800,
+        "colour": "#FF143C",
+        "heading": {
+            "start": 8,
+            "dur": 12
+        },
+        "episode": {
+            "start": 22,
+            "dur": 15
+        }
+    }
+}
