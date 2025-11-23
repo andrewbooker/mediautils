@@ -1,0 +1,79 @@
+{
+    "projectName": "Explorer in concrete watercourse",
+    "number": 43,
+    "aliases": {
+        "VID_20251116_213131008.mp4": {
+            "name": "NP2_1",
+            "length": 21.954766666666668
+        },
+        "2025_1116_223258_002A.MOV": {
+            "name": "apeman",
+            "length": 1259.8
+        },
+        "ZOOM0028.MOV": {
+            "name": "zoom",
+            "length": 1090.089
+        },
+        "VID_20251116_213910419.mp4": {
+            "name": "NP2_2",
+            "length": 42.70314444444445
+        },
+        "VID_20251116_211918864.mp4": {
+            "name": "NP2_3",
+            "length": 11.660244444444444
+        },
+        "VID_20251116_214000704.mp4": {
+            "name": "NP2_4",
+            "length": 263.1155111111111
+        },
+        "VID_20251116_212823275.mp4": {
+            "name": "NP2_5",
+            "length": 169.2359888888889
+        },
+        "VID_20251116_213537216.mp4": {
+            "name": "NP2_6",
+            "length": 86.57125555555555
+        }
+    },
+    "audioSync": {
+        "": 0
+    },
+    "sequence": [
+        ["NP2_5", [11, 10], "dark to switch-on"],
+        ["NP2_3", [5, 5], "view over bridge"],
+        ["NP2_5", [53, 8], "through railings to lower in"],
+        ["apeman", ["4:10", 5], "let go"],
+        ["NP2_5", ["1:22", 5], "climb back through railings"],
+        ["zoom", ["1:11", 20], "alongside concrete edge"],
+        ["NP2_5", ["1:43", 5], "under the climber deterrant"],
+        ["zoom", ["1:40", 9], "portal coming into view"],
+        ["NP2_5", ["1:55", 10], "into the tunnel"],
+        ["zoom", ["1:57", 20], "portal coming into view"],
+        ["NP2_5", ["2:27", 20], "glow from portal with street lights"],
+        ["apeman", ["5:38", 13], "to north join"],
+        ["zoom", ["2:50", 175], "passing north join then onwards"],
+        ["apeman", ["8:46", 17], "approaching first inspection hatch"],
+        ["zoom", ["6:02", 35], "passing first inspection hatch"],
+        ["apeman", ["9:38", 120], "facing south wall, to 2nd inspection hatch"],
+        ["zoom", ["8:37", 143], "passing 2nd inspection hatch"],
+        ["apeman", ["14:01", 17], "south join comes into view"],
+        ["zoom", ["11:17", 3], "under south join and out"],
+        ["NP2_4", [0, 4], "glow from other end"],
+        ["zoom", ["11:24", 53], "past south join and out"],
+        ["NP2_4", [58, 22], "emergence seen from above"],
+        ["zoom", ["12:37", 10], "down outside"],
+        ["NP2_4", ["2:55", 20], "towards and under walkway"]
+    ],
+    "text": {
+        "yPos": 80,
+        "colour": "white",
+        "heading": {
+            "start": 8,
+            "dur": 12
+        },
+        "episode": {
+            "start": 22,
+            "dur": 15
+        }
+    }
+}
