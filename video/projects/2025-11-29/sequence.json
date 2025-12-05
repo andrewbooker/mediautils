@@ -1,0 +1,57 @@
+{
+    "projectName": "Rothley Brook",
+    "number": 45,
+    "aliases": {
+        "VID_20251129_155007165.mp4": {
+            "name": "NP2_1",
+            "length": 8.703911111111111
+        },
+        "VID_20251129_160703851.mp4": {
+            "name": "NP2_2",
+            "length": 12.790088888888889
+        },
+        "2025_1129_165430_002A.MOV": {
+            "name": "apeman",
+            "length": 901.6
+        },
+        "VID_20251129_155017310.mp4": {
+            "name": "shoot",
+            "length": 630.7375222222222
+        }
+    },
+    "audioSync": {
+        "": 0
+    },
+    "sequence": [
+        ["NP2_2", [0, 8], "east portal"],
+        ["shoot", ["6:39", 11], "walk away from camera towards west end carrying"],
+        ["apeman", ["11:28", 10], "walk towards camera towards west end carrying"],
+        ["shoot", ["7:11", 3], "lower into water"],
+        ["shoot", [28, 10], "lower into water"],
+        ["apeman", ["5:13", 20], "spinning starts"],
+        ["shoot", ["1:17", 29], "camera moving to west portal"],
+        ["apeman", ["6:11", 14], "I stand up and move back into tunnel"],
+        ["shoot", ["2:08", 115], "action shoot"],
+        ["apeman", ["8:26", 10], "until I appear"],
+        ["shoot", ["4:14", 10], "more action further in"],
+        ["apeman", ["12:14", 23], "until I appear"],
+        ["apeman", ["8:38", 16], "I video moving eastwards"],
+        ["shoot", ["4:39", 17], "more action further in"],
+        ["apeman", ["9:49", 10], "I video moving eastwards"],
+        ["shoot", ["5:22", 15], "nearer east portal, near water level"],
+        ["apeman", ["13:04", 24], "looking west, view of both portals"],
+        ["shoot", ["8:55", 25], "drifting towards east portal"]
+    ],
+    "text": {
+        "yPos": 800,
+        "colour": "white",
+        "heading": {
+            "start": 8,
+            "dur": 12
+        },
+        "episode": {
+            "start": 22,
+            "dur": 15
+        }
+    }
+}
