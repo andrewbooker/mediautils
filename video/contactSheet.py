@@ -81,7 +81,7 @@ cmd.append("\"%s\"" % ";".join(fc))
 cmd.append("-map")
 cmd.append("[%s]" % out)
 cmd.append("-y")
-cmd.append(os.path.join(workingDir, "out.bmp"))
+cmd.append(os.path.join(workingDir, "contact.bmp"))
 
 print(" ".join(cmd))
 if len(sys.argv) > 2 and int(sys.argv[2]) == 1:
