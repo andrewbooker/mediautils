@@ -18,7 +18,6 @@ spec = {
     "loc": {
         "details": [
             "The Engine House",
-            "Walthamstow Wetlands",
             "2 Forest Road",
             "London N17 9NH"
         ],
@@ -43,7 +42,7 @@ def dates():
     inFmt = "%Y-%m-%d"
     df = datetime.strptime(spec["dates"]["from"], inFmt)
     dt = datetime.strptime(spec["dates"]["to"], inFmt)
-    fmt = "%d %b"
+    fmt = "%a %d %b"
     y = spec["dates"]["to"][:4]
     return f"{datetime.strftime(df, fmt)} to {datetime.strftime(dt, fmt)} {y}"
 
@@ -54,6 +53,7 @@ def times():
 
 workingDir = sys.argv[1]
 frameFn = sys.argv[2]
+outFn = sys.argv[3]
 cropLeft = spec["cropLeft"]
 
 img = Image.open(os.path.join(workingDir, frameFn)).convert("RGBA").copy()
@@ -79,22 +79,19 @@ d.text([tx + 3, ty], title, fill="white", font=ImageFont.truetype("impact.ttf", 
 
 locY = int(spec["loc"]["h"] * height)
 dy = 0
-locSize = 70
-for dt in spec["loc"]["details"]:
-    d.text([tx + 3, locY + dy], dt, fill="white", font=ImageFont.truetype("impact.ttf", locSize))
-    dy += locSize + 10
+detailSize = 75
+details = spec["loc"]["details"][:]
+details.extend([dates(), times(), spec["admission"], "randomatones.co.uk"])
+for detail in details:
+    detailSize -= 5
+    d.text([tx + 3, locY + dy], detail, fill="white", font=ImageFont.truetype("impact.ttf", detailSize))
+    dy += detailSize + 10
+
+d.text([tx + 3, locY + dy], "youtube.com/@Randomatones", fill="white", font=ImageFont.truetype("impact.ttf", detailSize))
+#yt = Image.open("./logo-youtube.svg").convert("RGBA").copy()
 
 
-whenSize = 60
-d.text([tx + 3, locY + dy], dates(), fill="white", font=ImageFont.truetype("impact.ttf", whenSize))
-dy += whenSize + 10
-d.text([tx + 3, locY + dy], times(), fill="white", font=ImageFont.truetype("impact.ttf", whenSize))
-dy += whenSize + 10
-d.text([tx + 3, locY + dy], spec["admission"], fill="white", font=ImageFont.truetype("impact.ttf", whenSize - 10))
-
-
-
-img.save(os.path.join(workingDir, "artwork1.png"))
+img.save(os.path.join(workingDir, f"{outFn}.png"))
 img.close()
 
 
