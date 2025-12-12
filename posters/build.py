@@ -87,8 +87,12 @@ for detail in details:
     d.text([tx + 3, locY + dy], detail, fill="white", font=ImageFont.truetype("impact.ttf", detailSize))
     dy += detailSize + 10
 
-d.text([tx + 3, locY + dy], "youtube.com/@Randomatones", fill="white", font=ImageFont.truetype("impact.ttf", detailSize))
-#yt = Image.open("./logo-youtube.svg").convert("RGBA").copy()
+yt = Image.open("./logo-youtube.png")
+ig = Image.open("./logo-instagram.png").resize(yt.size)
+img.paste(yt, (tx, locY + dy), mask=yt)
+img.paste(ig, (tx + 6 + yt.size[0], locY + dy), mask=ig)
+d.text([tx + yt.size[0] + ig.size[0] + 12, locY + dy], "@randomatones", fill="white", font=ImageFont.truetype("impact.ttf", detailSize))
+
 
 
 img.save(os.path.join(workingDir, f"{outFn}.png"))
