@@ -18,7 +18,7 @@ echo '    trackList: [' >> $outF
 
 for f in $inDir/*.mp3
 do
-    echo "\"${f#*mp3/}\"," >> $outF
+    echo "        \"${f#*mp3/}\"," >> $outF
 done
 echo '    ]' >> $outF
 echo '};' >> $outF
