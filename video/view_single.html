@@ -9,38 +9,23 @@
         input {
             width: 60px;
         }
-        #loc {
-            width: 600px;
-        }
         #videos {
             display: flex;
             flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            height: 1000px;
         }
         </style>
     </head>
     <body>
-        <div>
-            <button id="load">Load</button>
-            <button id="zero">|<<</button>
-            <label>Starting at</label>
-            <input id="startAt" type="text"></input>
-            <button id="play">Play</button>
-            <label>Current pos:</label>
-            <span id="currentPos"></span>
-        </div>
         <div id="videos"></div>
         <script>
 const urlParams = new URLSearchParams(window.location.search);
 const file = urlParams.get("file")
 const title = urlParams.get("title")
 document.getElementsByTagName("title")[0].innerHTML = title;
-document.getElementById("load").setAttribute("onclick", "load();");
-let model = {}
-
-const globalStart = () => {
-    return new Number(document.getElementById("startAt").value);
-};
-
 
 const loadOne = (f, i) => {
     const container = document.createElement("div");
@@ -51,74 +36,18 @@ const loadOne = (f, i) => {
     vs.setAttribute("type", "video/mp4");
     v.setAttribute("height", 900);
     v.setAttribute("width", 1600);
+    v.setAttribute("loop", "");
+    v.setAttribute("controls", "");
     const id = "video" + i;
-    videoCtls.push(v);
     v.setAttribute("id", id);
     v.load();
 
     v.appendChild(vs);
     container.appendChild(v);
-
-    const setOffset = document.createElement("input");
-    setOffset.setAttribute("id", "videoStartAt" + i);
-    setOffset.value = v.currentTime;
-    setOffset.onchange = function() {
-        const g = globalStart();
-        const o = new Number(setOffset.value);
-        v.currentTime = g + o;
-    };
-
-    const oc = document.createElement("div");
-    oc.setAttribute("style", "display: flex;");
-    oc.appendChild(setOffset);
-
-    const ct = document.createElement("div");
-    setInterval(() => {
-        ct.innerHTML = v.currentTime + " (" + Math.floor(v.currentTime / 60) + ":" + new Number(v.currentTime % 60).toFixed(2) + ")";
-        if (i === 0) {
-            document.getElementById("currentPos").innerHTML =  new Number(v.currentTime - setOffset.value).toFixed(2);
-        }
-    }, 100)
-    oc.appendChild(ct);
-    container.appendChild(oc);
     document.getElementById("videos").appendChild(container);
 };
 
-
-const videoCtls = [];
-
-
-const syncStarts = () => {
-    videoCtls.forEach((v, i) => {
-        v.currentTime = globalStart() + new Number(document.getElementById("videoStartAt" + i).value);
-    });
-};
-
-
-document.getElementById("startAt").onchange = syncStarts;
-document.getElementById("zero").onclick = () => {
-    document.getElementById("startAt").value = 0;
-    syncStarts();
-};
-
-const load = () => {
-    loadOne(file, 0);
-};
-
-const button = document.getElementById("play");
-const play = () => {
-    videoCtls.forEach((v, i) => {
-        v.play();
-    });
-    button.innerHTML = "Pause"
-    button.setAttribute("onclick", "pause();");
-};
-const pause = () => {
-    videoCtls.forEach(v => v.pause());
-    button.innerHTML = "Play"
-    button.setAttribute("onclick", "play();");
-};
-button.setAttribute("onclick", "play();");
+loadOne(file, 0);
 
         </script>
     </body>
