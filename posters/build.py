@@ -8,6 +8,7 @@ import os
 import sys
 import math
 from datetime import datetime
+import qrcode
 
 
 spec = {
@@ -93,7 +94,17 @@ img.paste(yt, (tx, locY + dy), mask=yt)
 img.paste(ig, (tx + 6 + yt.size[0], locY + dy), mask=ig)
 d.text([tx + yt.size[0] + ig.size[0] + 12, locY + dy], "@randomatones", fill="white", font=ImageFont.truetype("impact.ttf", detailSize))
 
-
+import qrcode
+qr = qrcode.QRCode(
+    version=1,
+    error_correction=qrcode.constants.ERROR_CORRECT_L,
+    box_size=10,
+    border=2
+)
+qr.add_data("https://www.youtube.com/@Randomatones/videos")
+qr.make(fit=True)
+bottomLeft = 400
+img.paste(qr.make_image(fill_color="black", back_color="white"), (width - bottomLeft, height - bottomLeft))
 
 img.save(os.path.join(workingDir, f"{outFn}.png"))
 img.close()
