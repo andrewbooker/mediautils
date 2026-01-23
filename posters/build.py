@@ -12,7 +12,8 @@ import qrcode
 
 
 spec = {
-    "cropLeft": 1040,
+    "orientation": "landscape",
+    "cropLeft": 0,
     "sub": {
         "text": "Ambient music sound art installation",
     },
@@ -32,7 +33,8 @@ spec = {
         "from": "09:30",
         "to": "15:30"
     },
-    "admission": "Free entry"
+    "admission": "Free entry",
+    "headingColour": "white"
 }
 
 
@@ -59,24 +61,30 @@ cropLeft = spec["cropLeft"]
 
 img = Image.open(os.path.join(workingDir, frameFn)).convert("RGBA").copy()
 (origWidth, height) = img.size
-width = int(height / math.sqrt(2))
-img = img.crop((cropLeft, 0, cropLeft + width, height))
+width = int(height / math.sqrt(2)) if cropLeft > 0 else origWidth
+if cropLeft > 0:
+    img = img.crop((cropLeft, 0, cropLeft + width, height))
 d = ImageDraw.Draw(img)
 print(img.size)
 
 heading = "Randomatones"
-
+headingColour = "white" if "headingColour" not in spec else spec["headingColour"]
 tx = 70
 hy = 50
-headingSize = int(1.75 * width / len(heading))
-d.text([tx - 3, hy], heading, fill="white", font=ImageFont.truetype("impact.ttf", headingSize))
-
+headingRatio = 1.75
+subHeadingRatio = 2.15
+if "orientation" in spec and spec["orientation"] == "landscape":
+    headingRatio = 0.7
+    subHeadingRatio = 0.8
+    hy = int(0.4 * height)
+headingSize = int(headingRatio * width / len(heading))
+d.text([tx - 3, hy], heading, fill=headingColour, font=ImageFont.truetype("impact.ttf", headingSize))
 
 
 title = spec["sub"]["text"]
 ty = int(hy + headingSize + 30)
-titleSize = int(2.15 * width / len(title))
-d.text([tx + 3, ty], title, fill="white", font=ImageFont.truetype("impact.ttf", titleSize))
+titleSize = int(subHeadingRatio * width / len(title))
+d.text([tx + 3, ty], title, fill=headingColour, font=ImageFont.truetype("impact.ttf", titleSize))
 
 locY = int(spec["loc"]["h"] * height)
 dy = 0
@@ -94,17 +102,19 @@ img.paste(yt, (tx, locY + dy), mask=yt)
 img.paste(ig, (tx + 6 + yt.size[0], locY + dy), mask=ig)
 d.text([tx + yt.size[0] + ig.size[0] + 12, locY + dy], "@randomatones", fill="white", font=ImageFont.truetype("impact.ttf", detailSize))
 
-import qrcode
-qr = qrcode.QRCode(
-    version=1,
-    error_correction=qrcode.constants.ERROR_CORRECT_L,
-    box_size=10,
-    border=2
-)
-qr.add_data("https://www.youtube.com/@Randomatones/videos")
-qr.make(fit=True)
-bottomLeft = 400
-img.paste(qr.make_image(fill_color="black", back_color="white"), (width - bottomLeft, height - bottomLeft))
+if "orientation" not in spec or spec["orientation"] != "landscape":
+    import qrcode
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=2
+    )
+    qr.add_data("https://www.youtube.com/@Randomatones/videos")
+    qr.make(fit=True)
+
+    bottomLeft = 400
+    img.paste(qr.make_image(fill_color="black", back_color="white"), (width - bottomLeft, height - bottomLeft))
 
 img.save(os.path.join(workingDir, f"{outFn}.png"))
 img.close()
