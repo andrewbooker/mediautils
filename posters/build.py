@@ -34,7 +34,7 @@ spec = {
         "to": "15:30"
     },
     "admission": "Free entry",
-    "headingColour": "white"
+    "headingColour": "PaleTurquoise"
 }
 
 
@@ -74,7 +74,7 @@ hy = 50
 headingRatio = 1.75
 subHeadingRatio = 2.15
 if "orientation" in spec and spec["orientation"] == "landscape":
-    headingRatio = 0.7
+    headingRatio = 0.65
     subHeadingRatio = 0.8
     hy = int(0.4 * height)
 headingSize = int(headingRatio * width / len(heading))
