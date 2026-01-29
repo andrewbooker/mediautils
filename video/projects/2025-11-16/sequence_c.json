@@ -1,5 +1,5 @@
 {
-    "projectName": "Explorer in concrete watercourse",
+    "projectName": "Solo explorer in a concrete tunnel",
     "number": 43,
     "aliases": {
         "VID_20251116_213131008.mp4": {
@@ -68,12 +68,12 @@
         "yPos": 80,
         "colour": "white",
         "heading": {
-            "start": 8,
-            "dur": 12
+            "start": 2,
+            "dur": 13
         },
         "episode": {
-            "start": 22,
-            "dur": 15
+            "start": 23,
+            "dur": 13
         }
     }
 }
