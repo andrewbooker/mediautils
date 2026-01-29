@@ -19,11 +19,11 @@ spec = {
     },
     "loc": {
         "details": [
+            "Turbine Room",
             "The Engine House",
-            "2 Forest Road",
-            "London N17 9NH"
+            "2 Forest Road London N17 9NH"
         ],
-        "h": 0.7
+        "h": 0.63
     },
     "dates": {
         "from": "2026-02-28",
@@ -34,7 +34,7 @@ spec = {
         "to": "15:30"
     },
     "admission": "Free entry",
-    "headingColour": "PaleTurquoise"
+    "headingColour": "LightBlue"
 }
 
 
@@ -64,11 +64,11 @@ img = Image.open(os.path.join(workingDir, frameFn)).convert("RGBA").copy()
 width = int(height / math.sqrt(2)) if cropLeft > 0 else origWidth
 if cropLeft > 0:
     img = img.crop((cropLeft, 0, cropLeft + width, height))
-d = ImageDraw.Draw(img)
+
 print(img.size)
 
 heading = "Randomatones"
-headingColour = "white" if "headingColour" not in spec else spec["headingColour"]
+headingColour = (255, 255, 255) # if "headingColour" not in spec else spec["headingColour"]
 tx = 70
 hy = 50
 headingRatio = 1.75
@@ -76,8 +76,15 @@ subHeadingRatio = 2.15
 if "orientation" in spec and spec["orientation"] == "landscape":
     headingRatio = 0.65
     subHeadingRatio = 0.8
-    hy = int(0.4 * height)
+    hy = int(0.08    * height)
 headingSize = int(headingRatio * width / len(heading))
+
+txt = Image.new("RGBA", img.size, (0,0,255,60))
+
+img = Image.alpha_composite(img, txt)
+img.save(os.path.join(workingDir, f"background.png"))
+
+d = ImageDraw.Draw(img)
 d.text([tx - 3, hy], heading, fill=headingColour, font=ImageFont.truetype("impact.ttf", headingSize))
 
 
@@ -88,7 +95,7 @@ d.text([tx + 3, ty], title, fill=headingColour, font=ImageFont.truetype("impact.
 
 locY = int(spec["loc"]["h"] * height)
 dy = 0
-detailSize = 75
+detailSize = 90
 details = spec["loc"]["details"][:]
 details.extend([dates(), times(), spec["admission"], "randomatones.co.uk"])
 for detail in details:
