@@ -12,8 +12,7 @@ import qrcode
 
 
 spec = {
-    "orientation": "landscape",
-    "cropLeft": 0,
+    "cropLeft": 1040,
     "sub": {
         "text": "Ambient music sound art installation",
     },
@@ -23,7 +22,7 @@ spec = {
             "The Engine House",
             "2 Forest Road London N17 9NH"
         ],
-        "h": 0.63
+        "h": 0.68
     },
     "dates": {
         "from": "2026-02-28",
@@ -34,9 +33,11 @@ spec = {
         "to": "15:30"
     },
     "admission": "Free entry",
-    "headingColour": "LightBlue"
+    "backgroundOverlay": [0,0,255,60]
 }
 
+# "headingColour": "LightYellow"
+# 
 
 def rgb(a):
 	return "rgb%s" % str(tuple(a))
@@ -59,7 +60,7 @@ frameFn = sys.argv[2]
 outFn = sys.argv[3]
 cropLeft = spec["cropLeft"]
 
-img = Image.open(os.path.join(workingDir, frameFn)).convert("RGBA").copy()
+img = Image.open(os.path.join(workingDir, "backgrounds", frameFn)).convert("RGBA").copy()
 (origWidth, height) = img.size
 width = int(height / math.sqrt(2)) if cropLeft > 0 else origWidth
 if cropLeft > 0:
@@ -68,7 +69,7 @@ if cropLeft > 0:
 print(img.size)
 
 heading = "Randomatones"
-headingColour = (255, 255, 255) # if "headingColour" not in spec else spec["headingColour"]
+headingColour = (255, 255, 255) if "headingColour" not in spec else spec["headingColour"]
 tx = 70
 hy = 50
 headingRatio = 1.75
@@ -76,17 +77,18 @@ subHeadingRatio = 2.15
 if "orientation" in spec and spec["orientation"] == "landscape":
     headingRatio = 0.65
     subHeadingRatio = 0.8
-    hy = int(0.08    * height)
+    hy = int(0.08 * height)
 headingSize = int(headingRatio * width / len(heading))
 
-txt = Image.new("RGBA", img.size, (0,0,255,60))
+if "backgroundOverlay" in spec:
 
-img = Image.alpha_composite(img, txt)
-img.save(os.path.join(workingDir, f"background.png"))
+    txt = Image.new("RGBA", img.size, tuple(spec["backgroundOverlay"]))
+
+    img = Image.alpha_composite(img, txt)
+    img.save(os.path.join(workingDir, f"background.png"))
 
 d = ImageDraw.Draw(img)
 d.text([tx - 3, hy], heading, fill=headingColour, font=ImageFont.truetype("impact.ttf", headingSize))
-
 
 title = spec["sub"]["text"]
 ty = int(hy + headingSize + 30)
@@ -96,8 +98,11 @@ d.text([tx + 3, ty], title, fill=headingColour, font=ImageFont.truetype("impact.
 locY = int(spec["loc"]["h"] * height)
 dy = 0
 detailSize = 90
-details = spec["loc"]["details"][:]
-details.extend([dates(), times(), spec["admission"], "randomatones.co.uk"])
+details = []
+details.extend([dates(), times()])
+details.extend(spec["loc"]["details"][:])
+details.append(spec["admission"])
+details.append("randomatones.co.uk")
 for detail in details:
     detailSize -= 5
     d.text([tx + 3, locY + dy], detail, fill="white", font=ImageFont.truetype("impact.ttf", detailSize))
