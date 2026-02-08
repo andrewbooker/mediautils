@@ -15,10 +15,10 @@ size = (tuple([t + (bleed * 2) for t in landscape(A6)]))
 canvas = Canvas("postcard_front.pdf", pagesize=size)
 
 w_imgs = [
-    ("53794930691_7fe02bc0dc", 0.2, "Walthamstow Forest"),
-    ("53795241949_051ecc1248", 0.9, "South Woodford"),
-    ("53795150323_693d6768b7", 0.1, "Snarestone Tunnel"),
-    ("53795241979_b0e61dd7f7", 1.0, "Woolwich Foot Tunnel"),
+    ("/home/abooker/Downloads/IMG_20251004_131115316.jpg", 0.4, "Hoddesdon"),
+    ("54959381627_79bb48599d", 0.0, "Coventry"),
+    ("54303583019_8b91477cc0", 0.3, "Turbine Room"),
+    ("54842102195_72a90b1762", 0.0, "Woodbridge")
 ]
 
 x_2 = size[0] / 2
@@ -26,11 +26,15 @@ y_2 = size[1] / 2
 ratio = size[0] / size[1]
 
 for i in range(4):
-    get_resp = requests.get(f"https://live.staticflickr.com/65535/{w_imgs[i][0]}_b.jpg")
-    if get_resp.status_code != 200:
-        break
+    isLocal = w_imgs[i][0][0] == "/"
+    if not isLocal:
+        get_resp = requests.get(f"https://live.staticflickr.com/65535/{w_imgs[i][0]}_b.jpg")
+        if get_resp.status_code != 200:
+            break
 
-    pil_img = Image.open(io.BytesIO(get_resp.content))
+        pil_img = Image.open(io.BytesIO(get_resp.content))
+    else:
+        pil_img = Image.open(w_imgs[i][0])
     required_width = int(pil_img.height * ratio)
     surplus_width = pil_img.width - required_width
 

@@ -9,6 +9,7 @@ from svglib.svglib import svg2rlg
 import qrcode
 from reportlab.lib.utils import ImageReader
 from reportlab.lib.units import cm
+from PIL import Image
 
 
 def add_divider(canvas, size):
@@ -54,18 +55,21 @@ def add_upper_details(canvas, size):
     t.setFont("Helvetica", 5)
     t.textLine("Clockwise from top left:")
     t.textLine(", ".join([
-        "Cwmbran Tunnel",
-        "Walthamstow Forest",
-        "South Woodford",
-        "Woolwich Foot Tunnel"
+        "Walthamstow Wetlands",
+        "Woodbridge",
+        "Coventry",
+        "Hoddesdon"
     ]))
 
     canvas.drawText(t)
 
 
 def add_lower_details(canvas, size):
-    img = qrcode.make("http://randomatones.co.uk/portfolio.html")
-    canvas.drawImage(ImageReader(img.get_image()), 5, 5, width=60, height=60, mask="auto")
+    ytqr = qrcode.make("http://randomatones.co.uk/portfolio.html")
+    canvas.drawImage(ImageReader(ytqr.get_image()), 5, 5, width=60, height=60, mask="auto")
+    logo_x_pos = 18
+    canvas.drawImage(ImageReader(Image.open("instagram.png")), 70, logo_x_pos, width=10, height=10, mask="auto")
+    canvas.drawImage(ImageReader(Image.open("youtube.png")), 82, logo_x_pos, width=10, height=10, mask="auto")
 
     t = canvas.beginText()
     x_pos = 70
@@ -85,10 +89,12 @@ def add_lower_details(canvas, size):
     t.setFont("Impact", 10)
     t.textLine("Andrew Booker")
 
-    t.setTextOrigin(x_pos, 30)
+    
     t.setFont("Helvetica", 6)
+    t.setTextOrigin(x_pos, 30)
     t.textLine("randomatones.co.uk")
-    t.textLine("youtube.com/@Randomatones")
+    t.setTextOrigin(x_pos + 24, 21)
+    t.textLine("@randomatones")
 
     t.setFillColorCMYK(0, 0, 0, a_black)
     t.setTextOrigin(x_pos, 12)
