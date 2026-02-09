@@ -50,7 +50,7 @@ def add_upper_details(canvas, size):
     t.setFillColorCMYK(0, 0, 0, 0.9)
     t.setTextOrigin(margin, size[1] - 36)
     t.setFont("Helvetica", 8)
-    t.textLine("Pop-up aleatoric music installations")
+    t.textLine("Pop-up aleatoric sound art installations")
 
     t.setFont("Helvetica", 5)
     t.textLine("Clockwise from top left:")
@@ -58,7 +58,7 @@ def add_upper_details(canvas, size):
         "Walthamstow Wetlands",
         "Woodbridge",
         "Coventry",
-        "Hoddesdon"
+        "Barclay Park"
     ]))
 
     canvas.drawText(t)

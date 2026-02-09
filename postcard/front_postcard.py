@@ -15,7 +15,7 @@ size = (tuple([t + (bleed * 2) for t in landscape(A6)]))
 canvas = Canvas("postcard_front.pdf", pagesize=size)
 
 w_imgs = [
-    ("/home/abooker/Downloads/IMG_20251004_131115316.jpg", 0.4, "Hoddesdon"),
+    ("/home/abooker/Downloads/IMG_20251004_131115316.jpg", 0.4, "Barclay Park"),
     ("54959381627_79bb48599d", 0.0, "Coventry"),
     ("54303583019_8b91477cc0", 0.3, "Turbine Room"),
     ("54842102195_72a90b1762", 0.0, "Woodbridge")
