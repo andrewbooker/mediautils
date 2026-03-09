@@ -1,0 +1,51 @@
+{
+    "projectName": "Coventry",
+    "number": 46,
+    "aliases": {
+        "VID_20251130_171511947.mp4": {
+            "name": "NP2_2",
+            "length": 732.6681444444445
+        },
+        "ZOOM0028.MOV": {
+            "name": "zoom",
+            "length": 993.993
+        },
+        "VID_20251130_170256056.mp4": {
+            "name": "NP2_1",
+            "length": 11.178444444444445
+        },
+        "VID_20251130_173615145.mp4": {
+            "name": "NP2_4",
+            "length": 10.796822222222222
+        },
+        "VID_20251130_172857276.mp4": {
+            "name": "NP2_3",
+            "length": 25.048633333333335
+        },
+        "2025_1130_181651_002A.MOV": {
+            "name": "apeman",
+            "length": 1405.3
+        }
+    },
+    "audioSync": {
+        "": 0
+    },
+    "sequence": [
+        ["NP2_1", [5, 4], "portal far"],
+        ["NP2_4", [0, 5], "portal closeup"],
+        ["apeman", ["5:40", 30], "drifting into view"],
+        ["NP2_2", [6, 40], "still, floating downstream, rotation begins"],
+    ],
+    "text": {
+        "yPos": 800,
+        "colour": "#FF143C",
+        "heading": {
+            "start": 8,
+            "dur": 12
+        },
+        "episode": {
+            "start": 22,
+            "dur": 15
+        }
+    }
+}
