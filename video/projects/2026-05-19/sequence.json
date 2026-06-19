@@ -1,0 +1,65 @@
+{
+    "projectName": "Electric Room",
+    "number": 88,
+    "aliases": {
+        "ZOOM0030.MOV": {
+            "name": "zoom",
+            "length": 1146.145
+        },
+        "VID_20260519_165215510.mp4": {
+            "name": "NP2_3",
+            "length": 491.2739111111111
+        },
+        "VID_20260519_170118765.mp4": {
+            "name": "NP2_0"
+        },
+        "VID_20260521_185509709.mp4": {
+            "name": "speakers1"
+        }
+    },
+    "audioSync": {
+        "": 0
+    },
+    "sequence": [
+        ["speakers1", [9, 13]],
+        ["speakers1", [50, 32]],
+        ["speakers1", ["1:49", 13]],
+        ["NP2_0", [89, 69]],
+        ["NP2_0", [198, 49]],
+        ["NP2_0", [269, 20]],
+        ["NP2_0", [330, 10]],
+        ["zoom", [1059, 85]]
+    ],
+    "sequence1": [
+        ["zoom", [42, 61]],
+        ["NP2_3", ["2:30.5", 20]],
+        ["zoom", [123, 14]],
+        ["NP2_3", ["3:05.5", 11], "close-up from side, possibly insert other clip after this"],
+        ["zoom", [148, 20]],
+        ["NP2_3", ["3:36.5", 22]],
+        ["zoom", [190, 27]],
+        ["NP2_3", ["4:25.5", 29]],
+        ["zoom", [246, 36]],
+        ["NP2_3", ["5:30.5", 13]],
+        ["zoom", [295, 29]],
+        ["NP2_3", ["6:12.5", 24], "from afar, dropping"],
+        ["zoom", [348, 34]],
+        ["NP2_3", ["7:10.5", 44.5]]
+    ],
+    "generic": [
+        ["NP2_3", [252, 15], "from above at a distance, playing gently"],
+        ["NP2_3", [299, 30], "looking up at the speakers, down to close-up"]
+    ],
+    "text": {
+        "yPos": 800,
+        "colour": "#FF143C",
+        "heading": {
+            "start": 8,
+            "dur": 12
+        },
+        "episode": {
+            "start": 22,
+            "dur": 15
+        }
+    }
+}
