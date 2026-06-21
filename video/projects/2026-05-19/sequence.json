@@ -1,6 +1,6 @@
 {
-    "projectName": "Electric Room",
-    "number": 88,
+    "projectName": "The Electric Room",
+    "number": 44,
     "aliases": {
         "ZOOM0030.MOV": {
             "name": "zoom",
@@ -15,21 +15,25 @@
         },
         "VID_20260521_185509709.mp4": {
             "name": "speakers1"
+        },
+        "VID_20260519_171705273.mp4": {
+            "name": "speakers0"
         }
     },
     "audioSync": {
         "": 0
     },
     "sequence": [
-        ["speakers1", [50, 31]],
-        ["NP2_0", ["0:31.37", 20]],
-        ["zoom", ["12:51", 38]],
-        ["NP2_0", ["1:29.37", 80]],
-        ["zoom", ["14:49", 29]],
-        ["NP2_0", ["3:18.37", 50]],
-        ["zoom", ["16:08", 18]],
-        ["NP2_0", ["4:26.37", 18]],
-        ["zoom", ["16:44", 41]],
+        ["speakers0", [1, 6], "looking vertically up at roof"],
+        ["speakers1", [50, 31], "roof from below side"],
+        ["NP2_0", ["0:31.37", 20], "introducing Olga"],
+        ["zoom", ["12:51", 35], "ends in mute slap"],
+        ["NP2_0", ["1:26.37", 83], "from mute slap onwards, pan upwards then back"],
+        ["zoom", ["14:49", 34], "new loud phrase"],
+        ["NP2_0", ["3:23.37", 45], "2-string strum with left hand, picks up plectrum"],
+        ["zoom", ["16:08", 18], "continued right hand strum"],
+        ["NP2_0", ["4:26.37", 17], "side profile"],
+        ["zoom", ["16:43", 42], "shorten this to about 2s after it switches"],
         ["NP2_0", ["5:25.37", 14]],
         ["zoom", ["17:39", 85]]
     ],
@@ -59,15 +63,50 @@
         ["NP2_3", [299, 30], "looking up at the speakers, down to close-up"]
     ],
     "text": {
-        "yPos": 800,
-        "colour": "#FF143C",
+        "yPos": 700,
+        "colour": "#00ffff",
         "heading": {
-            "start": 8,
-            "dur": 12
+            "start": 3,
+            "dur": 13
         },
         "episode": {
-            "start": 22,
-            "dur": 15
-        }
+            "start": 17,
+            "dur": 14
+        },
+        "commentary": [
+            {
+                "yPos": 840,
+                "colour": "#00ffff",
+                "text": "at The London Museum of Water & Steam",
+                "start": 21,
+                "dur": 11
+            },
+            {
+                "yPos": 500,
+                "text": "Olga Glazova",
+                "start": "0:37",
+                "dur": 30
+            },
+            {
+                "yPos": 570,
+                "text": "@olgaglazovagusli",
+                "start": "0:57",
+                "dur": 10
+            },
+            {
+                "yPos": 800,
+                "colour": "#00ffff",
+                "text": "@randomatones",
+                "start": "6:57",
+                "dur": 11
+            },
+            {
+                "yPos": 870,
+                "colour": "#00ffff",
+                "text": "@olgaglazovagusli",
+                "start": "6:58",
+                "dur": 10
+            }
+        ]
     }
 }
