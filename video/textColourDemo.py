@@ -19,6 +19,17 @@ def load():
         return json.load(seqF)
 
 
+def writeTextOnto(fqfn, instructions):
+    for i in instructions:
+        text, size, yPos, colour = i
+        print(size, yPos, colour, text)
+        img = Image.open(fqfn).convert("RGB")
+        d = ImageDraw.Draw(img)
+        d.text([60, yPos], text, fill=colour, font=ImageFont.truetype("impact.ttf", size))
+        img.save(fqfn)
+        img.close()
+
+
 class Sequence:
     def __init__(self):
         self.filesByStartTime = dict()
@@ -80,20 +91,28 @@ srcs = []
 seq = Sequence()
 seq.load_from(j)
 
-headingStart = spec["heading"]["start"]
+yPos = spec["yPos"] if "yPos" in spec else 60
 masterColour = spec["colour"] if "colour" in spec else "white"
 madeByColour = spec["madeBy"]["colour"] if "madeBy" in spec and "colour" in spec["madeBy"] else masterColour
-headingYPos = spec["yPos"] if "yPos" in spec else 60
 
-print(headingStart)
-fhs = seq.file_at(headingStart)
+def heading():
+    start = spec["heading"]["start"]
+    fhs = seq.file_at(start)
+    writeTextOnto(fhs[0], [("Randomatones", 130, yPos, masterColour)])
 
-img = Image.open(fhs[0]).convert("RGB")
-d = ImageDraw.Draw(img)
-titleSize = 130
-scrollTextSize = 50
+def episode():
+    number = j["number"]
+    title = j["projectName"]
+    episodeColour = spec["episode"]["colour"] if "colour" in spec["episode"] else masterColour
+    start = spec["episode"]["start"]
+    fhs = seq.file_at(start)
+    episodeYPos = spec["episode"]["yPos"] if "yPos" in spec["episode"] else yPos
+    writeTextOnto(fhs[0], [
+        (f"Episode {number}", 50, episodeYPos, episodeColour),
+        (title, 50, episodeYPos + 50, episodeColour)
+    ])
 
-d.text([60, headingYPos], "Randomatones", fill=masterColour, font=ImageFont.truetype("impact.ttf", titleSize))
-img.save(fhs[0])
-img.close()
+
+heading()
+episode()
 
