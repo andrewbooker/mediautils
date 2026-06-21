@@ -49,8 +49,8 @@ class Sequence:
         ks = [k for k in self.filesByStartTime]
         for i in range(len(ks)):
             c = ks[i]
-            n = ks[i + 1]
-            if rt >= c and rt < n:
+            isBeforeEnd = True if i >= (len(ks) - 1) else (rt < ks[i + 1])
+            if rt >= c and isBeforeEnd:
                 fn, start = self.filesByStartTime[c]
                 pos = (rt - c) + start
                 fnb = fn.split(".")[0]
@@ -112,7 +112,16 @@ def episode():
         (title, 50, episodeYPos + 50, episodeColour)
     ])
 
+def comments():
+    if "commentary" not in spec:
+        return
+
+    for comment in spec["commentary"]:
+        fhs = seq.file_at(toSecs(comment["start"]))
+        colour = comment["colour"] if "colour" in comment else masterColour
+        writeTextOnto(fhs[0], [(comment["text"], 50, comment["yPos"], colour)])
 
 heading()
 episode()
+comments()
 
