@@ -33,9 +33,10 @@
         ["NP2_0", ["3:23.37", 45], "2-string strum with left hand, picks up plectrum"],
         ["zoom", ["16:08", 18], "continued right hand strum"],
         ["NP2_0", ["4:26.37", 17], "side profile"],
-        ["zoom", ["16:43", 42], "shorten this to about 2s after it switches"],
+        ["zoom", ["16:43", 22], "shorten this to about 2s after it switches"],
         ["NP2_0", ["5:25.37", 14]],
-        ["zoom", ["17:39", 85]]
+        ["zoom", ["17:39", 50]],
+        ["NP2_0", ["6:29.37", 35]]
     ],
     "sequence1": [
         ["zoom", [42, 61]],
@@ -64,10 +65,10 @@
     ],
     "text": {
         "yPos": 700,
-        "colour": "#00ffff",
+        "colour": "#060606",
         "heading": {
-            "start": 3,
-            "dur": 13
+            "start": 6,
+            "dur": 10
         },
         "episode": {
             "start": 17,
@@ -76,35 +77,36 @@
         "commentary": [
             {
                 "yPos": 840,
-                "colour": "#00ffff",
                 "text": "at The London Museum of Water & Steam",
                 "start": 21,
-                "dur": 11
+                "dur": 9
             },
             {
                 "yPos": 500,
+                "colour": "#00ffff",
                 "text": "Olga Glazova",
                 "start": "0:37",
                 "dur": 30
             },
             {
                 "yPos": 570,
+                "colour": "#00ffff",
                 "text": "@olgaglazovagusli",
                 "start": "0:57",
                 "dur": 10
             },
             {
-                "yPos": 800,
+                "yPos": 720,
                 "colour": "#00ffff",
                 "text": "@randomatones",
-                "start": "6:57",
+                "start": "6:37",
                 "dur": 11
             },
             {
-                "yPos": 870,
+                "yPos": 790,
                 "colour": "#00ffff",
                 "text": "@olgaglazovagusli",
-                "start": "6:58",
+                "start": "6:38",
                 "dur": 10
             }
         ]
