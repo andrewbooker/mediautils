@@ -29,9 +29,8 @@
         ["NP2_0", ["0:31.37", 20], "introducing Olga"],
         ["zoom", ["12:51", 35], "ends in mute slap"],
         ["NP2_0", ["1:26.37", 83], "from mute slap onwards, pan upwards then back"],
-        ["zoom", ["14:49", 34], "new loud phrase"],
-        ["NP2_0", ["3:23.37", 45], "2-string strum with left hand, picks up plectrum"],
-        ["zoom", ["16:08", 18], "continued right hand strum"],
+        ["speakers1", [10, 21], "ceiling"],
+        ["NP2_0", ["3:10.37", 58], "2-string strum with left hand, picks up plectrum"],
         ["NP2_0", ["4:26.37", 17], "side profile"],
         ["zoom", ["16:43", 22], "shorten this to about 2s after it switches"],
         ["NP2_0", ["5:25.37", 14]],
@@ -65,7 +64,8 @@
     ],
     "text": {
         "yPos": 700,
-        "colour": "#060606",
+        "colour": "white",
+        "borderColour": "#060606",
         "heading": {
             "start": 6,
             "dur": 10
@@ -86,28 +86,32 @@
                 "colour": "#00ffff",
                 "text": "Olga Glazova",
                 "start": "0:37",
-                "dur": 30
+                "dur": 30,
+                "borderColour": "black"
             },
             {
                 "yPos": 570,
                 "colour": "#00ffff",
                 "text": "@olgaglazovagusli",
                 "start": "0:57",
-                "dur": 10
+                "dur": 10,
+                "borderColour": "black"
             },
             {
                 "yPos": 720,
                 "colour": "#00ffff",
                 "text": "@randomatones",
-                "start": "6:37",
-                "dur": 11
+                "start": "6:19",
+                "dur": 11,
+                "borderColour": "black"
             },
             {
                 "yPos": 790,
                 "colour": "#00ffff",
                 "text": "@olgaglazovagusli",
-                "start": "6:38",
-                "dur": 10
+                "start": "6:20",
+                "dur": 10,
+                "borderColour": "black"
             }
         ]
     }
