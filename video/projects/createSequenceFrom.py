@@ -47,7 +47,7 @@ edits = {}
 for f in files:
     print("reading length of", f)
     fn = os.path.join(inDir, f)
-    os.system(f"chmod 444 {fn}")
+    os.system(f"chmod 444 '{fn}'")
 
     v = cv2.VideoCapture(fn)
     length = v.get(cv2.CAP_PROP_FRAME_COUNT) / v.get(cv2.CAP_PROP_FPS)
@@ -94,9 +94,9 @@ with open(buildFn, "w") as build:
     build.write("#!/bin/bash\n\n")
 
     build.write(f"libDir={resDir}\n")
-    build.write(f"workingDir={buildDir}\n\n")
+    build.write(f"workingDir='{buildDir}'\n\n")
 
-    build.write(f"$libDir/buildSequence.py $workingDir/raw $libDir/projects/{d}/sequence.json . 1\n")
+    build.write(f"$libDir/buildSequence.py \"$workingDir/raw\" $libDir/projects/{d}/sequence.json . 1\n")
     build.write("if [ $? == 1 ]\nthen\n    exit\nfi\n")
     build.write("./compile.sh\n")
     build.write("./merge.sh\n")
@@ -107,4 +107,4 @@ with open(buildFn, "w") as build:
     build.write("#ffmpeg -i merged/merged.avi -i Audio/cues_L.wav -i Audio/cues_R.wav -filter_complex \"[1:a]amerge=inputs=2,pan=stereo|FL<c0|FR<c1[a]\" -ac 2 -map 0:v -map \"[a]\" -y merged/test.mp4\n")
     build.write("#ffmpeg -i merged/merged.avi -i Audio/mixdown_cues_L.wav -i Audio/mixdown_cues_R.wav -filter_complex \"[1:a]amerge=inputs=2,pan=stereo|FL<c0|FR<c1[a]\" -ac 2 -map 0:v -map \"[a]\" -y merged/test_mixdown.mp4\n")
 
-os.system(f"chmod +x {buildFn}")
+os.system(f"chmod +x '{buildFn}'")
